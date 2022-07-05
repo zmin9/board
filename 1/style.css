@@ -1,5 +1,4 @@
 * {
-    font-family: Inter;
     box-sizing: border-box;
 }
 body{
@@ -38,6 +37,9 @@ hr {
     display: flex;
     align-items: start;
 }
+.task-box + .task-box {
+    margin-top: 48px;
+}
 input[type='checkbox']{
     display: none;
 }
@@ -75,15 +77,15 @@ input[type='checkbox']:checked + label > .task-desc > .task-title{
     font-weight: 600;
 }
 
-.add-btn {
+.plus-btn {
     position: fixed;
     right: 50px;
     bottom: 120px;
 
     width: 150px;
     height: 150px;
-    border: solid 0px;
-    border-radius: 9999px;
+    border: solid 0;
+    border-radius: 50%;
     background-color: #1294F2;
     align-items: center;
 
@@ -91,7 +93,7 @@ input[type='checkbox']:checked + label > .task-desc > .task-title{
     font-size: 75px;
     padding-top: 13px;
 }
-.add-btn:active{
+.plus-btn:active{
     background-color: #0e7bcb;
     color: #d5d5d5;
 }
@@ -131,7 +133,7 @@ input[type='checkbox']:checked + label > .task-desc > .task-title{
     padding: 55px 50px 45px 50px;
 }
 
-button[type='submit']{
+.add-btn {
     position: absolute;
     bottom: 100px;
     left: 40px;
