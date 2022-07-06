@@ -6,6 +6,7 @@ body{
     margin: 0;
     padding: 0 48px 100px;
     background-color: #F8F8F8;
+    user-select: none;
 }
 a{ text-decoration: none; }
 
@@ -162,7 +163,6 @@ input[type='checkbox']:checked + label .task-title{
     font-weight: 600;
 }
 
-
 .modal{
     position: absolute;
     left: 50%;
@@ -177,9 +177,12 @@ input[type='checkbox']:checked + label .task-title{
     background-color: #F8F8F8;
 
     text-align: center;
-    font-size: 40px;
 }
-
+.modal-title{
+    font-weight: bold;
+    font-size: 45px;
+    padding: 30px;
+}
 .modal-position-bottom{
     bottom: 300px;
 }
