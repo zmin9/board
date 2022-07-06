@@ -7,20 +7,19 @@
 	<script defer src="new.js"></script>
 </head>
 <body>
-	<div class="page-header">
-		<a href="main.html">
-			<img src="images/Back.svg" alt="back">
-		</a>
-		<div>뒤로 가기</div>
-	</div>
-	<div class="page-title">새로운 태스크</div>
-	<hr/>
+	<a href="main.html" class="page-back">
+		<img src="images/Back.svg" alt="back">
+		<span>뒤로 가기</span>
+	</a>
+	
+	<div class="page-title margin-top-16">새로운 태스크</div>
+	<hr class="margin-top-8"/>
 	<div class="task-input">
-		<input type="text" placeholder="태스크 제목을 입력하세요"/>
+		<input type="text" placeholder="태스크 제목을 입력하세요" class="margin-top-16"/>
 		<div>! 태스크 제목을 입력해주세요</div>
 		<input type="text" placeholder="카테고리를 입력하세요"/>
 	</div>
-	<button class="add-btn">태스크 추가</button>
-	<div class="modal">태스크가 추가되었습니다.</div>
+	<button class="large-button button-position-bottom">태스크 추가</button>
+	<div class="modal modal-position-bottom flex-alignment-center opacity-animation"><div>태스크가 추가되었습니다.</div></div>
 </body>
 </html>

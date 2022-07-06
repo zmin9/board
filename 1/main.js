@@ -16,16 +16,16 @@ function createTaskBox(task, i) {
     taskCategory.className = 'task-category';
     taskCategory.append(task.category);
 
-    const taskDescription = document.createElement('div');
-    taskDescription.className = 'task-desc';
-    taskDescription.append(taskTitle, taskCategory);
+    const taskInformation = document.createElement('div');
+    taskInformation.className = 'task-info';
+    taskInformation.append(taskTitle, taskCategory);
 
     const taskCheckbox = document.createElement('div');
     taskCheckbox.className = 'task-check';
 
     const labelForCheckbox = document.createElement('label');
     labelForCheckbox.htmlFor = 'task' + String(i);
-    labelForCheckbox.append(taskCheckbox, taskDescription);
+    labelForCheckbox.append(taskCheckbox, taskInformation);
 
     const checkboxTypeInput = document.createElement('input');
     checkboxTypeInput.type = 'checkbox';
@@ -35,6 +35,7 @@ function createTaskBox(task, i) {
     const taskBox = document.createElement('div');
     taskBox.classList.add('task-box');
     taskBox.classList.add(String(task.id));
+    taskBox.classList.add('margin-top-16');
     taskBox.append(checkboxTypeInput, labelForCheckbox);
 
     return taskBox;
