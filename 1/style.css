@@ -2,7 +2,8 @@
     box-sizing: border-box;
 }
 body{
-    padding:0 40px;
+    margin: 0;
+    padding: 0 40px 100px;
     background-color: #F8F8F8;
 }
 
@@ -56,10 +57,10 @@ input[type='checkbox'] + label > .task-check{
 input[type='checkbox']:checked + label > .task-check{
     background: url("images/Checkmark.svg") center/55% no-repeat;
 }
-input[type='checkbox']:checked + label > .task-desc > .task-category{
+input[type='checkbox']:checked + label .task-category{
     display: none;
 }
-input[type='checkbox']:checked + label > .task-desc > .task-title{
+input[type='checkbox']:checked + label .task-title{
     color: #B9B9BE;
 }
 
@@ -85,7 +86,7 @@ input[type='checkbox']:checked + label > .task-desc > .task-title{
     width: 150px;
     height: 150px;
     border: solid 0;
-    border-radius: 50%;
+    border-radius: 50%; /*9999px은 보통 옆으로 긴 둥근 막대기를 작업할 때 사용*/
     background-color: #1294F2;
     align-items: center;
 
@@ -123,7 +124,7 @@ input[type='checkbox']:checked + label > .task-desc > .task-title{
     outline: 0;
     border-radius: 12px 12px 0 0;
     border-width: 0 0 6px;
-    border-color: rgba(0, 0, 0, 0.25);
+    border-color: rgba(0, 0, 0, 0.30);
 
     background-color: #e7e7e7;
     font-size: 40px;

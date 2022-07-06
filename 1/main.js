@@ -5,7 +5,7 @@ const tasksDoneList = document.querySelector('.tasks-done');
 
 const todayDate = document.querySelector('h1[class="page-title"]');
 const day = new Date();
-todayDate.innerHTML = `${day.getFullYear()}년 ${day.getMonth()+1}월 ${day.getDate()}일`
+todayDate.innerHTML = `${day.getFullYear()}년 ${day.getMonth() + 1}월 ${day.getDate()}일`;
 
 function createTaskBox(task, i) {
     const taskTitle = document.createElement('div');
@@ -40,15 +40,14 @@ function createTaskBox(task, i) {
     return taskBox;
 }
 
-function locateTaskBox(taskBox){
+function locateTaskBox(taskBox) {
     const taskIdx = taskBox.classList[1];
     taskList[taskIdx].isDone = taskBox.querySelector('input[type="checkbox"]').checked;
 
     const targetList = taskList[taskIdx].isDone ? tasksDoneList : tasksInProgressList;
-    if(targetList.children.length===0){
+    if (targetList.children.length === 0) {
         targetList.append(taskBox);
-    }
-    else {
+    } else {
         let isAppended = false;
         for (let i = 0; i < targetList.children.length; i++) {
             if (taskBox.classList[1] * 1 < targetList.children[i].classList[1] * 1) {
@@ -57,17 +56,17 @@ function locateTaskBox(taskBox){
                 break;
             }
         }
-        if(!isAppended) targetList.appendChild(taskBox);
+        if (!isAppended) targetList.appendChild(taskBox);
     }
 
-    document.querySelector('.task-progress').innerHTML = `${tasksInProgressList.children.length}개 진행중, ${tasksDoneList.children.length}개 완료됨.`
+    document.querySelector('.task-progress').innerHTML = `${tasksInProgressList.children.length}개 진행중, ${tasksDoneList.children.length}개 완료됨`;
     localStorage.setItem('tasks', JSON.stringify(taskList));
 }
 
 taskList.forEach((task, idx) => {
     const taskBox = createTaskBox(task, idx);
     locateTaskBox(taskBox);
-    taskBox.querySelector('input[type="checkbox"]').addEventListener('change', (e)=>{
+    taskBox.querySelector('input[type="checkbox"]').addEventListener('change', (e) => {
         e.preventDefault();
         locateTaskBox(taskBox);
     });
