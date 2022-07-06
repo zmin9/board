@@ -12,6 +12,7 @@ body
   * fix: 버그 수정 및 코드 개선
   * docs: README 추가 및 수정
   * style: 코드 내용에는 변화가 없는 경우, 세미콜론 추가
+  * chore: 폴더 구조 변경
 * number: 과제 번호
 * subject: 커밋 제목
 * body: 관련있는 과제 명세 및 추가 설명

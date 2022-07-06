@@ -54,7 +54,7 @@ input[type='checkbox'] + label > .task-check{
     border-radius: 18px;
 }
 input[type='checkbox']:checked + label > .task-check{
-    background: url("images/Checkmark.svg") center/55% no-repeat;
+    background: url("../images/Checkmark.svg") center/55% no-repeat;
 }
 input[type='checkbox']:checked + label .task-category{
     display: none;
