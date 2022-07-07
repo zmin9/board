@@ -38,5 +38,6 @@ function createCategoryButton(category) {
 }
 
 categoryList.forEach((category) => {
-    categories.appendChild(createCategoryButton(category));
+    if(category!=='')
+        categories.appendChild(createCategoryButton(category));
 });
