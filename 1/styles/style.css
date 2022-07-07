@@ -1,6 +1,7 @@
 * {
     box-sizing: border-box;
     line-height: 1;
+
 }
 body{
     margin: 0;
@@ -204,16 +205,56 @@ input[type='checkbox']:checked + label .task-title{
 
 .margin-top-8{ margin-top: 24px; }
 .margin-top-16{ margin-top: 48px; }
+.margin-top-24{ margin-top: 72px; }
 .margin-top-32{ margin-top: 96px; }
 
 .flex-alignment-center{
-    display: flex;
-    flex-direction: column;
     justify-content: center;
     align-items: center;
+}
+.flex-box-row{
+    display: flex;
+}
+.flex-box-col{
+    display: flex;
+    flex-direction: column;
 }
 
 .opacity-animation {
     opacity: 0;
     transition: opacity 0.15s;
+}
+
+.category-item + .category-item{
+    margin-left: 24px;
+}
+
+.blue-round-box{
+    color: #1294F2;
+    background-color: #F8F8F8;
+
+    border: solid 2px #1294F2;
+    border-radius: 9999px;
+
+    min-width: fit-content;
+}
+.selected-category {
+    color: #F8F8F8;
+    background-color: #1294F2;
+}
+
+
+.scroll{
+    overflow: auto;
+}
+.scroll::-webkit-scrollbar {
+    display:none; /* Chrome 에서 스크롤바 숨기기 */
+}
+
+.padding-8 {
+    padding: 24px 48px;
+}
+
+.font-size-14 {
+    font-size: 42px;
 }

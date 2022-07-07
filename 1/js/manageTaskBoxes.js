@@ -1,7 +1,5 @@
-const taskList = localStorage.getItem('tasks') ? JSON.parse(localStorage.getItem('tasks')) : [];
-
-const tasksInProgressList = document.querySelector('.tasks-in-progress');
-const tasksDoneList = document.querySelector('.tasks-done');
+const tasksInProgress = document.querySelector('.tasks-in-progress');
+const tasksDone = document.querySelector('.tasks-done');
 
 const todayDate = document.querySelector('h1[class="page-title"]');
 const day = new Date();
@@ -34,7 +32,7 @@ function createTaskBox(task, i) {
 
     const taskBox = document.createElement('div');
     taskBox.classList.add('task-box');
-    taskBox.classList.add(String(task.id));
+    taskBox.listNum = i;
     taskBox.classList.add('margin-top-16');
     taskBox.append(checkboxTypeInput, labelForCheckbox);
 
@@ -42,16 +40,16 @@ function createTaskBox(task, i) {
 }
 
 function locateTaskBox(taskBox) {
-    const taskIdx = taskBox.classList[1];
+    const taskIdx = taskBox.listNum;
     taskList[taskIdx].isDone = taskBox.querySelector('input[type="checkbox"]').checked;
 
-    const targetList = taskList[taskIdx].isDone ? tasksDoneList : tasksInProgressList;
+    const targetList = taskList[taskIdx].isDone ? tasksDone : tasksInProgress;
     if (targetList.children.length === 0) {
         targetList.append(taskBox);
     } else {
         let isAppended = false;
         for (let i = 0; i < targetList.children.length; i++) {
-            if (taskBox.classList[1] * 1 < targetList.children[i].classList[1] * 1) {
+            if (taskBox.listNum < targetList.children[i].listNum) {
                 targetList.children[i].before(taskBox);
                 isAppended = true;
                 break;
@@ -60,12 +58,12 @@ function locateTaskBox(taskBox) {
         if (!isAppended) targetList.appendChild(taskBox);
     }
 
-    document.querySelector('.task-progress').innerHTML = `${tasksInProgressList.children.length}개 진행중, ${tasksDoneList.children.length}개 완료됨`;
+    document.querySelector('.task-progress').innerHTML = `${tasksInProgress.children.length}개 진행중, ${tasksDone.children.length}개 완료됨`;
     localStorage.setItem('tasks', JSON.stringify(taskList));
 }
 
-taskList.forEach((task, idx) => {
-    const taskBox = createTaskBox(task, idx);
+taskList.forEach((task) => {
+    const taskBox = createTaskBox(task, taskList.indexOf(task));
     locateTaskBox(taskBox);
     taskBox.querySelector('input[type="checkbox"]').addEventListener('change', (e) => {
         e.preventDefault();
@@ -74,37 +72,7 @@ taskList.forEach((task, idx) => {
 
     taskBox.addEventListener('contextmenu', (e) => {
         e.preventDefault();
-
-        const taskTitle = document.createElement('div');
-        taskTitle.className = 'modal-title';
-        taskTitle.innerText = task.title;
-
-        const deleteBtn = document.createElement('button');
-        deleteBtn.className = 'large-button';
-        deleteBtn.innerText = '삭제';
-
-        const modal = document.createElement('div');
-        modal.classList.add('modal', 'modal-position-center', 'flex-alignment-center');
-        modal.append(taskTitle, deleteBtn);
-
-        modal.children[1].addEventListener('click',()=>{
-            taskList.splice(idx, 1);
-
-            localStorage.setItem('tasks', JSON.stringify(taskList));
-            document.body.lastChild.remove();
-            taskBox.parentNode.removeChild(taskBox);
-        });
-
-        const background = document.createElement('div');
-        background.addEventListener('click', (e) => {
-            e.preventDefault();
-            document.body.lastChild.remove();
-        });
-        background.className = 'modal-background';
-
-        const modalWithBackground = document.createElement('div');
-        modalWithBackground.append(background, modal);
         this.blur();
-        document.body.appendChild(modalWithBackground);
+        document.body.appendChild(createContextMenuModal(task, taskBox));
     });
 });

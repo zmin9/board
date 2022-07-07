@@ -1,25 +1,25 @@
 <!DOCTYPE html>
 <html lang="ko">
-<head>
-	<meta charset="UTF-8">
-	<title>Add Task</title>
-	<link href="../styles/style.css" rel="stylesheet" type="text/css">
-	<script defer src="../js/new.js"></script>
-</head>
-<body>
-	<a href="main.html" class="page-back">
-		<img src="../images/Back.svg" alt="back">
-		<span>뒤로 가기</span>
-	</a>
-	
-	<div class="page-title margin-top-16">새로운 태스크</div>
-	<hr class="margin-top-8"/>
-	<div class="task-input">
-		<input type="text" placeholder="태스크 제목을 입력하세요" class="margin-top-16"/>
-		<div>! 태스크 제목을 입력해주세요</div>
-		<input type="text" placeholder="카테고리를 입력하세요"/>
-	</div>
-	<button class="large-button button-position-bottom">태스크 추가</button>
-	<div class="modal modal-position-bottom flex-alignment-center opacity-animation"><div>태스크가 추가되었습니다.</div></div>
-</body>
+	<head>
+		<meta charset="UTF-8">
+		<title>Add Task</title>
+		<link href="../styles/style.css" rel="stylesheet" type="text/css">
+		<script defer src="../js/global.js"></script>
+		<script defer src="../js/addTask.js"></script>
+	</head>
+	<body>
+		<a href="main.html" class="page-back">
+			<img src="../images/Back.svg" alt="back">
+			<span>뒤로 가기</span>
+		</a>
+		<div class="page-title margin-top-16">새로운 태스크</div>
+		<hr class="margin-top-8"/>
+		<div class="task-input">
+			<input type="text" placeholder="태스크 제목을 입력하세요" class="margin-top-16"/>
+			<div>! 태스크 제목을 입력해주세요</div>
+			<input type="text" placeholder="카테고리를 입력하세요"/>
+		</div>
+		<button class="large-button button-position-bottom">태스크 추가</button>
+		<div class="modal modal-position-bottom flex-box-col flex-alignment-center opacity-animation font-size-14"><div>태스크가 추가되었습니다.</div></div>
+	</body>
 </html>

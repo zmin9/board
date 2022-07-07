@@ -1,7 +1,5 @@
 const addButton = document.querySelector('button');
 
-const taskList = localStorage.getItem('tasks') ? JSON.parse(localStorage.getItem('tasks')) : [];
-
 addButton.addEventListener('click', () => {
     const [taskTitle, taskCategory] = document.querySelectorAll('.task-input > input');
     const modal = document.querySelector('.modal');
