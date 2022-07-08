@@ -1,7 +1,3 @@
-const todayDate = document.querySelector('#today');
-const day = new Date();
-todayDate.innerHTML = `${day.getFullYear()}년 ${day.getMonth() + 1}월 ${day.getDate()}일`;
-
 function createTaskBox(task, i) {
     const taskTitle = document.createElement('span');
     taskTitle.classList.add('task-title', 'font-weight-500', 'line-height-24', 'font-color-main');
@@ -29,9 +25,8 @@ function createTaskBox(task, i) {
     checkboxTypeInput.checked = task.isDone;
 
     const taskBox = document.createElement('div');
-    taskBox.classList.add('task-box');
+    taskBox.classList.add('task-box', 'margin-top-16');
     taskBox.listNum = i;
-    taskBox.classList.add('margin-top-16');
     taskBox.append(checkboxTypeInput, labelForCheckbox);
 
     return taskBox;
@@ -59,17 +54,3 @@ function locateTaskBox(taskBox) {
 
     checkProgress();
 }
-
-taskList.forEach((task) => {
-    const taskBox = createTaskBox(task, taskList.indexOf(task));
-    locateTaskBox(taskBox);
-    taskBox.querySelector('input[type="checkbox"]').addEventListener('change', () => {
-        locateTaskBox(taskBox);
-    });
-
-    taskBox.addEventListener('contextmenu', (e) => {
-        e.preventDefault();
-        this.blur();
-        document.body.appendChild(createContextMenuModal(task, taskBox));
-    });
-});

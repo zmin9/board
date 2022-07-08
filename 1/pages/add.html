@@ -9,7 +9,8 @@
 		<link href="../styles/layout.css" rel="stylesheet" type="text/css">
 		<link href="../styles/style.css" rel="stylesheet" type="text/css">
 		<script defer src="../js/global.js"></script>
-		<script defer src="../js/addTask.js"></script>
+		<script defer src="../js/categoryButton.js"></script>
+		<script defer src="../js/addPage/main.js"></script>
 	</head>
 	<body>
 		<a href="main.html" class="page-back margin-top-55">
@@ -22,6 +23,7 @@
 			<input type="text" placeholder="태스크 제목을 입력하세요" class="font-size-14 margin-top-16 font-color-main"/>
 			<div class="caution font-size-12">! 태스크 제목을 입력해주세요</div>
 			<input type="text" placeholder="카테고리를 입력하세요" class="font-size-14 font-color-main"/>
+			<div id="categories" class="margin-top-16 flex-box-row flex-multi-line flex-gap-8"></div>
 		</div>
 		<button class="large-button button-position-bottom font-weight-600 font-size-15">태스크 추가</button>
 		<div class="modal modal-position-bottom flex-box-col flex-alignment-center opacity-animation font-size-14"><div>태스크가 추가되었습니다.</div></div>
