@@ -4,11 +4,11 @@ todayDate.innerHTML = `${day.getFullYear()}년 ${day.getMonth() + 1}월 ${day.ge
 
 function createTaskBox(task, i) {
     const taskTitle = document.createElement('span');
-    taskTitle.classList.add('task-title', 'font-weight-500', 'line-height-24');
+    taskTitle.classList.add('task-title', 'font-weight-500', 'line-height-24', 'font-color-main');
     taskTitle.append(task.title);
 
     const taskCategory = document.createElement('div');
-    taskCategory.classList.add('task-category', 'margin-top-8', 'font-weight-600');
+    taskCategory.classList.add('task-category', 'margin-top-8', 'font-weight-600', 'font-color-sub');
     taskCategory.append(task.category);
 
     const taskInformation = document.createElement('div');

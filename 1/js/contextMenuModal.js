@@ -1,14 +1,14 @@
 function createContextMenuModal(task, taskBox){
     const taskTitle = document.createElement('div');
-    taskTitle.className = 'modal-title';
+    taskTitle.classList.add('modal-title');
     taskTitle.innerText = task.title;
 
     const deleteBtn = document.createElement('button');
-    deleteBtn.className = 'large-button';
+    deleteBtn.classList.add('large-button');
     deleteBtn.innerText = '삭제';
 
     const modal = document.createElement('div');
-    modal.classList.add('modal', 'modal-position-center', 'flex-alignment-center');
+    modal.classList.add('modal', 'modal-position-center', 'flex-box-col' ,'flex-alignment-center');
     modal.append(taskTitle, deleteBtn);
 
     modal.children[1].addEventListener('click',()=>{
