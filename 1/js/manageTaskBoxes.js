@@ -1,27 +1,25 @@
-const tasksInProgress = document.querySelector('.tasks-in-progress');
-const tasksDone = document.querySelector('.tasks-done');
-
-const todayDate = document.querySelector('h1[class="page-title"]');
+const todayDate = document.querySelector('#today');
 const day = new Date();
 todayDate.innerHTML = `${day.getFullYear()}년 ${day.getMonth() + 1}월 ${day.getDate()}일`;
 
 function createTaskBox(task, i) {
-    const taskTitle = document.createElement('div');
-    taskTitle.className = 'task-title';
+    const taskTitle = document.createElement('span');
+    taskTitle.classList.add('task-title', 'font-weight-500', 'line-height-24');
     taskTitle.append(task.title);
 
     const taskCategory = document.createElement('div');
-    taskCategory.className = 'task-category';
+    taskCategory.classList.add('task-category', 'margin-top-8', 'font-weight-600');
     taskCategory.append(task.category);
 
     const taskInformation = document.createElement('div');
-    taskInformation.className = 'task-info';
+    taskInformation.classList.add('task-info');
     taskInformation.append(taskTitle, taskCategory);
 
     const taskCheckbox = document.createElement('div');
     taskCheckbox.className = 'task-check';
 
     const labelForCheckbox = document.createElement('label');
+    labelForCheckbox.classList.add('flex-box-row');
     labelForCheckbox.htmlFor = 'task' + String(i);
     labelForCheckbox.append(taskCheckbox, taskInformation);
 
@@ -57,16 +55,15 @@ function locateTaskBox(taskBox) {
         }
         if (!isAppended) targetList.appendChild(taskBox);
     }
-
-    document.querySelector('.task-progress').innerHTML = `${tasksInProgress.children.length}개 진행중, ${tasksDone.children.length}개 완료됨`;
     localStorage.setItem('tasks', JSON.stringify(taskList));
+
+    checkProgress();
 }
 
 taskList.forEach((task) => {
     const taskBox = createTaskBox(task, taskList.indexOf(task));
     locateTaskBox(taskBox);
-    taskBox.querySelector('input[type="checkbox"]').addEventListener('change', (e) => {
-        e.preventDefault();
+    taskBox.querySelector('input[type="checkbox"]').addEventListener('change', () => {
         locateTaskBox(taskBox);
     });
 

@@ -1,5 +1,6 @@
-const categories = document.querySelector('.categories');
+const categories = document.querySelector('#categories');
 const allTaskBox = document.querySelectorAll('.task-box');
+
 
 function createCategoryButton(category) {
     const categoryButton = document.createElement('div');
@@ -31,6 +32,7 @@ function createCategoryButton(category) {
                     taskBox.style.display = 'block';
                 });
             }
+            checkProgress();
         }
     });
 
