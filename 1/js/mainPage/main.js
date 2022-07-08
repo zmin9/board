@@ -24,6 +24,8 @@ const allTaskBox = document.querySelectorAll('.task-box');
 categoryList.forEach((category) => {
     if(category!=='') {
         const categoryBtn = createCategoryButton(category);
+        if (category.length > 12)
+            categoryBtn.innerText = category.slice(0,10) + '⋯';
         categoryBtn.addEventListener('click', () => {
             if (currentCategory !== category) {
                 categoryBtn.classList.add('selected-category');

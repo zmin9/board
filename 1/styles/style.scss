@@ -1,14 +1,12 @@
 .task-box {
   display: flex;
-
   .task-check{
     width: 24px;
     height: 24px;
-
+    flex-shrink: 0;
     border: solid 2px #DADADA;
     border-radius: 6px;
   }
-
   input[type='checkbox']{
     display: none;
 
