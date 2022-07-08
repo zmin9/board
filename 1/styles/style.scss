@@ -1,52 +1,56 @@
-@charset "UTF-8";
-.page-title {
+.page-title{
   color: var(--title-text-color);
 }
-
-.task-progress {
+.task-progress{
   color: var(--main-text-color);
 }
-
-.page-subtitle {
+.page-subtitle{
   color: var(--main-text-color);
 }
 
 .task-box {
   display: flex;
-}
-.task-box .task-check {
-  width: 24px;
-  height: 24px;
-  border: solid 2px #DADADA;
-  border-radius: 6px;
-}
-.task-box input[type=checkbox] {
-  display: none;
-}
-.task-box input[type=checkbox]:checked + label .task-check {
-  background: url("../images/Checkmark.svg") center/55% no-repeat;
-}
-.task-box input[type=checkbox]:checked + label .task-category {
-  display: none;
-}
-.task-box input[type=checkbox]:checked + label .task-title {
-  color: var(--sub-text-color);
+
+  .task-check{
+    width: 24px;
+    height: 24px;
+
+    border: solid 2px #DADADA;
+    border-radius: 6px;
+  }
+
+  input[type='checkbox']{
+    display: none;
+
+    &:checked + label {
+      .task-check{
+        background: url("../images/Checkmark.svg") center/55% no-repeat;
+      }
+      .task-category{
+        display: none;
+      }
+      .task-title{
+        color: var(--sub-text-color);
+      }
+    }
+  }
 }
 
-.task-info {
+.task-info{
   margin-left: 16px;
-}
-.task-info .task-title {
-  color: var(--main-text-color);
-}
-.task-info .task-category {
-  color: var(--sub-text-color);
+  .task-title{
+    color: var(--main-text-color);
+  }
+  .task-category{
+    color: var(--sub-text-color);
+  }
 }
 
 .plus-btn {
   position: fixed;
   right: 16px;
   bottom: 40px;
+
   width: 56px;
   height: 56px;
   border: solid 0;
@@ -54,37 +58,44 @@
   background: url("../images/Plus.svg") center/25% no-repeat var(--main-color);
 }
 
-.page-back {
+.page-back{
   padding: 10px 16px 10px 13px;
   width: fit-content;
   display: flex;
   align-items: center;
+
   color: var(--main-color);
+
   margin-top: 55px;
-}
-.page-back img {
-  width: 14px;
-  margin-right: 13px;
+
+  img{
+    width: 14px;
+    margin-right: 13px;
+  }
 }
 
-.task-input {
+.task-input{
   display: flex;
   flex-direction: column;
-}
-.task-input input[type=text] {
-  outline: 0;
-  border-radius: 4px 4px 0 0;
-  border-width: 0 0 2px;
-  border-color: rgba(0, 0, 0, 0.3);
-  background-color: #e7e7e7;
-  color: var(--main-text-color);
-  padding: 20px 16px;
-}
-.task-input .caution {
-  visibility: hidden;
-  height: 16px;
-  padding: 1px 3px 0;
-  color: #d32828;
+
+  input[type='text'] {
+    outline: 0;
+    border-radius: 4px 4px 0 0;
+    border-width: 0 0 2px;
+    border-color: rgba(0, 0, 0, 0.30);
+
+    background-color: #e7e7e7;
+    color: var(--main-text-color);
+    padding: 20px 16px;
+  }
+
+  .caution {
+    visibility: hidden;
+    height: 16px;
+    padding: 1px 3px 0;
+
+    color: #d32828;
+  }
 }
 
 .large-button {
@@ -95,35 +106,39 @@
   color: var(--bg-color);
 }
 
-.modal {
+.modal{
   position: absolute;
   left: 50%;
   right: 50%;
   transform: translate(-50%, -50%);
+
   padding: 17px 18px;
+
   width: 65%;
   border-radius: 4px;
-  box-shadow: rgba(0, 0, 0, 0.2) 0 0 10px;
+  box-shadow: rgba(0,0,0,0.20) 0 0 10px;
   background-color: var(--bg-color);
+
   text-align: center;
-}
-.modal .modal-title {
-  padding: 30px;
+
+  .modal-title{
+    padding: 30px;
+  }
 }
 
-.modal-position-center {
+.modal-position-center{
   top: 50%;
   bottom: 50%;
   height: fit-content;
 }
 
-.modal-background {
+.modal-background{
   position: fixed;
   top: 0;
   left: 0;
   width: 100vw;
   height: 100vh;
-  background-color: rgba(41, 43, 53, 0.2);
+  background-color: rgba(41,43,53,0.2);
 }
 
 .opacity-animation {
@@ -131,21 +146,18 @@
   transition: opacity 0.15s;
 }
 
-.category-item + .category-item {
+.category-item + .category-item{
   margin-left: 8px;
 }
 
-.blue-round-box {
+.blue-round-box{
   color: var(--main-color);
   background-color: var(--bg-color);
   border: solid 1px var(--main-color);
   border-radius: 9999px;
   min-width: fit-content;
 }
-
 .selected-category {
   color: var(--bg-color);
   background-color: var(--main-color);
 }
-
-/*# sourceMappingURL=style.css.map */

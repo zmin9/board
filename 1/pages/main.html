@@ -2,7 +2,11 @@
 <html lang="ko">
     <head>
         <meta charset="UTF-8">
+	    <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Task List</title>
+	    <link href="../styles/common.css" rel="stylesheet" type="text/css">
+	    <link href="../styles/font.css" rel="stylesheet" type="text/css">
+	    <link href="../styles/layout.css" rel="stylesheet" type="text/css">
 	    <link href="../styles/style.css" rel="stylesheet" type="text/css">
 	    <script defer src="../js/global.js"></script>
 	    <script defer src="../js/manageTaskBoxes.js"></script>
@@ -10,14 +14,14 @@
 	    <script defer src="../js/contextMenuModal.js"></script>
     </head>
     <body>
-        <h1 class="page-title">2022년 7월 5일</h1>
-        <div class="task-progress margin-top-8">0개 진행중, 0개 완료됨</div>
-        <hr class="margin-top-16"/>
-        <div class="categories margin-top-16 flex-box-row scroll"></div>
-        <h2 class="page-subtitle margin-top-16">진행중</h2>
+        <h1 id="today" class="page-title margin-top-76 font-size-32 font-weight-700 line-height-39"></h1>
+        <div class="task-progress margin-top-8 font-size-14 font-weight-600"></div>
+        <div class="categories margin-top-8 flex-box-row scroll"></div>
+        <hr class="margin-top-8"/>
+        <h2 class="page-subtitle margin-top-16 font-size-18 font-weight-700">진행중</h2>
         <div class="tasks-in-progress"></div>
-        <h2 class="page-subtitle margin-top-32">완료됨</h2>
+        <h2 class="page-subtitle margin-top-32 font-size-18 font-weight-700">완료됨</h2>
         <div class="tasks-done"></div>
-        <a href="new.html"><button class="plus-btn">+</button></a>
+        <a href="new.html"><button class="plus-btn"></button></a>
     </body>
 </html>

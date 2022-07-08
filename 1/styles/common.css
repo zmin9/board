@@ -1,0 +1,26 @@
+:root {
+  --main-color: #1294F2;
+  --bg-color: #F8F8F8;
+  --title-text-color: #292B35;
+  --main-text-color: #575767;
+  --sub-text-color: #B9B9BE;
+}
+* {
+  box-sizing: border-box;
+  line-height: 1;
+  margin: 0;
+}
+
+body{
+  padding: 0 16px 100px;
+  background-color: var(--bg-color);
+  user-select: none;
+}
+
+hr {
+  margin: 0;
+  border: solid 1px rgba(0, 0, 0, 0.03);
+  border-radius: 9999px;
+}
+
+a{ text-decoration: none; }
