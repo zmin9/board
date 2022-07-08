@@ -61,6 +61,9 @@
   padding: 20px 16px;
   background-color: #e7e7e7;
 }
+.task-input input[type=text]:focus {
+  border-color: rgba(0, 0, 0, 0.8);
+}
 .task-input .caution {
   visibility: hidden;
   height: 16px;
@@ -113,9 +116,13 @@
   background-color: var(--main-color);
 }
 
-.opacity-animation {
+.opacity-transition {
   opacity: 0;
   transition: opacity 0.15s;
+}
+
+.color-transition {
+  transition: background-color, color 0.2s;
 }
 
 /*# sourceMappingURL=style.css.map */

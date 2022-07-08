@@ -63,6 +63,10 @@
     border-color: rgba(0, 0, 0, 0.30);
     padding: 20px 16px;
     background-color: #e7e7e7;
+
+    &:focus{
+      border-color: rgba(0, 0, 0, 0.80);
+    }
   }
 
   .caution {
@@ -118,7 +122,11 @@
   background-color: var(--main-color);
 }
 
-.opacity-animation {
+.opacity-transition {
   opacity: 0;
   transition: opacity 0.15s;
+}
+
+.color-transition {
+  transition: background-color,color 0.2s;
 }
