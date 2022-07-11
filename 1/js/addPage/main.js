@@ -1,4 +1,4 @@
-const [taskTitle, taskCategory] = document.querySelectorAll('.task-input > input');
+const [taskTitle, taskCategory] = document.querySelectorAll('.task-input');
 
 let selectedCategory = '+';
 
@@ -6,10 +6,10 @@ function categoryBtnWithEvent(category){
     const categoryBtn = createCategoryButton(category);
     categoryBtn.addEventListener('click', () => {
         if (selectedCategory !== category) {
-            categoryBtn.classList.add('bg-main-color');
+            categoryBtn.classList.add('bg-blue-color');
             for (let i = 0; i < categories.children.length; i++) {
                 if (categories.children[i].id === selectedCategory) {
-                    categories.children[i].classList.remove('bg-main-color');
+                    categories.children[i].classList.remove('bg-blue-color');
                     break;
                 }
             }
@@ -30,7 +30,7 @@ categoryList.forEach((category)=>{
 
 {
     const plusCategoryBtn = createCategoryButton('+');
-    plusCategoryBtn.classList.add('bg-main-color');
+    plusCategoryBtn.classList.add('bg-blue-color');
 
     plusCategoryBtn.addEventListener('click', () => {
         plusCategoryBtn.classList.add('bg-main-color');
@@ -65,7 +65,7 @@ addButton.addEventListener('click', () => {
         'isDone': false
     });
 
-    if(selectedCategory==='+'){
+    if(selectedCategory==='+' && !categoryList.has(taskCategory.value.trim())){
         categories.lastChild.before(categoryBtnWithEvent(taskCategory.value.trim()));
     }
 

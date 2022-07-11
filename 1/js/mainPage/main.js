@@ -27,15 +27,15 @@ const allTaskBox = document.querySelectorAll('.task-box');
 categoryList.forEach((category) => {
     if(category!=='') {
         const categoryBtn = createCategoryButton(category);
-        if (category === currentCategory) categoryBtn.classList.add('bg-main-color');
+        if (category === currentCategory) categoryBtn.classList.add('bg-blue-color');
         if (category.length > 12)
             categoryBtn.innerText = category.slice(0,10) + '⋯';
         categoryBtn.addEventListener('click', () => {
             if (currentCategory !== category) {
-                categoryBtn.classList.add('bg-main-color');
+                categoryBtn.classList.add('bg-blue-color');
                 for (let i = 0; i < categories.children.length; i++) {
                     if (categories.children[i].id === currentCategory) {
-                        categories.children[i].classList.remove('bg-main-color');
+                        categories.children[i].classList.remove('bg-blue-color');
                         break;
                     }
                 }
