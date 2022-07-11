@@ -68,6 +68,7 @@ addButton.addEventListener('click', () => {
     if(selectedCategory==='+' && !categoryList.has(taskCategory.value.trim())){
         categories.lastChild.before(categoryBtnWithEvent(taskCategory.value.trim()));
     }
+    selectedCategory = '+';
 
     localStorage.setItem('tasks', JSON.stringify(taskList));
 
