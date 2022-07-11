@@ -6,10 +6,10 @@ function categoryBtnWithEvent(category){
     const categoryBtn = createCategoryButton(category);
     categoryBtn.addEventListener('click', () => {
         if (selectedCategory !== category) {
-            categoryBtn.classList.add('selected-category');
+            categoryBtn.classList.add('bg-main-color');
             for (let i = 0; i < categories.children.length; i++) {
                 if (categories.children[i].id === selectedCategory) {
-                    categories.children[i].classList.remove('selected-category');
+                    categories.children[i].classList.remove('bg-main-color');
                     break;
                 }
             }
@@ -30,12 +30,12 @@ categoryList.forEach((category)=>{
 
 {
     const plusCategoryBtn = createCategoryButton('+');
-    plusCategoryBtn.classList.add('selected-category');
+    plusCategoryBtn.classList.add('bg-main-color');
 
     plusCategoryBtn.addEventListener('click', () => {
-        plusCategoryBtn.classList.add('selected-category');
+        plusCategoryBtn.classList.add('bg-main-color');
         for (let i = 0; i < categories.children.length - 1; i++) {
-            categories.children[i].classList.remove('selected-category');
+            categories.children[i].classList.remove('bg-main-color');
         }
         selectedCategory = '+';
         taskCategory.value = '';

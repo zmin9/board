@@ -1,5 +1,4 @@
 .task-box {
-  display: flex;
   .task-check{
     width: 24px;
     height: 24px;
@@ -40,11 +39,9 @@
 }
 
 .page-back{
-  display: flex;
   align-items: center;
   width: fit-content;
   padding: 10px 16px 10px 13px;
-  color: var(--main-color);
 
   img{
     width: 14px;
@@ -53,17 +50,13 @@
 }
 
 .task-input{
-  display: flex;
-  flex-direction: column;
-
   input[type='text'] {
     outline: 0;
     border-radius: 4px 4px 0 0;
     border-width: 0 0 2px;
     border-color: rgba(0, 0, 0, 0.30);
     padding: 20px 16px;
-    background-color: #e7e7e7;
-
+    background-color: var(--bg-sub-color);
     &:focus{
       border-color: rgba(0, 0, 0, 0.80);
     }
@@ -73,8 +66,6 @@
     visibility: hidden;
     height: 16px;
     padding: 1px 3px 0;
-
-    color: #d32828;
   }
 }
 
@@ -82,8 +73,6 @@
   border: 0;
   border-radius: 4px;
   padding: 15px 16px;
-  background-color: var(--main-color);
-  color: var(--bg-color);
 }
 
 .modal{
@@ -98,6 +87,7 @@
   background-color: var(--bg-color);
 
   .modal-title{
+    text-align: center;
     padding: 30px;
   }
 }
@@ -111,15 +101,9 @@
 }
 
 .blue-round-box{
-  color: var(--main-color);
-  background-color: var(--bg-color);
   border: solid 1px var(--main-color);
   border-radius: 9999px;
   min-width: fit-content;
-}
-.selected-category {
-  color: var(--bg-color);
-  background-color: var(--main-color);
 }
 
 .opacity-transition {
@@ -128,5 +112,9 @@
 }
 
 .color-transition {
-  transition: background-color,color 0.2s;
+  transition: background-color, color 0.2s;
+}
+
+.pointer-event-none {
+  pointer-events: none;
 }

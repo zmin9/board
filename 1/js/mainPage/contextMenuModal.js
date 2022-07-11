@@ -4,14 +4,10 @@ function createContextMenuModal(task, taskBox){
     taskTitle.innerText = task.title;
 
     const deleteBtn = document.createElement('button');
-    deleteBtn.classList.add('large-button');
+    deleteBtn.classList.add('large-button', 'button-modal', 'bg-oppo-color', 'margin-top-8');
     deleteBtn.innerText = '삭제';
 
-    const modal = document.createElement('div');
-    modal.classList.add('modal', 'modal-position-center', 'flex-box-col' ,'flex-alignment-center');
-    modal.append(taskTitle, deleteBtn);
-
-    modal.children[1].addEventListener('click',()=>{
+    deleteBtn.addEventListener('click',()=>{
         taskList.splice(taskList.indexOf(task), 1);
 
         localStorage.setItem('tasks', JSON.stringify(taskList));
@@ -19,6 +15,11 @@ function createContextMenuModal(task, taskBox){
         taskBox.parentNode.removeChild(taskBox);
         location.reload();
     });
+
+    const modal = document.createElement('div');
+    modal.classList.add('modal', 'modal-position-center', 'flex-box-col' ,'flex-alignment-center');
+
+    modal.append(taskTitle, modifyBtn, deleteBtn);
 
     const background = document.createElement('div');
     background.addEventListener('click', (e) => {

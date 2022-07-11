@@ -25,7 +25,7 @@ function createTaskBox(task, i) {
     checkboxTypeInput.checked = task.isDone;
 
     const taskBox = document.createElement('div');
-    taskBox.classList.add('task-box', 'margin-top-16');
+    taskBox.classList.add('task-box', 'margin-top-16', 'flex-box-row');
     taskBox.listNum = i;
     taskBox.append(checkboxTypeInput, labelForCheckbox);
 

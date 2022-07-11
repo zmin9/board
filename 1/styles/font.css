@@ -20,3 +20,15 @@ html { font-family: 'Inter', sans-serif; }
 .font-color-main { color: var(--main-text-color); }
 .font-color-sub { color: var(--sub-text-color); }
 .font-color-title { color: var(--title-text-color); }
+.font-color-blue { color: var(--main-color); }
+.font-color-red { color: var(--oppo-color); }
+
+.bg-main-color {
+  background-color: var(--main-color);
+  color: var(--bg-color);
+}
+
+.bg-oppo-color {
+  background-color: var(--oppo-color);
+  color: var(--bg-color);
+}

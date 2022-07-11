@@ -5,6 +5,8 @@ const todayDate = document.querySelector('#today');
 const day = new Date();
 todayDate.innerHTML = `${day.getFullYear()}년 ${day.getMonth() + 1}월 ${day.getDate()}일`;
 
+let currentCategory = '전체';
+
 taskList.forEach((task) => {
     const taskBox = createTaskBox(task, taskList.indexOf(task));
     locateTaskBox(taskBox);
@@ -24,14 +26,15 @@ const allTaskBox = document.querySelectorAll('.task-box');
 categoryList.forEach((category) => {
     if(category!=='') {
         const categoryBtn = createCategoryButton(category);
+        if (category === currentCategory) categoryBtn.classList.add('bg-main-color');
         if (category.length > 12)
             categoryBtn.innerText = category.slice(0,10) + '⋯';
         categoryBtn.addEventListener('click', () => {
             if (currentCategory !== category) {
-                categoryBtn.classList.add('selected-category');
+                categoryBtn.classList.add('bg-main-color');
                 for (let i = 0; i < categories.children.length; i++) {
                     if (categories.children[i].id === currentCategory) {
-                        categories.children[i].classList.remove('selected-category');
+                        categories.children[i].classList.remove('bg-main-color');
                         break;
                     }
                 }

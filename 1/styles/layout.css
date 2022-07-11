@@ -28,6 +28,10 @@
     left: 16px;
     right: 16px;
 }
+.button-modal{
+    position: relative;
+    width: 100%;
+}
 
 .modal-position-center{
     top: 50%;
