@@ -4,6 +4,7 @@ const tasksDone = document.querySelector('.tasks-done');
 const todayDate = document.querySelector('#today');
 const day = new Date();
 todayDate.innerHTML = `${day.getFullYear()}년 ${day.getMonth() + 1}월 ${day.getDate()}일`;
+checkProgress();
 
 let currentCategory = '전체';
 
