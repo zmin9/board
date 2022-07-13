@@ -22,7 +22,7 @@ function checkProgress(currentCategory) {
             tasksDone.removeChild(emptyDone);
     } else tasksDone.appendChild(emptyDone);
 
-    document.querySelector('#task-progress').innerHTML = `${inProgress}개 진행중, ${done}개 완료됨`;
+    updateProgressText(inProgress, done);
 }
 
 function getNumTasks(currentCategory, isDone) {
@@ -36,4 +36,7 @@ function getNumTasks(currentCategory, isDone) {
     });
 
     return result;
+}
+function updateProgressText(inProgressNum, doneNum){
+    document.querySelector('#task-progress').innerHTML = `${inProgressNum}개 진행중, ${doneNum}개 완료됨`;
 }
