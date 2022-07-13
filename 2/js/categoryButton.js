@@ -3,6 +3,8 @@ function createCategoryButton(category) {
     categoryButton.innerText = category;
     categoryButton.id = category;
     categoryButton.classList.add('blue-round-box', 'font-color-blue', 'padding-8-16', 'font-size-14', 'color-transition');
+    if(category === currentCategory)
+        categoryButton.classList.add('bg-blue-color');
 
     categoryButton.addEventListener('click', () => {
         if (currentCategory !== category) {

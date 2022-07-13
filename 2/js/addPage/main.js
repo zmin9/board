@@ -65,7 +65,7 @@ addButton.addEventListener('click', () => {
         'isDone': false
     });
 
-    if(selectedCategory==='+' && !categoryList.has(taskCategory.value.trim())){
+    if(selectedCategory==='+' && !categoryList.includes(taskCategory.value.trim())){
         categories.lastChild.before(categoryBtnWithEvent(taskCategory.value.trim()));
     }
     selectedCategory = '+';
