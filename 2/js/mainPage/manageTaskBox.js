@@ -42,7 +42,7 @@ function createTaskBoxElement(task) {
         task.isDone = !task.isDone;
         storeDataInLocalStorage();
         locateTaskBoxElement(task, taskBoxElement, getListElementWillBePutInto(task));
-        updateProgressText(currentCategory);
+        updateProgressText(filteredTaskListWith(currentCategory, taskList));
     });
 
     taskBoxElement.addEventListener('contextmenu', (e) => {

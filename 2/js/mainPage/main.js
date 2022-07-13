@@ -4,8 +4,8 @@ const tasksDone = document.querySelector('.tasks-done');
 currentCategory = '전체';
 
 updateTodayDate();
-updateProgressText(currentCategory);
 
+updateProgressText(filteredTaskListWith(currentCategory, taskList));
 showTasksIn(filteredTaskListWith(currentCategory, taskList));
 
 categoryList.forEach((category) => {
@@ -15,8 +15,8 @@ categoryList.forEach((category) => {
         if (category.length > 12)
             categoryBtn.innerText = category.slice(0,10) + '⋯';
         categoryBtn.addEventListener('click', () => {
+            updateProgressText(filteredTaskListWith(currentCategory, taskList));
             showTasksIn(filteredTaskListWith(currentCategory, taskList));
-            updateProgressText(currentCategory);
         });
         categories.appendChild(categoryBtn);
     }
@@ -28,5 +28,5 @@ function updateTodayDate (){
 }
 
 function filteredTaskListWith(category, taskList) {
-    return category === '전체' ? taskList : taskList.filter((task) => task.category === currentCategory);
+    return category === '전체' ? taskList : taskList.filter((task) => task.category === category);
 }
