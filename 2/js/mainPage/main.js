@@ -5,19 +5,9 @@ currentCategory = '전체';
 
 updateTodayDate();
 
-updateProgressText(filteredTaskListWith(currentCategory, taskList));
-showTasksIn(filteredTaskListWith(currentCategory, taskList));
+updateTaskView(currentCategory);
 
-categoryList.forEach((category) => {
-    const categoryBtn = createCategoryButton(category);
-    if (category.length > 12)
-        categoryBtn.innerText = category.slice(0,10) + '⋯';
-    categoryBtn.addEventListener('click', () => {
-        updateProgressText(filteredTaskListWith(currentCategory, taskList));
-        showTasksIn(filteredTaskListWith(currentCategory, taskList));
-    });
-    categories.appendChild(categoryBtn);
-});
+setCategoryButtons(['전체', ...categoryList], categories);
 
 function updateTodayDate (){
     const day = new Date();
@@ -26,4 +16,23 @@ function updateTodayDate (){
 
 function filteredTaskListWith(category, taskList) {
     return category === '전체' ? taskList : taskList.filter((task) => task.category === category);
+}
+
+function shortenCategoryTo(limit, categoryBtn){
+    categoryBtn.innerText = categoryBtn.id.slice(0,limit - 3) + '⋯';
+}
+
+function setCategoryButtons(categoryList, container) {
+    categoryList.forEach((category) => {
+        const categoryBtn = createCategoryButton(category);
+        if (category.length > 12)
+            shortenCategoryTo(12, categoryBtn);
+        categoryBtn.addEventListener('click', () => updateTaskView(currentCategory));
+        container.appendChild(categoryBtn);
+    });
+}
+
+function updateTaskView(currentCategory) {
+    updateProgressText(filteredTaskListWith(currentCategory, taskList));
+    showTasksIn(filteredTaskListWith(currentCategory, taskList));
 }
