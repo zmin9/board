@@ -1,4 +1,7 @@
 function showTasksIn(taskList){
+    resetChildren(tasksDone);
+    resetChildren(tasksInProgress);
+
     taskList.forEach((task) => {
         locateTaskBoxElement(task, createTaskBoxElement(task), getListElementWillBePutInto(task));
     });
@@ -54,7 +57,6 @@ function getListElementWillBePutInto(task) {
     return task.isDone ? tasksDone : tasksInProgress;
 }
 
-// taskBoxElement를 targetList에 위치시키는 역할
 function locateTaskBoxElement(task, taskBoxElement, targetList) {
     if (targetList.children.length === 0)
         targetList.appendChild(taskBoxElement);
@@ -69,5 +71,11 @@ function locateTaskBoxElement(task, taskBoxElement, targetList) {
             }
         }
         if (!isAppended) targetList.appendChild(taskBoxElement);
+    }
+}
+
+function resetChildren(element){
+    while(element.firstChild){
+        element.removeChild(element.lastChild);
     }
 }

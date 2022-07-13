@@ -6,9 +6,7 @@ let currentCategory = '전체';
 updateTodayDate();
 updateProgressText(currentCategory);
 
-showTasksIn(taskList);
-
-const allTaskBox = document.querySelectorAll('.task-box');
+showTasksIn(filteredTaskListWith(currentCategory, taskList));
 
 categoryList.forEach((category) => {
     if(category!=='') {
@@ -26,20 +24,7 @@ categoryList.forEach((category) => {
                     }
                 }
                 currentCategory = category;
-                if (category !== '전체') {
-                    allTaskBox.forEach((taskBox) => {
-                        if (taskList[taskBox.listNum].category === currentCategory) {
-                            taskBox.style.display = 'block';
-                        } else {
-                            taskBox.style.display = 'none';
-                        }
-                    });
-                }
-                else {
-                    allTaskBox.forEach((taskBox) => {
-                        taskBox.style.display = 'block';
-                    });
-                }
+                showTasksIn(filteredTaskListWith(currentCategory, taskList));
                 updateProgressText(currentCategory);
             }
         });
@@ -50,4 +35,8 @@ categoryList.forEach((category) => {
 function updateTodayDate (){
     const day = new Date();
     document.querySelector('#today').innerHTML = `${day.getFullYear()}년 ${day.getMonth() + 1}월 ${day.getDate()}일`;
+}
+
+function filteredTaskListWith(category, taskList) {
+    return category === '전체' ? taskList : taskList.filter((task) => task.category === currentCategory);
 }
