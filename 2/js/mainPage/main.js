@@ -9,17 +9,14 @@ updateProgressText(filteredTaskListWith(currentCategory, taskList));
 showTasksIn(filteredTaskListWith(currentCategory, taskList));
 
 categoryList.forEach((category) => {
-    if(category!=='') {
-        const categoryBtn = createCategoryButton(category);
-        if (category === currentCategory) categoryBtn.classList.add('bg-blue-color');
-        if (category.length > 12)
-            categoryBtn.innerText = category.slice(0,10) + '⋯';
-        categoryBtn.addEventListener('click', () => {
-            updateProgressText(filteredTaskListWith(currentCategory, taskList));
-            showTasksIn(filteredTaskListWith(currentCategory, taskList));
-        });
-        categories.appendChild(categoryBtn);
-    }
+    const categoryBtn = createCategoryButton(category);
+    if (category.length > 12)
+        categoryBtn.innerText = category.slice(0,10) + '⋯';
+    categoryBtn.addEventListener('click', () => {
+        updateProgressText(filteredTaskListWith(currentCategory, taskList));
+        showTasksIn(filteredTaskListWith(currentCategory, taskList));
+    });
+    categories.appendChild(categoryBtn);
 });
 
 function updateTodayDate (){
