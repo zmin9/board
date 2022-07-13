@@ -1,3 +1,9 @@
+function showTasksIn(taskList){
+    taskList.forEach((task) => {
+        locateTaskBoxElement(task, createTaskBoxElement(task), getListElementWillBePutInto(task));
+    });
+}
+
 function createTaskBoxElement(task) {
     const taskTitle = document.createElement('span');
     taskTitle.classList.add('task-title', 'font-weight-500', 'line-height-24', 'font-color-main');
@@ -24,35 +30,44 @@ function createTaskBoxElement(task) {
     checkboxTypeInput.id = 'task' + String(task.id);
     checkboxTypeInput.checked = task.isDone;
 
-    checkboxTypeInput.addEventListener('click', () => {
+    const taskBoxElement = document.createElement('div');
+    taskBoxElement.classList.add('task-box', 'margin-top-16', 'flex-box-row');
+    taskBoxElement.id = task.id;
+    taskBoxElement.append(checkboxTypeInput, labelForCheckbox);
+
+    taskBoxElement.addEventListener('change', () => {
         taskList[taskList.indexOf(task)].isDone = !taskList[taskList.indexOf(task)].isDone;
         localStorage.setItem('tasks', JSON.stringify(taskList));
+        locateTaskBoxElement(task, taskBoxElement, getListElementWillBePutInto(task));
+        updateProgressText(currentCategory);
     });
 
-    const taskBox = document.createElement('div');
-    taskBox.classList.add('task-box', 'margin-top-16', 'flex-box-row');
-    taskBox.id = task.id;
-    taskBox.append(checkboxTypeInput, labelForCheckbox);
+    taskBoxElement.addEventListener('contextmenu', (e) => {
+        e.preventDefault();
+        document.body.appendChild(createContextMenuModal(task, taskBoxElement));
+    });
 
-    return taskBox;
+    return taskBoxElement;
 }
 
-function locateTaskBox(taskBox) {
-    const targetList = taskBox.isDone ? tasksDone : tasksInProgress;
-    if (targetList.children.length === 0) {
-        targetList.append(taskBox);
-    } else {
+function getListElementWillBePutInto(task) {
+    return task.isDone ? tasksDone : tasksInProgress;
+}
+
+// taskBoxElement를 targetList에 위치시키는 역할
+function locateTaskBoxElement(task, taskBoxElement, targetList) {
+    if (targetList.children.length === 0)
+        targetList.appendChild(taskBoxElement);
+
+    else {
         let isAppended = false;
         for (let i = 0; i < targetList.children.length; i++) {
-            if (taskBox.id < targetList.children[i].id) {
-                targetList.children[i].before(taskBox);
+            if (Number(task.id) < Number(targetList.children[i].id)) {
+                targetList.children[i].before(taskBoxElement);
                 isAppended = true;
                 break;
             }
         }
-        if (!isAppended) targetList.appendChild(taskBox);
+        if (!isAppended) targetList.appendChild(taskBoxElement);
     }
-    localStorage.setItem('tasks', JSON.stringify(taskList));
-
-    updateProgressText(currentCategory);
 }

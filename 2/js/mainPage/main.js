@@ -6,18 +6,7 @@ let currentCategory = '전체';
 updateTodayDate();
 updateProgressText(currentCategory);
 
-taskList.forEach((task) => {
-    const taskBox = createTaskBoxElement(task);
-    locateTaskBox(taskBox);
-    taskBox.querySelector('input[type="checkbox"]').addEventListener('change', () => {
-        locateTaskBox(taskBox);
-    });
-
-    taskBox.addEventListener('contextmenu', (e) => {
-        e.preventDefault();
-        document.body.appendChild(createContextMenuModal(task, taskBox));
-    });
-});
+showTasksIn(taskList);
 
 const allTaskBox = document.querySelectorAll('.task-box');
 
