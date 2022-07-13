@@ -7,7 +7,7 @@ updateTodayDate();
 updateProgressText(currentCategory);
 
 taskList.forEach((task) => {
-    const taskBox = createTaskBox(task, taskList.indexOf(task));
+    const taskBox = createTaskBoxElement(task);
     locateTaskBox(taskBox);
     taskBox.querySelector('input[type="checkbox"]').addEventListener('change', () => {
         locateTaskBox(taskBox);
@@ -15,7 +15,6 @@ taskList.forEach((task) => {
 
     taskBox.addEventListener('contextmenu', (e) => {
         e.preventDefault();
-        this.blur();
         document.body.appendChild(createContextMenuModal(task, taskBox));
     });
 });

@@ -59,7 +59,7 @@ addButton.addEventListener('click', () => {
     }
 
     taskList.push({
-        'id': taskList.length,
+        'id': Date.now(),
         'title': taskTitle.value.trim(),
         'category': taskCategory.value.trim(),
         'isDone': false

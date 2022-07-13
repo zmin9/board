@@ -1,4 +1,4 @@
-function createTaskBox(task, i) {
+function createTaskBoxElement(task) {
     const taskTitle = document.createElement('span');
     taskTitle.classList.add('task-title', 'font-weight-500', 'line-height-24', 'font-color-main');
     taskTitle.append(task.title);
@@ -16,33 +16,30 @@ function createTaskBox(task, i) {
 
     const labelForCheckbox = document.createElement('label');
     labelForCheckbox.classList.add('flex-box-row');
-    labelForCheckbox.htmlFor = 'task' + String(i);
+    labelForCheckbox.htmlFor = 'task' + String(task.id);
     labelForCheckbox.append(taskCheckbox, taskInformation);
 
     const checkboxTypeInput = document.createElement('input');
     checkboxTypeInput.type = 'checkbox';
-    checkboxTypeInput.id = 'task' + String(i);
+    checkboxTypeInput.id = 'task' + String(task.id);
     checkboxTypeInput.checked = task.isDone;
 
     const taskBox = document.createElement('div');
     taskBox.classList.add('task-box', 'margin-top-16', 'flex-box-row');
-    taskBox.listNum = i;
+    taskBox.id = task.id;
     taskBox.append(checkboxTypeInput, labelForCheckbox);
 
     return taskBox;
 }
 
 function locateTaskBox(taskBox) {
-    const taskIdx = taskBox.listNum;
-    taskList[taskIdx].isDone = taskBox.querySelector('input[type="checkbox"]').checked;
-
-    const targetList = taskList[taskIdx].isDone ? tasksDone : tasksInProgress;
+    const targetList = taskBox.isDone ? tasksDone : tasksInProgress;
     if (targetList.children.length === 0) {
         targetList.append(taskBox);
     } else {
         let isAppended = false;
         for (let i = 0; i < targetList.children.length; i++) {
-            if (taskBox.listNum < targetList.children[i].listNum) {
+            if (taskBox.id < targetList.children[i].id) {
                 targetList.children[i].before(taskBox);
                 isAppended = true;
                 break;
