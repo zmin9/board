@@ -1,10 +1,10 @@
 const tasksInProgress = document.querySelector('.tasks-in-progress');
 const tasksDone = document.querySelector('.tasks-done');
 
-updateTodayDate();
-checkProgress();
-
 let currentCategory = '전체';
+
+updateTodayDate();
+checkProgress(currentCategory);
 
 taskList.forEach((task) => {
     const taskBox = createTaskBox(task, taskList.indexOf(task));
@@ -52,7 +52,7 @@ categoryList.forEach((category) => {
                         taskBox.style.display = 'block';
                     });
                 }
-                checkProgress();
+                checkProgress(currentCategory);
             }
         });
         categories.appendChild(categoryBtn);

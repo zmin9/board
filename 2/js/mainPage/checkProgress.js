@@ -8,16 +8,9 @@ function createEmptyListMsg(){
 const emptyInProgress = createEmptyListMsg();
 const emptyDone = createEmptyListMsg();
 
-function checkProgress() {
-    let [inProgress, done] = [0 ,0];
-
-    [...tasksInProgress.children].forEach((task) => {
-        if (task !== emptyInProgress && task.style.display !== 'none') inProgress++;
-    });
-
-    [...tasksDone.children].forEach((task) => {
-        if (task !== emptyDone && task.style.display !== 'none') done++;
-    });
+function checkProgress(currentCategory) {
+    const inProgress = getNumTasks(currentCategory, false);
+    const done = getNumTasks(currentCategory, true);
 
     if (inProgress !== 0) {
         if (tasksInProgress.contains(emptyInProgress))
@@ -30,4 +23,17 @@ function checkProgress() {
     } else tasksDone.appendChild(emptyDone);
 
     document.querySelector('#task-progress').innerHTML = `${inProgress}개 진행중, ${done}개 완료됨`;
+}
+
+function getNumTasks(currentCategory, isDone) {
+    let result = 0
+
+    taskList.forEach((task) => {
+        if (currentCategory === '전체')
+            task.isDone === isDone && result++;
+        else if (currentCategory === task.category)
+            task.isDone === isDone && result++;
+    });
+
+    return result;
 }

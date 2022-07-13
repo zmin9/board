@@ -52,5 +52,5 @@ function locateTaskBox(taskBox) {
     }
     localStorage.setItem('tasks', JSON.stringify(taskList));
 
-    checkProgress();
+    checkProgress(currentCategory);
 }
