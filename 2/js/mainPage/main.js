@@ -1,9 +1,7 @@
 const tasksInProgress = document.querySelector('.tasks-in-progress');
 const tasksDone = document.querySelector('.tasks-done');
 
-const todayDate = document.querySelector('#today');
-const day = new Date();
-todayDate.innerHTML = `${day.getFullYear()}년 ${day.getMonth() + 1}월 ${day.getDate()}일`;
+updateTodayDate();
 checkProgress();
 
 let currentCategory = '전체';
@@ -60,3 +58,8 @@ categoryList.forEach((category) => {
         categories.appendChild(categoryBtn);
     }
 });
+
+function updateTodayDate (){
+    const day = new Date();
+    document.querySelector('#today').innerHTML = `${day.getFullYear()}년 ${day.getMonth() + 1}월 ${day.getDate()}일`;
+}
