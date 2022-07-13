@@ -39,8 +39,8 @@ function createTaskBoxElement(task) {
     taskBoxElement.append(checkboxTypeInput, labelForCheckbox);
 
     taskBoxElement.addEventListener('change', () => {
-        taskList[taskList.indexOf(task)].isDone = !taskList[taskList.indexOf(task)].isDone;
-        localStorage.setItem('tasks', JSON.stringify(taskList));
+        task.isDone = !task.isDone;
+        storeDataInLocalStorage();
         locateTaskBoxElement(task, taskBoxElement, getListElementWillBePutInto(task));
         updateProgressText(currentCategory);
     });

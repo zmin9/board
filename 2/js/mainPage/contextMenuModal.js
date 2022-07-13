@@ -24,7 +24,7 @@ function createContextMenuModal(task, taskBox){
         submitBtn.addEventListener('click', () => {
             task.title = inputForTitle.value;
             task.category = inputForCategory.value;
-            localStorage.setItem('tasks', JSON.stringify(taskList));
+            storeDataInLocalStorage();
             location.reload();
         });
 
@@ -42,7 +42,7 @@ function createContextMenuModal(task, taskBox){
     deleteBtn.addEventListener('click',()=>{
         taskList.splice(taskList.indexOf(task), 1);
 
-        localStorage.setItem('tasks', JSON.stringify(taskList));
+        storeDataInLocalStorage();
         document.body.lastChild.remove();
         taskBox.parentNode.removeChild(taskBox);
         location.reload();

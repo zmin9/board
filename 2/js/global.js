@@ -5,3 +5,7 @@ const categoryList = taskList.map((task) => task.category)
                                     else return [...result, category]
                                 }, []);
 const categories = document.querySelector('#categories');
+
+function storeDataInLocalStorage(){
+    localStorage.setItem('tasks', JSON.stringify(taskList));
+}

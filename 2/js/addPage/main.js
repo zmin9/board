@@ -70,7 +70,7 @@ addButton.addEventListener('click', () => {
     }
     selectedCategory = '+';
 
-    localStorage.setItem('tasks', JSON.stringify(taskList));
+    storeDataInLocalStorage();
 
     taskTitle.value = '';
     taskCategory.value = '';
