@@ -22,3 +22,7 @@ function createCategoryButton(category) {
 
     return categoryButton;
 }
+
+function shortenCategoryTo(limit, categoryBtn){
+    categoryBtn.innerText = categoryBtn.id.slice(0,limit - 3) + '⋯';
+}

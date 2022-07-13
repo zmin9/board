@@ -1,3 +1,6 @@
+const tasksInProgress = document.querySelector('.tasks-in-progress');
+const tasksDone = document.querySelector('.tasks-done');
+
 function showTasksIn(taskList){
     resetChildren(tasksDone);
     resetChildren(tasksInProgress);
