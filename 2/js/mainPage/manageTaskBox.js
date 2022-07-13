@@ -24,6 +24,11 @@ function createTaskBoxElement(task) {
     checkboxTypeInput.id = 'task' + String(task.id);
     checkboxTypeInput.checked = task.isDone;
 
+    checkboxTypeInput.addEventListener('click', () => {
+        taskList[taskList.indexOf(task)].isDone = !taskList[taskList.indexOf(task)].isDone;
+        localStorage.setItem('tasks', JSON.stringify(taskList));
+    });
+
     const taskBox = document.createElement('div');
     taskBox.classList.add('task-box', 'margin-top-16', 'flex-box-row');
     taskBox.id = task.id;
