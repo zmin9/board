@@ -9,3 +9,5 @@ const categories = document.querySelector('#categories');
 function storeDataInLocalStorage(){
     localStorage.setItem('tasks', JSON.stringify(taskList));
 }
+
+let currentCategory;
