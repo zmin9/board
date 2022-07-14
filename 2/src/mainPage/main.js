@@ -1,7 +1,21 @@
-currentCategory = '전체';
+const taskList = localStorage.getItem('tasks') ? JSON.parse(localStorage.getItem('tasks')) : [];
+const categoryList = taskList.map((task) => task.category)
+    .reduce((result, category) => {
+        if (result.includes(category) || category === '') return result;
+        else return [...result, category]
+    }, []);
+const categories = document.querySelector('#categories');
 
+function storeDataInLocalStorage(){
+    localStorage.setItem('tasks', JSON.stringify(taskList));
+}
+
+let currentCategory = '전체';
+
+// 날짜를 오늘 날짜로 변경
 updateTodayDate();
 
+// 테스크 화면 업데이트
 updateTaskView(currentCategory);
 
 setCategoryButtons(['전체', ...categoryList], categories);
