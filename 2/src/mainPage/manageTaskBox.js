@@ -11,20 +11,11 @@ function showTaskBoxElem(taskList){
 
 
     function createTaskBoxElement(task) {
-        const taskTitle = document.createElement('span');
-        taskTitle.classList.add('task-title', 'font-weight-500', 'line-height-24', 'font-color-main');
-        taskTitle.append(task.title);
+        const taskCheckbox = createDivElement(['task-check']);
 
-        const taskCategory = document.createElement('div');
-        taskCategory.classList.add('task-category', 'margin-top-8', 'font-weight-600', 'font-color-sub');
-        taskCategory.append(task.category);
-
-        const taskInformation = document.createElement('div');
-        taskInformation.classList.add('task-info');
-        taskInformation.append(taskTitle, taskCategory);
-
-        const taskCheckbox = document.createElement('div');
-        taskCheckbox.className = 'task-check';
+        const taskTitle = createDivElement(['task-title', 'font-weight-500', 'line-height-24', 'font-color-main'], [task.title]);
+        const taskCategory = createDivElement(['task-category', 'font-weight-600', 'margin-top-8', 'font-color-sub'], [task.category]);
+        const taskInformation = createDivElement(['task-info'], [taskTitle, taskCategory]);
 
         const labelForCheckbox = document.createElement('label');
         labelForCheckbox.classList.add('flex-box-row');
@@ -36,18 +27,14 @@ function showTaskBoxElem(taskList){
         checkboxTypeInput.id = 'task' + String(task.id);
         checkboxTypeInput.checked = task.isDone;
 
-        const taskBoxElem = document.createElement('div');
-        taskBoxElem.classList.add('task-box', 'margin-top-16', 'flex-box-row');
+        const taskBoxElem = createDivElement(['task-box', 'margin-top-16', 'flex-box-row'], [checkboxTypeInput, labelForCheckbox]);
         taskBoxElem.id = task.id;
-        taskBoxElem.append(checkboxTypeInput, labelForCheckbox);
-
         taskBoxElem.addEventListener('change', () => {
             task.isDone = !task.isDone;
             saveTaskDataArr();
             locateTaskBoxElement(taskBoxElem, getPutIntoContainer(task));
             updateProgressText(getFilteredTaskArr(selectedCategory, taskDataArr));
         });
-
         taskBoxElem.addEventListener('contextmenu', (e) => {
             e.preventDefault();
             document.body.appendChild(createContextMenuModal(task));
