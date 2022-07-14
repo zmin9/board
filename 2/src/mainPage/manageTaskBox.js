@@ -1,12 +1,12 @@
-const tasksInProgress = document.querySelector('.tasks-in-progress');
-const tasksDone = document.querySelector('.tasks-done');
+const doingTaskContainer = document.querySelector('.tasks-in-progress');
+const doneTaskContainer = document.querySelector('.tasks-done');
 
-function showTasksIn(taskList){
-    resetChildren(tasksDone);
-    resetChildren(tasksInProgress);
+function showTaskBoxElem(taskList){
+    resetChildren(doneTaskContainer);
+    resetChildren(doingTaskContainer);
 
     taskList.forEach((task) => {
-        locateTaskBoxElement(task, createTaskBoxElement(task), getListElementWillBePutInto(task));
+        locateTaskBoxElement(task, createTaskBoxElement(task), getPutIntoContainer(task));
     });
 }
 
@@ -36,28 +36,28 @@ function createTaskBoxElement(task) {
     checkboxTypeInput.id = 'task' + String(task.id);
     checkboxTypeInput.checked = task.isDone;
 
-    const taskBoxElement = document.createElement('div');
-    taskBoxElement.classList.add('task-box', 'margin-top-16', 'flex-box-row');
-    taskBoxElement.id = task.id;
-    taskBoxElement.append(checkboxTypeInput, labelForCheckbox);
+    const taskBoxElem = document.createElement('div');
+    taskBoxElem.classList.add('task-box', 'margin-top-16', 'flex-box-row');
+    taskBoxElem.id = task.id;
+    taskBoxElem.append(checkboxTypeInput, labelForCheckbox);
 
-    taskBoxElement.addEventListener('change', () => {
+    taskBoxElem.addEventListener('change', () => {
         task.isDone = !task.isDone;
         storeDataInLocalStorage();
-        locateTaskBoxElement(task, taskBoxElement, getListElementWillBePutInto(task));
-        updateProgressText(filteredTaskListWith(currentCategory, taskList));
+        locateTaskBoxElement(task, taskBoxElem, getPutIntoContainer(task));
+        updateProgressText(getFilteredTaskArr(selectedCategory, taskDataArr));
     });
 
-    taskBoxElement.addEventListener('contextmenu', (e) => {
+    taskBoxElem.addEventListener('contextmenu', (e) => {
         e.preventDefault();
-        document.body.appendChild(createContextMenuModal(task, taskBoxElement));
+        document.body.appendChild(createContextMenuModal(task, taskBoxElem));
     });
 
-    return taskBoxElement;
+    return taskBoxElem;
 }
 
-function getListElementWillBePutInto(task) {
-    return task.isDone ? tasksDone : tasksInProgress;
+function getPutIntoContainer(task) {
+    return task.isDone ? doneTaskContainer : doingTaskContainer;
 }
 
 function locateTaskBoxElement(task, taskBoxElement, targetList) {

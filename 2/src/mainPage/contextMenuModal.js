@@ -40,7 +40,7 @@ function createContextMenuModal(task, taskBox){
     deleteBtn.innerText = '삭제';
 
     deleteBtn.addEventListener('click',()=>{
-        taskList.splice(taskList.indexOf(task), 1);
+        taskDataArr.splice(taskDataArr.indexOf(task), 1);
 
         storeDataInLocalStorage();
         document.body.lastChild.remove();

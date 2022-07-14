@@ -1,45 +1,43 @@
-const taskList = localStorage.getItem('tasks') ? JSON.parse(localStorage.getItem('tasks')) : [];
-const categoryList = taskList.map((task) => task.category)
+const taskDataArr = localStorage.getItem('tasks') ? JSON.parse(localStorage.getItem('tasks')) : [];
+const categoryDataArr = taskDataArr.map((task) => task.category)
     .reduce((result, category) => {
         if (result.includes(category) || category === '') return result;
         else return [...result, category]
     }, []);
-const categories = document.querySelector('#categories');
+const categoryContainer = document.querySelector('#categories');
 
 function storeDataInLocalStorage(){
-    localStorage.setItem('tasks', JSON.stringify(taskList));
+    localStorage.setItem('tasks', JSON.stringify(taskDataArr));
 }
 
-let currentCategory = '전체';
+let selectedCategory = '전체';
 
-// 날짜를 오늘 날짜로 변경
-updateTodayDate();
 
-// 테스크 화면 업데이트
-updateTaskView(currentCategory);
+setTodayDate();
+setCategoryBtn(['전체', ...categoryDataArr], categoryContainer);
+updateTaskView(selectedCategory);
 
-setCategoryButtons(['전체', ...categoryList], categories);
-
-function updateTodayDate (){
+function setTodayDate (){
     const day = new Date();
     document.querySelector('#today').innerHTML = `${day.getFullYear()}년 ${day.getMonth() + 1}월 ${day.getDate()}일`;
 }
 
-function setCategoryButtons(categoryList, container) {
-    categoryList.forEach((category) => {
-        const categoryBtn = createCategoryButton(category);
+function setCategoryBtn(categoryArr, container) {
+    categoryArr.forEach((category) => {
+        const categoryBtn = createCategoryBtn(category);
         if (category.length > 12)
             shortenCategoryTo(12, categoryBtn);
-        categoryBtn.addEventListener('click', () => updateTaskView(currentCategory));
+        categoryBtn.addEventListener('click', () => updateTaskView(selectedCategory));
         container.appendChild(categoryBtn);
     });
 }
 
-function updateTaskView(currentCategory) {
-    updateProgressText(filteredTaskListWith(currentCategory, taskList));
-    showTasksIn(filteredTaskListWith(currentCategory, taskList));
+// task관련 화면 업데이트
+function updateTaskView(selectedCategory) {
+    updateProgressText(getFilteredTaskArr(selectedCategory, taskDataArr));
+    showTaskBoxElem(getFilteredTaskArr(selectedCategory, taskDataArr));
 }
 
-function filteredTaskListWith(category, taskList) {
+function getFilteredTaskArr(category, taskList) {
     return category === '전체' ? taskList : taskList.filter((task) => task.category === category);
 }
