@@ -50,7 +50,7 @@ function showTaskBoxElem(taskList){
 
         taskBoxElem.addEventListener('contextmenu', (e) => {
             e.preventDefault();
-            document.body.appendChild(createContextMenuModal(task, taskBoxElem));
+            document.body.appendChild(createContextMenuModal(task));
         });
 
         return taskBoxElem;
