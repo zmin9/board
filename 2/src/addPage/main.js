@@ -6,7 +6,7 @@ const categoryDataArr = taskDataArr.map((task) => task.category)
     }, []);
 const categoryContainer = document.querySelector('#categories');
 
-function storeDataInLocalStorage(){
+function saveTaskDataArr(){
     localStorage.setItem('tasks', JSON.stringify(taskDataArr));
 }
 
@@ -82,7 +82,7 @@ addButtonElem.addEventListener('click', () => {
     }
     selectedCategory = '+';
 
-    storeDataInLocalStorage();
+    saveTaskDataArr();
 
     titleInputElem.value = '';
     categoryInputElem.value = '';

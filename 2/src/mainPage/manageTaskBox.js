@@ -43,7 +43,7 @@ function showTaskBoxElem(taskList){
 
         taskBoxElem.addEventListener('change', () => {
             task.isDone = !task.isDone;
-            storeDataInLocalStorage();
+            saveTaskDataArr();
             locateTaskBoxElement(task, taskBoxElem, getPutIntoContainer(task));
             updateProgressText(getFilteredTaskArr(selectedCategory, taskDataArr));
         });
