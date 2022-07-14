@@ -8,77 +8,78 @@ function showTaskBoxElem(taskList){
     taskList.forEach((task) => {
         locateTaskBoxElement(task, createTaskBoxElement(task), getPutIntoContainer(task));
     });
-}
 
-function createTaskBoxElement(task) {
-    const taskTitle = document.createElement('span');
-    taskTitle.classList.add('task-title', 'font-weight-500', 'line-height-24', 'font-color-main');
-    taskTitle.append(task.title);
 
-    const taskCategory = document.createElement('div');
-    taskCategory.classList.add('task-category', 'margin-top-8', 'font-weight-600', 'font-color-sub');
-    taskCategory.append(task.category);
+    function createTaskBoxElement(task) {
+        const taskTitle = document.createElement('span');
+        taskTitle.classList.add('task-title', 'font-weight-500', 'line-height-24', 'font-color-main');
+        taskTitle.append(task.title);
 
-    const taskInformation = document.createElement('div');
-    taskInformation.classList.add('task-info');
-    taskInformation.append(taskTitle, taskCategory);
+        const taskCategory = document.createElement('div');
+        taskCategory.classList.add('task-category', 'margin-top-8', 'font-weight-600', 'font-color-sub');
+        taskCategory.append(task.category);
 
-    const taskCheckbox = document.createElement('div');
-    taskCheckbox.className = 'task-check';
+        const taskInformation = document.createElement('div');
+        taskInformation.classList.add('task-info');
+        taskInformation.append(taskTitle, taskCategory);
 
-    const labelForCheckbox = document.createElement('label');
-    labelForCheckbox.classList.add('flex-box-row');
-    labelForCheckbox.htmlFor = 'task' + String(task.id);
-    labelForCheckbox.append(taskCheckbox, taskInformation);
+        const taskCheckbox = document.createElement('div');
+        taskCheckbox.className = 'task-check';
 
-    const checkboxTypeInput = document.createElement('input');
-    checkboxTypeInput.type = 'checkbox';
-    checkboxTypeInput.id = 'task' + String(task.id);
-    checkboxTypeInput.checked = task.isDone;
+        const labelForCheckbox = document.createElement('label');
+        labelForCheckbox.classList.add('flex-box-row');
+        labelForCheckbox.htmlFor = 'task' + String(task.id);
+        labelForCheckbox.append(taskCheckbox, taskInformation);
 
-    const taskBoxElem = document.createElement('div');
-    taskBoxElem.classList.add('task-box', 'margin-top-16', 'flex-box-row');
-    taskBoxElem.id = task.id;
-    taskBoxElem.append(checkboxTypeInput, labelForCheckbox);
+        const checkboxTypeInput = document.createElement('input');
+        checkboxTypeInput.type = 'checkbox';
+        checkboxTypeInput.id = 'task' + String(task.id);
+        checkboxTypeInput.checked = task.isDone;
 
-    taskBoxElem.addEventListener('change', () => {
-        task.isDone = !task.isDone;
-        storeDataInLocalStorage();
-        locateTaskBoxElement(task, taskBoxElem, getPutIntoContainer(task));
-        updateProgressText(getFilteredTaskArr(selectedCategory, taskDataArr));
-    });
+        const taskBoxElem = document.createElement('div');
+        taskBoxElem.classList.add('task-box', 'margin-top-16', 'flex-box-row');
+        taskBoxElem.id = task.id;
+        taskBoxElem.append(checkboxTypeInput, labelForCheckbox);
 
-    taskBoxElem.addEventListener('contextmenu', (e) => {
-        e.preventDefault();
-        document.body.appendChild(createContextMenuModal(task, taskBoxElem));
-    });
+        taskBoxElem.addEventListener('change', () => {
+            task.isDone = !task.isDone;
+            storeDataInLocalStorage();
+            locateTaskBoxElement(task, taskBoxElem, getPutIntoContainer(task));
+            updateProgressText(getFilteredTaskArr(selectedCategory, taskDataArr));
+        });
 
-    return taskBoxElem;
-}
+        taskBoxElem.addEventListener('contextmenu', (e) => {
+            e.preventDefault();
+            document.body.appendChild(createContextMenuModal(task, taskBoxElem));
+        });
 
-function getPutIntoContainer(task) {
-    return task.isDone ? doneTaskContainer : doingTaskContainer;
-}
-
-function locateTaskBoxElement(task, taskBoxElement, targetList) {
-    if (targetList.children.length === 0)
-        targetList.appendChild(taskBoxElement);
-
-    else {
-        let isAppended = false;
-        for (let i = 0; i < targetList.children.length; i++) {
-            if (Number(task.id) < Number(targetList.children[i].id)) {
-                targetList.children[i].before(taskBoxElement);
-                isAppended = true;
-                break;
-            }
-        }
-        if (!isAppended) targetList.appendChild(taskBoxElement);
+        return taskBoxElem;
     }
-}
 
-function resetChildren(element){
-    while(element.firstChild){
-        element.removeChild(element.lastChild);
+    function getPutIntoContainer(task) {
+        return task.isDone ? doneTaskContainer : doingTaskContainer;
+    }
+
+    function locateTaskBoxElement(task, taskBoxElement, targetList) {
+        if (targetList.children.length === 0)
+            targetList.appendChild(taskBoxElement);
+
+        else {
+            let isAppended = false;
+            for (let i = 0; i < targetList.children.length; i++) {
+                if (Number(task.id) < Number(targetList.children[i].id)) {
+                    targetList.children[i].before(taskBoxElement);
+                    isAppended = true;
+                    break;
+                }
+            }
+            if (!isAppended) targetList.appendChild(taskBoxElement);
+        }
+    }
+
+    function resetChildren(element){
+        while(element.firstChild){
+            element.removeChild(element.lastChild);
+        }
     }
 }
