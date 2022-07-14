@@ -1,4 +1,4 @@
-const doingTaskContainer = document.querySelector('.tasks-in-progress');
+const doingTaskContainer = document.querySelector('.tasks-doing');
 const doneTaskContainer = document.querySelector('.tasks-done');
 
 function showTaskBoxElem(taskList){
