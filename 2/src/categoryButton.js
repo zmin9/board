@@ -1,11 +1,10 @@
 function createCategoryBtn(category) {
     const categoryBtn = document.createElement('div');
-    categoryBtn.innerText = category;
+    categoryBtn.innerText = category.length > 12 ? getShortCategoryStr(12, categoryBtn) : category;
     categoryBtn.id = category;
     categoryBtn.classList.add('blue-round-box', 'font-color-blue', 'padding-8-16', 'font-size-14', 'color-transition');
     if(category === selectedCategory)
         categoryBtn.classList.add('bg-blue-color');
-
     categoryBtn.addEventListener('click', () => {
         if (selectedCategory !== category) {
             categoryBtn.classList.add('bg-blue-color');
@@ -19,10 +18,10 @@ function createCategoryBtn(category) {
             selectedCategory = category;
         }
     });
-
     return categoryBtn;
-}
 
-function shortenCategoryTo(limit, categoryBtn){
-    categoryBtn.innerText = categoryBtn.id.slice(0,limit - 3) + '⋯';
+
+    function getShortCategoryStr(limit, categoryBtn){
+        categoryBtn.innerText = categoryBtn.id.slice(0,limit - 3) + '⋯';
+    }
 }

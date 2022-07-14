@@ -25,8 +25,6 @@ function setTodayDate (){
 function setCategoryBtn(categoryArr, container) {
     categoryArr.forEach((category) => {
         const categoryBtn = createCategoryBtn(category);
-        if (category.length > 12)
-            shortenCategoryTo(12, categoryBtn);
         categoryBtn.addEventListener('click', () => updateTaskView(selectedCategory));
         container.appendChild(categoryBtn);
     });
