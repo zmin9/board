@@ -1,67 +1,71 @@
-function createContextMenuModal(task, taskBox){
-    const taskTitle = document.createElement('div');
-    taskTitle.classList.add('modal-title');
-    taskTitle.innerText = task.title;
+function createContextMenuModal(task){
+    const taskTitle = createDivElement(['modal-title'], [task.title]);
 
-    const modifyBtn = document.createElement('button');
-    modifyBtn.classList.add('large-button', 'button-modal', 'bg-blue-color');
-    modifyBtn.innerText = '수정';
-
+    const modifyBtn = createBtnForModal('수정', 'blue');
     modifyBtn.addEventListener('click', () => {
         document.body.lastChild.lastChild.remove(); // 현재 모달창 삭제
+        document.body.lastChild.appendChild(createModifyingModal(task)); // 새로운 모달창 추가
+    });
 
-        const inputForTitle = document.createElement('input');
-        inputForTitle.value = task.title;
-        inputForTitle.placeholder = '타이틀'
-        inputForTitle.classList.add('padding-8-16', 'font-size-15', 'task-input', 'bg-color');
-        const inputForCategory = document.createElement('input');
-        inputForCategory.value = task.category;
-        inputForCategory.placeholder = '카테고리'
-        inputForCategory.classList.add('padding-8-16', 'font-size-15', 'task-input', 'bg-color', 'margin-top-8');
-        const submitBtn = document.createElement('button');
-        submitBtn.classList.add('large-button', 'button-modal', 'bg-blue-color', 'margin-top-16');
-        submitBtn.innerText = '확인';
+    const deleteBtn = createBtnForModal('삭제', 'red');
+    deleteBtn.addEventListener('click',()=>{
+        taskDataArr.splice(taskDataArr.indexOf(task), 1);
+
+        saveTaskDataArr();
+        location.reload();
+    });
+
+    const modal = createWhiteModalBox(taskTitle, modifyBtn, deleteBtn);
+
+    const background = createDivElement(['modal-background']);
+    background.addEventListener('click', (e) => {
+        e.preventDefault();
+        document.body.lastChild.remove();
+    });
+
+    return createDivElement(null, [background, modal]);
+
+    function createInputForModal(value, placeholder, ...additionalClass){
+        const inputForModal = document.createElement('input');
+        inputForModal.value = value;
+        inputForModal.placeholder = placeholder
+        inputForModal.classList.add('padding-8-16', 'font-size-15', 'task-input', 'bg-color', ...additionalClass);
+        return inputForModal;
+    }
+
+    function createWhiteModalBox(...appendedChildren){
+        const modal = document.createElement('div');
+        modal.classList.add('modal', 'modal-position-center', 'flex-box-col' ,'flex-alignment-center');
+        modal.append(...appendedChildren);
+        return modal;
+    }
+
+    function createBtnForModal(text, color){
+        const btn = document.createElement('button');
+        btn.classList.add('large-button', 'button-modal', `bg-${color}-color`, 'margin-top-8');
+        btn.append(text);
+        return btn;
+    }
+
+    function createModifyingModal(task){
+        const inputForTitle = createInputForModal(task.title, '타이틀');
+        const inputForCategory = createInputForModal(task.category, '카테고리', 'margin-top-8');
+        const submitBtn = createBtnForModal('확인', 'blue');
         submitBtn.addEventListener('click', () => {
             task.title = inputForTitle.value;
             task.category = inputForCategory.value;
             saveTaskDataArr();
             location.reload();
         });
+        return createWhiteModalBox(inputForTitle, inputForCategory, submitBtn);
+    }
+}
 
-        const modifyModal = document.createElement('div');
-        modifyModal.classList.add('modal', 'modal-position-center', 'flex-box-col' ,'flex-alignment-center');
-        modifyModal.append(inputForTitle, inputForCategory, submitBtn);
 
-        document.body.lastChild.appendChild(modifyModal);
-    });
+function createDivElement(className, appendedChildren){
+    const divElem = document.createElement('div');
+    className&& divElem.classList.add(...className);
+    appendedChildren && divElem.append(...appendedChildren);
 
-    const deleteBtn = document.createElement('button');
-    deleteBtn.classList.add('large-button', 'button-modal', 'bg-red-color', 'margin-top-8');
-    deleteBtn.innerText = '삭제';
-
-    deleteBtn.addEventListener('click',()=>{
-        taskDataArr.splice(taskDataArr.indexOf(task), 1);
-
-        saveTaskDataArr();
-        document.body.lastChild.remove();
-        taskBox.parentNode.removeChild(taskBox);
-        location.reload();
-    });
-
-    const modal = document.createElement('div');
-    modal.classList.add('modal', 'modal-position-center', 'flex-box-col' ,'flex-alignment-center');
-
-    modal.append(taskTitle, modifyBtn, deleteBtn);
-
-    const background = document.createElement('div');
-    background.addEventListener('click', (e) => {
-        e.preventDefault();
-        document.body.lastChild.remove();
-    });
-    background.className = 'modal-background';
-
-    const modalWithBackground = document.createElement('div');
-    modalWithBackground.append(background, modal);
-
-    return modalWithBackground;
+    return divElem;
 }
