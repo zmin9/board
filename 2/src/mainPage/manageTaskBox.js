@@ -6,7 +6,7 @@ function showTaskBoxElem(taskList){
     resetChildren(doingTaskContainer);
 
     taskList.forEach((task) => {
-        locateTaskBoxElement(task, createTaskBoxElement(task), getPutIntoContainer(task));
+        locateTaskBoxElement(createTaskBoxElement(task), getPutIntoContainer(task));
     });
 
 
@@ -44,7 +44,7 @@ function showTaskBoxElem(taskList){
         taskBoxElem.addEventListener('change', () => {
             task.isDone = !task.isDone;
             saveTaskDataArr();
-            locateTaskBoxElement(task, taskBoxElem, getPutIntoContainer(task));
+            locateTaskBoxElement(taskBoxElem, getPutIntoContainer(task));
             updateProgressText(getFilteredTaskArr(selectedCategory, taskDataArr));
         });
 
@@ -60,14 +60,14 @@ function showTaskBoxElem(taskList){
         return task.isDone ? doneTaskContainer : doingTaskContainer;
     }
 
-    function locateTaskBoxElement(task, taskBoxElement, targetList) {
+    function locateTaskBoxElement(taskBoxElement, targetList) {
         if (targetList.children.length === 0)
             targetList.appendChild(taskBoxElement);
 
         else {
             let isAppended = false;
             for (let i = 0; i < targetList.children.length; i++) {
-                if (Number(task.id) < Number(targetList.children[i].id)) {
+                if (Number(taskBoxElement.id) < Number(targetList.children[i].id)) {
                     targetList.children[i].before(taskBoxElement);
                     isAppended = true;
                     break;
