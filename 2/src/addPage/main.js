@@ -17,18 +17,9 @@ const [titleInputElem, categoryInputElem] = document.querySelectorAll('.task-inp
 function createCategoryBtnWithEvent(category){
     const categoryBtn = createCategoryBtn(category);
     categoryBtn.addEventListener('click', () => {
-        if (selectedCategory !== category) {
-            categoryBtn.classList.add('bg-blue-color');
-            for (let i = 0; i < categoryContainer.children.length; i++) {
-                if (categoryContainer.children[i].id === selectedCategory) {
-                    categoryContainer.children[i].classList.remove('bg-blue-color');
-                    break;
-                }
-            }
-            selectedCategory = category;
-            categoryInputElem.value = selectedCategory;
-            categoryInputElem.disabled = true;
-        }
+        selectedCategory = category;
+        categoryInputElem.value = selectedCategory;
+        categoryInputElem.disabled = true;
     });
     return categoryBtn
 }
