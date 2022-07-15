@@ -14,39 +14,11 @@ let selectedCategory = '+';
 
 const [titleInputElem, categoryInputElem] = document.querySelectorAll('.task-input');
 
-function createCategoryBtnWithEvent(category){
-    const categoryBtn = createCategoryBtn(category);
-    categoryBtn.addEventListener('click', () => {
-        selectedCategory = category;
-        categoryInputElem.value = selectedCategory;
-        categoryInputElem.disabled = true;
-    });
-    return categoryBtn
-}
-
 categoryDataArr.forEach((category)=>{
-    if (category !== '' && category !== '전체') {
-        const categoryBtn = createCategoryBtnWithEvent(category);
-        categoryContainer.appendChild(categoryBtn);
-    }
+    categoryContainer.appendChild(createCategoryBtnWithEvent( category, true));
 });
+categoryContainer.appendChild(createCategoryBtnWithEvent('+', false));
 
-{
-    const plusCategoryBtn = createCategoryBtn('+');
-    plusCategoryBtn.classList.add('bg-blue-color');
-
-    plusCategoryBtn.addEventListener('click', () => {
-        plusCategoryBtn.classList.add('bg-main-color');
-        for (let i = 0; i < categoryContainer.children.length - 1; i++) {
-            categoryContainer.children[i].classList.remove('bg-main-color');
-        }
-        selectedCategory = '+';
-        categoryInputElem.value = '';
-        categoryInputElem.disabled = false;
-        categoryInputElem.focus();
-    });
-    categoryContainer.appendChild(plusCategoryBtn);
-}
 
 const addButtonElem = document.querySelector('button');
 
@@ -84,3 +56,20 @@ addButtonElem.addEventListener('click', () => {
         modal.style.opacity = '0';
     },3000);
 });
+
+function createCategoryBtnWithEvent(category, inputFieldDisable){
+    const categoryBtn = createCategoryBtn(category);
+    categoryBtn.addEventListener('click', () => {
+        selectedCategory = category;
+        if (inputFieldDisable) {
+            categoryInputElem.value = selectedCategory;
+            categoryInputElem.disabled = true;
+        }
+        else {
+            categoryInputElem.value = '';
+            categoryInputElem.disabled = false;
+            categoryInputElem.focus();
+        }
+    });
+    return categoryBtn
+}
