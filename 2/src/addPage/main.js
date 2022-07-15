@@ -1,14 +1,5 @@
-const taskDataArr = localStorage.getItem('tasks') ? JSON.parse(localStorage.getItem('tasks')) : [];
-const categoryDataArr = taskDataArr.map((task) => task.category)
-    .reduce((result, category) => {
-        if (result.includes(category) || category === '') return result;
-        else return [...result, category]
-    }, []);
-const categoryContainer = document.querySelector('#categories');
-
-function saveTaskDataArr(){
-    localStorage.setItem('tasks', JSON.stringify(taskDataArr));
-}
+import {data} from "../global.js";
+import {categoryContainer, createCategoryBtn} from "../categoryButton.js";
 
 let selectedCategory = '+';
 

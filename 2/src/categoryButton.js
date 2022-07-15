@@ -1,4 +1,6 @@
-function createCategoryBtn(category) {
+const categoryContainer = document.querySelector('#categories');
+
+function createCategoryBtn(category, selectedCategory, categoryContainer) {
     const categoryBtn = document.createElement('div');
     categoryBtn.innerText = category.length > 12 ? getShortCategoryStr(12, category) : category;
     categoryBtn.id = category;
@@ -25,3 +27,5 @@ function createCategoryBtn(category) {
         return category.slice(0,limit - 3) + '⋯';
     }
 }
+
+export {categoryContainer, createCategoryBtn};
