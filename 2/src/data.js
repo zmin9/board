@@ -1,7 +1,7 @@
-export const data = (function(){
+const data = (function(){
     const taskDataArr = JSON.parse(localStorage.getItem('tasks')) || [];
+    let selectedCategory = '';
 
-    function getTaskArr() { return taskDataArr; }
     function getCategoryArr() {
         return taskDataArr.map((task) => task.category)
                             .reduce((result, category) => {
@@ -9,9 +9,15 @@ export const data = (function(){
                                 else return [...result, category];
                             }, []);
     }
+    function getFilteredTaskArr(category) {
+        return category === '전체' ? taskDataArr : taskDataArr.filter((task) => task.category === category);
+    }
+    function getTask(taskId){ return taskDataArr[findIndexOf(taskId)]; }
+
+
     function addTask(id, title, category, isDone){
         taskDataArr.push({
-            'id': id,
+            'id': id * 1,
             'title': title,
             'category': category,
             'isDone': isDone
@@ -19,15 +25,26 @@ export const data = (function(){
         save();
     }
     function deleteTask(taskId){
-        taskDataArr.remove(taskDataArr[findIndexOf(taskId)]);
+        taskDataArr.splice(findIndexOf(taskId), 1);
         save();
     }
-    function modifyTask(taskId, task) {
+    function modifyTask(taskId, title, category) {
+        const pre = taskDataArr[findIndexOf(taskId)];
+        console.log(pre);
         taskDataArr[findIndexOf(taskId)] = {
-            id: taskId,
-            title: task.title,
-            category: task.category,
-            isDone: task.isDone
+            id: taskId * 1,
+            title: title || pre.title,
+            category: category || pre.category,
+            isDone: pre.isDone
+        }
+        console.log(taskDataArr[findIndexOf(taskId)]);
+        save();
+    }
+    function changeCheckedState(taskId){
+        const pre = taskDataArr[findIndexOf(taskId)];
+        taskDataArr[findIndexOf(taskId)] = {
+            ...pre,
+            isDone: !pre.isDone
         }
         save();
     }
@@ -37,18 +54,22 @@ export const data = (function(){
     }
     function findIndexOf(taskId){
         for(let i = 0; i < taskDataArr.length; i++)
-            if(taskDataArr[i].id === taskId) {
-                taskDataArr.remove(taskDataArr[i]);
+            if(taskDataArr[i].id === taskId * 1) {
                 return i;
             }
         throw new Error('잘못된 task id 입니다.');
     }
 
     return {
-        getTaskArr,
+        selectedCategory,
+        getFilteredTaskArr,
         getCategoryArr,
+        getTask,
         addTask,
         deleteTask,
-        modifyTask
+        modifyTask,
+        changeCheckedState
     };
 })();
+
+export default data;
