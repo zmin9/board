@@ -30,14 +30,12 @@ const data = (function(){
     }
     function modifyTask(taskId, title, category) {
         const pre = taskDataArr[findIndexOf(taskId)];
-        console.log(pre);
         taskDataArr[findIndexOf(taskId)] = {
             id: taskId * 1,
             title: title || pre.title,
             category: category || pre.category,
             isDone: pre.isDone
         }
-        console.log(taskDataArr[findIndexOf(taskId)]);
         save();
     }
     function changeCheckedState(taskId){

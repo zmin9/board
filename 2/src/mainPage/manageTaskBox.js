@@ -1,14 +1,20 @@
+import {createDivElement} from "../element.js";
+import createContextMenuModal from "./contextMenuModal.js";
+import data from "../data.js"
+
 const doingTaskContainer = document.querySelector('.tasks-doing');
 const doneTaskContainer = document.querySelector('.tasks-done');
 
 function showTaskBoxElem(taskList){
-    resetChildren(doneTaskContainer);
     resetChildren(doingTaskContainer);
+    resetChildren(doneTaskContainer);
 
     taskList.forEach((task) => {
-        locateTaskBoxElement(createTaskBoxElement(task), getPutIntoContainer(task));
+        locateTaskBoxElement(createTaskBoxElement(task));
     });
 
+    attachEventTaskContainer(doingTaskContainer);
+    attachEventTaskContainer(doneTaskContainer);
 
     function createTaskBoxElement(task) {
         const taskCheckbox = createDivElement(['task-check']);
@@ -19,42 +25,31 @@ function showTaskBoxElem(taskList){
 
         const labelForCheckbox = document.createElement('label');
         labelForCheckbox.classList.add('flex-box-row');
-        labelForCheckbox.htmlFor = 'task' + String(task.id);
+        labelForCheckbox.htmlFor = 'task' + task.id;
         labelForCheckbox.append(taskCheckbox, taskInformation);
 
         const checkboxTypeInput = document.createElement('input');
         checkboxTypeInput.type = 'checkbox';
-        checkboxTypeInput.id = 'task' + String(task.id);
+        checkboxTypeInput.id = 'task' + task.id;
         checkboxTypeInput.checked = task.isDone;
 
         const taskBoxElem = createDivElement(['task-box', 'margin-top-16', 'flex-box-row'], [checkboxTypeInput, labelForCheckbox]);
-        taskBoxElem.id = task.id;
-        taskBoxElem.addEventListener('change', () => {
-            task.isDone = !task.isDone;
-            saveTaskDataArr();
-            locateTaskBoxElement(taskBoxElem, getPutIntoContainer(task));
-            updateProgressText(getFilteredTaskArr(selectedCategory, taskDataArr));
-        });
-        taskBoxElem.addEventListener('contextmenu', (e) => {
-            e.preventDefault();
-            document.body.appendChild(createContextMenuModal(task));
-        });
+        taskBoxElem.taskId = task.id;
 
         return taskBoxElem;
     }
 
-    function getPutIntoContainer(task) {
-        return task.isDone ? doneTaskContainer : doingTaskContainer;
-    }
 
-    function locateTaskBoxElement(taskBoxElement, targetList) {
+    function locateTaskBoxElement(taskBoxElement) {
+        const targetList = getPutIntoContainer(taskBoxElement.taskId);
+
         if (targetList.children.length === 0)
             targetList.appendChild(taskBoxElement);
 
         else {
             let isAppended = false;
             for (let i = 0; i < targetList.children.length; i++) {
-                if (Number(taskBoxElement.id) < Number(targetList.children[i].id)) {
+                if (Number(taskBoxElement.taskId) < Number(targetList.children[i].taskId)) {
                     targetList.children[i].before(taskBoxElement);
                     isAppended = true;
                     break;
@@ -64,9 +59,40 @@ function showTaskBoxElem(taskList){
         }
     }
 
+    function getPutIntoContainer(taskId) {
+        return data.getTask(taskId).isDone ? doneTaskContainer : doingTaskContainer;
+    }
+
     function resetChildren(element){
         while(element.firstChild){
             element.removeChild(element.lastChild);
         }
     }
+
+    function attachEventTaskContainer(container){
+        container.addEventListener('change', (e) => {
+            const taskBoxElem = findTaskElemFor(e.target);
+            if(taskBoxElem.taskId) {
+                data.changeCheckedState(taskBoxElem.taskId);
+                locateTaskBoxElement(taskBoxElem);
+            }
+        });
+        container.addEventListener('contextmenu', (e) => {
+            e.preventDefault();
+            const taskBoxElem = findTaskElemFor(e.target);
+            taskBoxElem.taskId && document.body.appendChild(createContextMenuModal(taskBoxElem.taskId));
+        });
+
+        function findTaskElemFor(eventTarget) {
+            let curElem = eventTarget;
+            while (curElem.parentNode !== document) {
+                if(curElem.hasOwnProperty('taskId'))
+                    return curElem;
+                curElem = curElem.parentNode;
+            }
+            return null;
+        }
+    }
 }
+
+export default showTaskBoxElem;

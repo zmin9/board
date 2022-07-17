@@ -12,3 +12,5 @@ function updateProgressText(taskList) {
         return result;
     }
 }
+
+export default updateProgressText;

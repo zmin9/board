@@ -1,4 +1,4 @@
-import {data} from "../global.js";
+import data from "../data.js";
 import {categoryContainer, createCategoryBtn} from "../categoryButton.js";
 
 let selectedCategory = '+';
@@ -32,7 +32,7 @@ document.querySelector('button').addEventListener('click', () => {
 });
 
 
-function createCategoryBtnWithEvent(category, inputFieldDisable){
+function createCategoryBtnWithEvent(category,inputFieldDisable){
     const categoryBtn = createCategoryBtn(category, selectedCategory, categoryContainer);
     categoryBtn.addEventListener('click', () => {
         selectedCategory = category;
@@ -72,14 +72,14 @@ function isTitleFieldEmpty(){
     }
 }
 
-function setCategoryBtn() {
+function setCategoryBtn(selectedCategory) {
     selectedCategory = '+';
     categoryInputElem.disabled = false;
     resetChildren(categoryContainer);
     data.getCategoryArr().forEach((category) => {
-        categoryContainer.appendChild(createCategoryBtnWithEvent(category, true));
+        categoryContainer.appendChild(createCategoryBtnWithEvent(category,true));
     });
-    categoryContainer.appendChild(createCategoryBtnWithEvent('+', false));
+    categoryContainer.appendChild(createCategoryBtnWithEvent('+',false));
 
     function resetChildren(element) {
         while (element.firstChild) {
