@@ -13,6 +13,7 @@ attachEventToTaskContainer(doneTaskContainer);
 function showTaskBoxElem(taskList){
     resetChildren(doingTaskContainer);
     resetChildren(doneTaskContainer);
+    setProgressText(data.filteredTaskArr());
 
     taskList.forEach((task) => {
         locateTaskBoxElement(createTaskBoxElement(task));
