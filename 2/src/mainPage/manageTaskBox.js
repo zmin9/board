@@ -7,8 +7,8 @@ const doingTaskContainer = document.querySelector('.tasks-doing');
 const doneTaskContainer = document.querySelector('.tasks-done');
 // const test = document.querySelectorAll('[class^="tasks-"]');
 
-attachEventTaskContainer(doingTaskContainer);
-attachEventTaskContainer(doneTaskContainer);
+attachEventToTaskContainer(doingTaskContainer);
+attachEventToTaskContainer(doneTaskContainer);
 
 function showTaskBoxElem(taskList){
     resetChildren(doingTaskContainer);
@@ -26,7 +26,7 @@ function showTaskBoxElem(taskList){
     }
 }
 
-function attachEventTaskContainer(container){
+function attachEventToTaskContainer(container){
     container.addEventListener('change', (e) => {
         const taskBoxElem = findTaskElemFor(e.target);
         if(taskBoxElem.taskId) {
