@@ -51,6 +51,12 @@ function createTaskBoxElement(task) {
     return taskBoxElem;
 }
 
+function createEmptyMsgElement() {
+    const boxForMessaging = document.createElement('div');
+    boxForMessaging.innerText = "항목이 없습니다";
+    boxForMessaging.classList.add('font-color-sub', 'font-size-15', 'flex-box-row', 'flex-alignment-center', 'margin-top-24');
+    return boxForMessaging
+}
 
 
-export {createDivElement, createWhiteModalBox, createInputForModal, createBtnForModal, createTaskBoxElement};
+export {createDivElement, createWhiteModalBox, createInputForModal, createBtnForModal, createTaskBoxElement, createEmptyMsgElement};
