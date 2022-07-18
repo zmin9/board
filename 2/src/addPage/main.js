@@ -1,7 +1,6 @@
 import data from "../data.js";
 import {categoryContainer, createCategoryBtn} from "../categoryButton.js";
 
-data.se = '+';
 
 const [titleInputElem, categoryInputElem] = document.querySelectorAll('.task-input');
 
@@ -29,48 +28,28 @@ document.querySelector('button').addEventListener('click', () => {
             successToastMsg.style.opacity = '0';
         },3000);
     }
-});
-
-
-function createCategoryBtnWithEvent(category,inputFieldDisable){
-    const categoryBtn = createCategoryBtn(category, categoryContainer);
-    categoryBtn.addEventListener('click', () => {
-        data.setCurCategory(category);
-        if (inputFieldDisable) {
-            categoryInputElem.value = category;
-            categoryInputElem.disabled = true;
+    function isTitleFieldEmpty(){
+        const cautionMsg = document.querySelector('.caution');
+        if(titleInputElem.value.trim() === ''){
+            showCautionMsg();
+            return true;
         }
         else {
-            categoryInputElem.value = '';
-            categoryInputElem.disabled = false;
-            categoryInputElem.focus();
+            hideCautionMsg();
+            return false;
         }
-    });
-    return categoryBtn
-}
 
+        function showCautionMsg(){
+            cautionMsg.style.visibility = 'visible';
+            titleInputElem.value = '';
+            titleInputElem.focus();
+        }
+        function hideCautionMsg(){
+            cautionMsg.style.visibility = 'hidden';
+        }
+    }
+});
 
-function isTitleFieldEmpty(){
-    const cautionMsg = document.querySelector('.caution');
-    if(titleInputElem.value.trim() === ''){
-        showCautionMsg();
-        return true;
-    }
-    else {
-        hideCautionMsg();
-        return false;
-    }
-
-
-    function showCautionMsg(){
-        cautionMsg.style.visibility = 'visible';
-        titleInputElem.value = '';
-        titleInputElem.focus();
-    }
-    function hideCautionMsg(){
-        cautionMsg.style.visibility = 'hidden';
-    }
-}
 
 function setCategoryBtn() {
     data.setCurCategory('+');
@@ -85,5 +64,21 @@ function setCategoryBtn() {
         while (element.firstChild) {
             element.removeChild(element.lastChild);
         }
+    }
+    function createCategoryBtnWithEvent(category,inputFieldDisable){
+        const categoryBtn = createCategoryBtn(category, categoryContainer);
+        categoryBtn.addEventListener('click', () => {
+            data.setCurCategory(category);
+            if (inputFieldDisable) {
+                categoryInputElem.value = category;
+                categoryInputElem.disabled = true;
+            }
+            else {
+                categoryInputElem.value = '';
+                categoryInputElem.disabled = false;
+                categoryInputElem.focus();
+            }
+        });
+        return categoryBtn
     }
 }
