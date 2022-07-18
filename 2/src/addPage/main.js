@@ -1,8 +1,8 @@
 import data from "../data.js";
 import {categoryContainer, createCategoryBtn} from "../category-button.js";
 
-
 const [titleInputElem, categoryInputElem] = document.querySelectorAll('.task-input');
+let timer = null;
 
 // 카테고리 설정 변경
 setCategoryBtnForAdd();
@@ -33,11 +33,15 @@ function attachEventListenerToAddingBtn(){
     function isTitleFieldEmpty(){ return titleInputElem.value.trim() === ''; }
 
     function showToastMsgForAdding(){
+        if(timer){
+            clearTimeout(timer);
+        }
         const toastMsg = document.querySelector('.modal');
         toastMsg.style.opacity = '100';
-        setTimeout(() => {
+        timer = setTimeout(() => {
             toastMsg.style.opacity = '0';
-        },3000);
+            timer = null;
+        }, 2000);
     }
 }
 
