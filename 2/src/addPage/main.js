@@ -6,24 +6,26 @@ const [titleInputElem, categoryInputElem] = document.querySelectorAll('.task-inp
 
 // 카테고리 설정 변경
 setCategoryBtnForAdd();
+attachEventListenerToAddingBtn()
 
-document.querySelector('button').addEventListener('click', () => {
-    if(!isTitleFieldEmpty()) {
-        data.addTask({
-            id: Date.now(),
-            title: titleInputElem.value.trim(),
-            category: categoryInputElem.value.trim(),
-            isDone: false
-        });
+function attachEventListenerToAddingBtn(){
+    document.querySelector('button').addEventListener('click', () => {
+        if(!isTitleFieldEmpty()) {
+            data.addTask({
+                id: Date.now(),
+                title: titleInputElem.value.trim(),
+                category: categoryInputElem.value.trim(),
+                isDone: false
+            });
 
-        setCategoryBtnForAdd();
+            setCategoryBtnForAdd();
 
-        titleInputElem.value = '';
-        categoryInputElem.value = '';
+            titleInputElem.value = '';
+            categoryInputElem.value = '';
 
-        showToastMsgForAdding();
-    }
-
+            showToastMsgForAdding();
+        }
+    });
     function showToastMsgForAdding(){
         const toastMsg = document.querySelector('.modal');
         toastMsg.style.opacity = '100';
@@ -50,22 +52,28 @@ document.querySelector('button').addEventListener('click', () => {
             cautionMsg.style.visibility = 'hidden';
         }
     }
-});
-
+}
 
 function setCategoryBtnForAdd() {
     data.setCurCategory('+');
     categoryInputElem.disabled = false;
     resetChildren(categoryContainer);
-    data.categoryArr().forEach((category) => {
-        categoryContainer.appendChild(createCategoryBtnWithEvent(category,true));
-    });
-    categoryContainer.appendChild(createCategoryBtnWithEvent('+',false));
+    setFixedPreviousCategoryBtns();
+    setFreeInputCategoryBtn();
+    
 
     function resetChildren(element) {
         while (element.firstChild) {
             element.removeChild(element.lastChild);
         }
+    }
+    function setFixedPreviousCategoryBtns(){
+        data.categoryArr().forEach((category) => {
+            categoryContainer.appendChild(createCategoryBtnWithEvent(category,true));
+        });
+    }
+    function setFreeInputCategoryBtn(){
+        categoryContainer.appendChild(createCategoryBtnWithEvent('+',false));
     }
     function createCategoryBtnWithEvent(category,inputFieldDisable){
         const categoryBtn = createCategoryBtn(category, categoryContainer);

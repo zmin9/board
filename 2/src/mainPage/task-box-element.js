@@ -1,6 +1,6 @@
+import data from "../data.js"
 import {createTaskBoxElement} from "../element.js";
 import createContextMenuModal from "./context-menu-modal.js";
-import data from "../data.js"
 import setProgressText from "./task-progress.js";
 
 const doingTaskContainer = document.querySelector('.tasks-doing');
