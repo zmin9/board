@@ -67,28 +67,23 @@ function setCategoryBtnForAdd() {
             element.removeChild(element.lastChild);
         }
     }
-    function setFixedPreviousCategoryBtns(){
+    function setFixedPreviousCategoryBtns() {
         data.categoryArr().forEach((category) => {
-            categoryContainer.appendChild(createCategoryBtnWithEvent(category,true));
-        });
-    }
-    function setFreeInputCategoryBtn(){
-        categoryContainer.appendChild(createCategoryBtnWithEvent('+',false));
-    }
-    function createCategoryBtnWithEvent(category,inputFieldDisable){
-        const categoryBtn = createCategoryBtn(category, categoryContainer);
-        categoryBtn.addEventListener('click', () => {
-            data.setCurCategory(category);
-            if (inputFieldDisable) {
+            const categoryBtn = createCategoryBtn(category);
+            categoryBtn.addEventListener('click', () => {
                 categoryInputElem.value = category;
                 categoryInputElem.disabled = true;
-            }
-            else {
-                categoryInputElem.value = '';
-                categoryInputElem.disabled = false;
-                categoryInputElem.focus();
-            }
+            });
+            categoryContainer.appendChild(categoryBtn);
         });
-        return categoryBtn
+    }
+    function setFreeInputCategoryBtn() {
+        const categoryBtn = createCategoryBtn('+');
+        categoryBtn.addEventListener('click', () => {
+            categoryInputElem.value = '';
+            categoryInputElem.disabled = false;
+            categoryInputElem.focus();
+        });
+        categoryContainer.appendChild(categoryBtn);
     }
 }
