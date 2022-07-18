@@ -1,9 +1,14 @@
 import {createDivElement} from "../element.js";
 import createContextMenuModal from "./contextMenuModal.js";
 import data from "../data.js"
+import updateProgressText from "./updateProgressText.js";
 
 const doingTaskContainer = document.querySelector('.tasks-doing');
 const doneTaskContainer = document.querySelector('.tasks-done');
+// const test = document.querySelectorAll('[class^="tasks-"]');
+
+attachEventTaskContainer(doingTaskContainer);
+attachEventTaskContainer(doneTaskContainer);
 
 function showTaskBoxElem(taskList){
     resetChildren(doingTaskContainer);
@@ -12,9 +17,6 @@ function showTaskBoxElem(taskList){
     taskList.forEach((task) => {
         locateTaskBoxElement(createTaskBoxElement(task));
     });
-
-    attachEventTaskContainer(doingTaskContainer);
-    attachEventTaskContainer(doneTaskContainer);
 
     function createTaskBoxElement(task) {
         const taskCheckbox = createDivElement(['task-check']);
@@ -39,60 +41,64 @@ function showTaskBoxElem(taskList){
         return taskBoxElem;
     }
 
-
-    function locateTaskBoxElement(taskBoxElement) {
-        const targetList = getPutIntoContainer(taskBoxElement.taskId);
-
-        if (targetList.children.length === 0)
-            targetList.appendChild(taskBoxElement);
-
-        else {
-            let isAppended = false;
-            for (let i = 0; i < targetList.children.length; i++) {
-                if (Number(taskBoxElement.taskId) < Number(targetList.children[i].taskId)) {
-                    targetList.children[i].before(taskBoxElement);
-                    isAppended = true;
-                    break;
-                }
-            }
-            if (!isAppended) targetList.appendChild(taskBoxElement);
-        }
-    }
-
-    function getPutIntoContainer(taskId) {
-        return data.task(taskId).isDone ? doneTaskContainer : doingTaskContainer;
-    }
-
     function resetChildren(element){
         while(element.firstChild){
             element.removeChild(element.lastChild);
         }
     }
+}
 
-    function attachEventTaskContainer(container){
-        container.addEventListener('change', (e) => {
-            const taskBoxElem = findTaskElemFor(e.target);
-            if(taskBoxElem.taskId) {
-                data.changeCheckedState(taskBoxElem.taskId);
-                locateTaskBoxElement(taskBoxElem);
-            }
-        });
-        container.addEventListener('contextmenu', (e) => {
-            e.preventDefault();
-            const taskBoxElem = findTaskElemFor(e.target);
-            taskBoxElem.taskId && document.body.appendChild(createContextMenuModal(taskBoxElem.taskId));
-        }, false);
-
-        function findTaskElemFor(eventTarget) {
-            let curElem = eventTarget;
-            while (curElem.parentNode !== document) {
-                if(curElem.hasOwnProperty('taskId'))
-                    return curElem;
-                curElem = curElem.parentNode;
-            }
-            return null;
+function attachEventTaskContainer(container){
+    container.addEventListener('change', (e) => {
+        const taskBoxElem = findTaskElemFor(e.target);
+        if(taskBoxElem.taskId) {
+            data.changeCheckedState(taskBoxElem.taskId);
+            locateTaskBoxElement(taskBoxElem);
         }
+    });
+    container.addEventListener('contextmenu', (e) => {
+        e.preventDefault();
+        const taskBoxElem = findTaskElemFor(e.target);
+        taskBoxElem.taskId && document.body.appendChild(createContextMenuModal(taskBoxElem.taskId));
+    }, false);
+
+    function findTaskElemFor(eventTarget) {
+        let curElem = eventTarget;
+        while (curElem.parentNode !== document) {
+            if(curElem.hasOwnProperty('taskId'))
+                return curElem;
+            curElem = curElem.parentNode;
+        }
+        return null;
     }
 }
+
+function locateTaskBoxElement(taskBoxElement) {
+    const targetList = getPutIntoContainer(taskBoxElement.taskId);
+
+    if (targetList.children.length === 0)
+        targetList.appendChild(taskBoxElement);
+
+    else {
+        let isAppended = false;
+        for (let i = 0; i < targetList.children.length; i++) {
+            if (Number(taskBoxElement.taskId) < Number(targetList.children[i].taskId)) {
+                targetList.children[i].before(taskBoxElement);
+                isAppended = true;
+                break;
+            }
+        }
+        if (!isAppended) targetList.appendChild(taskBoxElement);
+    }
+
+    updateProgressText(data.filteredTaskArr());
+
+
+
+    function getPutIntoContainer(taskId) {
+        return data.task(taskId).isDone ? doneTaskContainer : doingTaskContainer;
+    }
+}
+
 
 export default showTaskBoxElem;

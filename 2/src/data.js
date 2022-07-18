@@ -44,7 +44,7 @@ const data = (function(){
         taskDataArr[findIndexOf(taskId)] = {
             ...pre,
             isDone: !pre.isDone
-        }
+        };
         save();
     }
 
