@@ -6,7 +6,7 @@ data.setCurCategory('전체');
 
 setTodayDate();
 setCategoryBtnForMain(['전체', ...data.categoryArr()]);
-setTaskView(data.filteredTaskArr());
+showTaskBoxElem(data.filteredTaskArr());
 
 function setTodayDate () {
     const day = new Date();
@@ -17,13 +17,8 @@ function setCategoryBtnForMain(categoryArr) {
     categoryArr.forEach((category) => {
         const categoryBtn = createCategoryBtn(category);
         categoryBtn.addEventListener('click', () => {
-            setTaskView(data.filteredTaskArr());
+            showTaskBoxElem(data.filteredTaskArr());
         });
         categoryContainer.appendChild(categoryBtn);
     });
-}
-
-// task관련 화면 업데이트
-function setTaskView(filteredTaskList) {
-    showTaskBoxElem(filteredTaskList);
 }
