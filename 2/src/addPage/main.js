@@ -1,5 +1,5 @@
 import data from "../data.js";
-import {categoryContainer, createCategoryBtn} from "../categoryButton.js";
+import {categoryContainer, createCategoryBtn} from "../category-button.js";
 
 
 const [titleInputElem, categoryInputElem] = document.querySelectorAll('.task-input');

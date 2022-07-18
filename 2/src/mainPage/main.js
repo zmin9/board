@@ -1,6 +1,6 @@
 import data from "../data.js";
-import {categoryContainer, createCategoryBtn} from "../categoryButton.js";
-import showTaskBoxElem from "./manageTaskBox.js";
+import {categoryContainer, createCategoryBtn} from "../category-button.js";
+import showTaskBoxElem from "./task-box-element.js";
 
 data.setCurCategory('전체');
 
