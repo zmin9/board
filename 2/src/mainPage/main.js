@@ -3,11 +3,11 @@ import {categoryContainer, createCategoryBtn} from "../categoryButton.js";
 import updateProgressText from "./updateProgressText.js";
 import showTaskBoxElem from "./manageTaskBox.js";
 
-data.selectedCategory = '전체';
+data.setCurCategory('전체');
 
 setTodayDate();
 setCategoryBtn(['전체', ...data.categoryArr()], categoryContainer);
-updateTaskView(data.filteredTaskArr(data.selectedCategory));
+updateTaskView(data.filteredTaskArr());
 
 function setTodayDate (){
     const day = new Date();
@@ -18,7 +18,7 @@ function setCategoryBtn(categoryArr, container) {
     categoryArr.forEach((category) => {
         const categoryBtn = createCategoryBtn(category);
         categoryBtn.addEventListener('click', () => {
-            updateTaskView(data.filteredTaskArr(data.selectedCategory));
+            updateTaskView(data.filteredTaskArr());
         });
         container.appendChild(categoryBtn);
     });

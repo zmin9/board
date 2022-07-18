@@ -1,7 +1,7 @@
 import data from "../data.js";
 import {categoryContainer, createCategoryBtn} from "../categoryButton.js";
 
-let selectedCategory = '+';
+data.se = '+';
 
 const [titleInputElem, categoryInputElem] = document.querySelectorAll('.task-input');
 
@@ -33,11 +33,11 @@ document.querySelector('button').addEventListener('click', () => {
 
 
 function createCategoryBtnWithEvent(category,inputFieldDisable){
-    const categoryBtn = createCategoryBtn(category, selectedCategory, categoryContainer);
+    const categoryBtn = createCategoryBtn(category, categoryContainer);
     categoryBtn.addEventListener('click', () => {
-        selectedCategory = category;
+        data.setCurCategory(category);
         if (inputFieldDisable) {
-            categoryInputElem.value = selectedCategory;
+            categoryInputElem.value = category;
             categoryInputElem.disabled = true;
         }
         else {
@@ -72,8 +72,8 @@ function isTitleFieldEmpty(){
     }
 }
 
-function setCategoryBtn(selectedCategory) {
-    selectedCategory = '+';
+function setCategoryBtn() {
+    data.setCurCategory('+');
     categoryInputElem.disabled = false;
     resetChildren(categoryContainer);
     data.categoryArr().forEach((category) => {

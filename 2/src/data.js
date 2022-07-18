@@ -1,6 +1,6 @@
 const data = (function(){
     const taskDataArr = JSON.parse(localStorage.getItem('tasks')) || [];
-    let selectedCategory = '';
+    let category = '';
 
     function categoryArr() {
         return taskDataArr.map((task) => task.category)
@@ -9,11 +9,12 @@ const data = (function(){
                                 else return [...result, category];
                             }, []);
     }
-    function filteredTaskArr(category) {
-        return category === '전체' ? taskDataArr : taskDataArr.filter((task) => task.category === category);
+    function filteredTaskArr() {
+        return curCategory() === '전체' ? taskDataArr : taskDataArr.filter((task) => task.category === curCategory());
     }
     function task(taskId){ return taskDataArr[findIndexOf(taskId)]; }
-
+    function curCategory() { return category; }
+    function setCurCategory(curCategory) { category = curCategory; }
 
     function addTask(id, title, category, isDone){
         taskDataArr.push({
@@ -59,7 +60,8 @@ const data = (function(){
     }
 
     return {
-        selectedCategory,
+        curCategory,
+        setCurCategory,
         filteredTaskArr,
         categoryArr,
         task,
