@@ -2,17 +2,17 @@ const data = (function(){
     const taskDataArr = JSON.parse(localStorage.getItem('tasks')) || [];
     let selectedCategory = '';
 
-    function getCategoryArr() {
+    function categoryArr() {
         return taskDataArr.map((task) => task.category)
                             .reduce((result, category) => {
                                 if (result.includes(category) || category === '') return result;
                                 else return [...result, category];
                             }, []);
     }
-    function getFilteredTaskArr(category) {
+    function filteredTaskArr(category) {
         return category === '전체' ? taskDataArr : taskDataArr.filter((task) => task.category === category);
     }
-    function getTask(taskId){ return taskDataArr[findIndexOf(taskId)]; }
+    function task(taskId){ return taskDataArr[findIndexOf(taskId)]; }
 
 
     function addTask(id, title, category, isDone){
@@ -60,9 +60,9 @@ const data = (function(){
 
     return {
         selectedCategory,
-        getFilteredTaskArr,
-        getCategoryArr,
-        getTask,
+        filteredTaskArr,
+        categoryArr,
+        task,
         addTask,
         deleteTask,
         modifyTask,

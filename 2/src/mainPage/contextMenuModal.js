@@ -2,7 +2,7 @@ import { createDivElement, createBtnForModal, createWhiteModalBox, createInputFo
 import data from "../data.js";
 
 function createContextMenuModal(taskId){
-    const task = data.getTask(taskId);
+    const task = data.task(taskId);
     const taskTitle = createDivElement(['modal-title'], [task.title]);
 
     const modifyBtn = createBtnForModal('수정', 'blue');

@@ -6,8 +6,8 @@ import showTaskBoxElem from "./manageTaskBox.js";
 data.selectedCategory = '전체';
 
 setTodayDate();
-setCategoryBtn(['전체', ...data.getCategoryArr()], categoryContainer);
-updateTaskView(data.getFilteredTaskArr(data.selectedCategory));
+setCategoryBtn(['전체', ...data.categoryArr()], categoryContainer);
+updateTaskView(data.filteredTaskArr(data.selectedCategory));
 
 function setTodayDate (){
     const day = new Date();
@@ -18,7 +18,7 @@ function setCategoryBtn(categoryArr, container) {
     categoryArr.forEach((category) => {
         const categoryBtn = createCategoryBtn(category);
         categoryBtn.addEventListener('click', () => {
-            updateTaskView(data.getFilteredTaskArr(data.selectedCategory));
+            updateTaskView(data.filteredTaskArr(data.selectedCategory));
         });
         container.appendChild(categoryBtn);
     });

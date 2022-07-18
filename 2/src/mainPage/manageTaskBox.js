@@ -60,7 +60,7 @@ function showTaskBoxElem(taskList){
     }
 
     function getPutIntoContainer(taskId) {
-        return data.getTask(taskId).isDone ? doneTaskContainer : doingTaskContainer;
+        return data.task(taskId).isDone ? doneTaskContainer : doingTaskContainer;
     }
 
     function resetChildren(element){

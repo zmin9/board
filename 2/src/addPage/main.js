@@ -76,7 +76,7 @@ function setCategoryBtn(selectedCategory) {
     selectedCategory = '+';
     categoryInputElem.disabled = false;
     resetChildren(categoryContainer);
-    data.getCategoryArr().forEach((category) => {
+    data.categoryArr().forEach((category) => {
         categoryContainer.appendChild(createCategoryBtnWithEvent(category,true));
     });
     categoryContainer.appendChild(createCategoryBtnWithEvent('+',false));
