@@ -81,7 +81,7 @@ function showTaskBoxElem(taskList){
             e.preventDefault();
             const taskBoxElem = findTaskElemFor(e.target);
             taskBoxElem.taskId && document.body.appendChild(createContextMenuModal(taskBoxElem.taskId));
-        });
+        }, false);
 
         function findTaskElemFor(eventTarget) {
             let curElem = eventTarget;
