@@ -52,10 +52,10 @@ function createTaskBoxElement(task) {
 }
 
 function createEmptyMsgElement() {
-    const boxForMessaging = document.createElement('div');
-    boxForMessaging.innerText = "항목이 없습니다";
-    boxForMessaging.classList.add('font-color-sub', 'font-size-15', 'flex-box-row', 'flex-alignment-center', 'margin-top-24');
-    return boxForMessaging
+    return createDivElement(
+        ['font-color-sub', 'font-size-15', 'flex-box-row', 'flex-alignment-center', 'margin-top-24'],
+        [document.createTextNode('항목이 없습니다')]
+    );
 }
 
 
