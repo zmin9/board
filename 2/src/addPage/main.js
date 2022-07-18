@@ -5,7 +5,7 @@ import {categoryContainer, createCategoryBtn} from "../category-button.js";
 const [titleInputElem, categoryInputElem] = document.querySelectorAll('.task-input');
 
 // 카테고리 설정 변경
-setCategoryBtn();
+setCategoryBtnForAdd();
 
 document.querySelector('button').addEventListener('click', () => {
     if(!isTitleFieldEmpty()) {
@@ -16,19 +16,19 @@ document.querySelector('button').addEventListener('click', () => {
             isDone: false
         });
 
-        setCategoryBtn();
+        setCategoryBtnForAdd();
 
         titleInputElem.value = '';
         categoryInputElem.value = '';
 
-        showSuccessToastMsg();
+        showToastMsgForAdding();
     }
 
-    function showSuccessToastMsg(){
-        const successToastMsg = document.querySelector('.modal');
-        successToastMsg.style.opacity = '100';
+    function showToastMsgForAdding(){
+        const toastMsg = document.querySelector('.modal');
+        toastMsg.style.opacity = '100';
         setTimeout(() => {
-            successToastMsg.style.opacity = '0';
+            toastMsg.style.opacity = '0';
         },3000);
     }
     function isTitleFieldEmpty(){
@@ -53,7 +53,7 @@ document.querySelector('button').addEventListener('click', () => {
 });
 
 
-function setCategoryBtn() {
+function setCategoryBtnForAdd() {
     data.setCurCategory('+');
     categoryInputElem.disabled = false;
     resetChildren(categoryContainer);
