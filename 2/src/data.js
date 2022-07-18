@@ -16,12 +16,12 @@ const data = (function(){
     function curCategory() { return category; }
     function setCurCategory(curCategory) { category = curCategory; }
 
-    function addTask(id, title, category, isDone){
+    function addTask(task){
         taskDataArr.push({
-            'id': id * 1,
-            'title': title,
-            'category': category,
-            'isDone': isDone
+            'id': task.id * 1,
+            'title': task.title,
+            'category': task.category,
+            'isDone': task.isDone
         });
         save();
     }

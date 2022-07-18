@@ -9,9 +9,12 @@ setCategoryBtn();
 
 document.querySelector('button').addEventListener('click', () => {
     if(!isTitleFieldEmpty()) {
-        data.addTask(
-            Date.now(), titleInputElem.value.trim(), categoryInputElem.value.trim(), false
-        );
+        data.addTask({
+            id: Date.now(),
+            title: titleInputElem.value.trim(),
+            category: categoryInputElem.value.trim(),
+            isDone: false
+        });
 
         setCategoryBtn();
 
@@ -41,7 +44,6 @@ document.querySelector('button').addEventListener('click', () => {
 
         function showCautionMsg(){
             cautionMsg.style.visibility = 'visible';
-            titleInputElem.value = '';
             titleInputElem.focus();
         }
         function hideCautionMsg(){
