@@ -1,4 +1,4 @@
-function updateProgressText(taskList) {
+function setProgressText(taskList) {
     const doingTaskNum = getNumTasks(taskList, false);
     const doneTaskNum = getNumTasks(taskList, true);
 
@@ -13,4 +13,4 @@ function updateProgressText(taskList) {
     }
 }
 
-export default updateProgressText;
+export default setProgressText;

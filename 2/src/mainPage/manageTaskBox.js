@@ -1,7 +1,7 @@
 import {createTaskBoxElement} from "../element.js";
 import createContextMenuModal from "./contextMenuModal.js";
 import data from "../data.js"
-import updateProgressText from "./updateProgressText.js";
+import setProgressText from "./setProgressText.js";
 
 const doingTaskContainer = document.querySelector('.tasks-doing');
 const doneTaskContainer = document.querySelector('.tasks-done');
@@ -69,7 +69,7 @@ function locateTaskBoxElement(taskBoxElement) {
         if (!isAppended) targetList.appendChild(taskBoxElement);
     }
 
-    updateProgressText(data.filteredTaskArr());
+    setProgressText(data.filteredTaskArr());
 
 
 

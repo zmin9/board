@@ -1,6 +1,6 @@
 import data from "../data.js";
 import {categoryContainer, createCategoryBtn} from "../categoryButton.js";
-import updateProgressText from "./updateProgressText.js";
+import setProgressText from "./setProgressText.js";
 import showTaskBoxElem from "./manageTaskBox.js";
 
 data.setCurCategory('전체');
@@ -18,14 +18,14 @@ function setCategoryBtn(categoryArr, container) {
     categoryArr.forEach((category) => {
         const categoryBtn = createCategoryBtn(category);
         categoryBtn.addEventListener('click', () => {
-            updateTaskView(data.filteredTaskArr());
+            setTaskView(data.filteredTaskArr());
         });
         container.appendChild(categoryBtn);
     });
 }
 
 // task관련 화면 업데이트
-function updateTaskView(filteredTaskList) {
-    updateProgressText(filteredTaskList);
+function setTaskView(filteredTaskList) {
+    setProgressText(filteredTaskList);
     showTaskBoxElem(filteredTaskList);
 }
