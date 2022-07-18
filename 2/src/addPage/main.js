@@ -11,6 +11,7 @@ attachEventListenerToAddingBtn()
 function attachEventListenerToAddingBtn(){
     document.querySelector('button').addEventListener('click', () => {
         if(!isTitleFieldEmpty()) {
+            EmptyCautionMsg.hide();
             data.addTask({
                 id: Date.now(),
                 title: titleInputElem.value.trim(),
@@ -24,33 +25,19 @@ function attachEventListenerToAddingBtn(){
             categoryInputElem.value = '';
 
             showToastMsgForAdding();
+            return;
         }
+        EmptyCautionMsg.show();
     });
+
+    function isTitleFieldEmpty(){ return titleInputElem.value.trim() === ''; }
+
     function showToastMsgForAdding(){
         const toastMsg = document.querySelector('.modal');
         toastMsg.style.opacity = '100';
         setTimeout(() => {
             toastMsg.style.opacity = '0';
         },3000);
-    }
-    function isTitleFieldEmpty(){
-        const cautionMsg = document.querySelector('.caution');
-        if(titleInputElem.value.trim() === ''){
-            showCautionMsg();
-            return true;
-        }
-        else {
-            hideCautionMsg();
-            return false;
-        }
-
-        function showCautionMsg(){
-            cautionMsg.style.visibility = 'visible';
-            titleInputElem.focus();
-        }
-        function hideCautionMsg(){
-            cautionMsg.style.visibility = 'hidden';
-        }
     }
 }
 
@@ -85,5 +72,15 @@ function setCategoryBtnForAdd() {
             categoryInputElem.focus();
         });
         categoryContainer.appendChild(categoryBtn);
+    }
+}
+
+class EmptyCautionMsg {
+    static show(){
+        document.querySelector('.caution').style.visibility = 'visible';
+        titleInputElem.focus();
+    }
+    static hide(){
+        document.querySelector('.caution').style.visibility = 'hidden';
     }
 }
