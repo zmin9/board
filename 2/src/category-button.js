@@ -1,12 +1,14 @@
 import data from "./data.js";
+import {createDivElement} from "./element.js";
 
 const categoryContainer = document.querySelector('#categories');
 
 function createCategoryBtn(category) {
-    const categoryBtn = document.createElement('div');
-    categoryBtn.innerText = category.length > 12 ? getShortCategoryStr(12, category) : category;
+    const categoryBtn = createDivElement(
+        ['blue-round-box', 'font-color-blue', 'padding-8-16', 'font-size-14', 'color-transition'],
+        [category.length > 12 ? getShortCategoryStr(12, category) : category]
+        );
     categoryBtn.id = category;
-    categoryBtn.classList.add('blue-round-box', 'font-color-blue', 'padding-8-16', 'font-size-14', 'color-transition');
     if(category === data.curCategory())
         categoryBtn.classList.add('bg-blue-color');
     categoryBtn.addEventListener('click', () => {
@@ -26,7 +28,7 @@ function createCategoryBtn(category) {
 
 
     function getShortCategoryStr(limit, category){
-        return category.slice(0,limit - 3) + '⋯';
+        return category.slice(0, limit - 3) + '⋯';
     }
 }
 
