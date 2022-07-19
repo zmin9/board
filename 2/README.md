@@ -10,15 +10,15 @@ _type=module로 불러온 script의 CORS 문제로 chrome의 보안 옵션을 �
 
 개발자 도구 > `Dimensions: iPhone12 Pro` 로 설정
 
-* 화면 상단 전체 또는 각 카테고리 버블을 눌러 카테고리별로 태스크를 확인할 수 있습니다.
+* 화면 상단 전체 또는 각 카테고리 버튼을 눌러 카테고리별로 태스크를 확인할 수 있습니다.
 * 각 태스크를 눌러 상태를 변경할 수 있습니다.
 * 각 태스크를 길게 눌러/오른쪽 마우스 클릭하여 수정하거나 삭제할 수 있습니다.
 * 오른쪽 하단의 + 버튼을 눌러 새 태스크를 추가할 수 있습니다.
-  * 현재 태스크 목록에 존재하는 카테고리의 경우 입력창 하단의 버블을 눌러 카테고리를 지정할 수 있습니다.
-  * 새로운 카테고리의 경우 + 버블을 눌러 입력할 수 있습니다.
+  * 현재 태스크 목록에 존재하는 카테고리의 경우 입력창 하단의 버튼을 눌러 카테고리를 지정할 수 있습니다.
+  * 새로운 카테고리의 경우 + 버튼을 눌러 입력할 수 있습니다.
 
 ### 코드 구조
-<img width="200" alt="스크린샷 2022-07-19 오전 12 54 02" src="https://user-images.githubusercontent.com/60884877/179554986-644c6b63-2cf8-4fe0-8665-73442d9764ad.png">
+<img width="230" alt="스크린샷 2022-07-19 오전 11 33 18" src="https://user-images.githubusercontent.com/60884877/179651892-99ffecb6-f07a-439b-ba6f-06c7244a1f41.png">
 
 * `images/` : 웹에서 쓰이는 이미지들
 * `src/` : 각 페이지별 기능에 따라 javascript, html파일 분리, 여러 페이지에 쓰이는 경우 디렉토리 바로 아래에 위치
@@ -33,9 +33,10 @@ _type=module로 불러온 script의 CORS 문제로 chrome의 보안 옵션을 �
     * `main.js` : 각 함수를 호출하여 화면에 요소를 추가
     * `task-progress.js` : 카테고리에 따른 테스크 진행 상태 조정
     * `context-menu-modal.js` : 태스크 context menu를 위한 modal
-    * `task-box-element.js` : task를 표시하는 task box(checkbox + title + category)를 생성 관리
-* `styles` : 비슷한 특징으로 분류되어 있는 css 파일
+    * `task-box-element.js` : task를 표시하는 task box(checkbox + task title + task category)를 생성 관리
+* `styles/` : 스타일시트 파일
   * `common.css` : 태그 이름으로 하여 무조건 적용될 스타일
+  * `color.css` : 색상 관련 스타일시트
   * `font.css` : text 스타일(폰트 크기, 폰트 색상 등)
   * `layout.css` : 요소의 위치와 관련된 스타일,
   * `style.scss` : 위에 포함되지 않는 다른 스타일들, 특정 요소를 지정한 경우
@@ -51,6 +52,7 @@ _type=module로 불러온 script의 CORS 문제로 chrome의 보안 옵션을 �
 ## 더 공부해보고 싶은 부분
 * 리팩터링 습관들이기
   * 구조화해서 생각하기
+  * 연습 많이 하기
 
 ## 개선이 가능한 부분
 * 코드 전체..
