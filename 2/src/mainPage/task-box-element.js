@@ -5,7 +5,6 @@ import setProgressText from "./task-progress.js";
 
 const doingTaskContainer = document.querySelector('.tasks-doing');
 const doneTaskContainer = document.querySelector('.tasks-done');
-// const test = document.querySelectorAll('[class^="tasks-"]');
 
 attachEventToTaskContainer(doingTaskContainer);
 attachEventToTaskContainer(doneTaskContainer);
@@ -53,28 +52,24 @@ function attachEventToTaskContainer(container){
 }
 
 function locateTaskBoxElement(taskBoxElement) {
-    const targetList = getPutIntoContainer(taskBoxElement.taskId);
+    const targetContainer = getContainerPutTaskInto(taskBoxElement.taskId);
 
-    if (targetList.children.length === 0)
-        targetList.appendChild(taskBoxElement);
-
+    if (targetContainer.children.length === 0)
+        targetContainer.appendChild(taskBoxElement);
     else {
         let isAppended = false;
-        for (let i = 0; i < targetList.children.length; i++) {
-            if (Number(taskBoxElement.taskId) < Number(targetList.children[i].taskId)) {
-                targetList.children[i].before(taskBoxElement);
+        for (let i = 0; i < targetContainer.children.length; i++) {
+            if (Number(taskBoxElement.taskId) < Number(targetContainer.children[i].taskId)) {
+                targetContainer.children[i].before(taskBoxElement);
                 isAppended = true;
                 break;
             }
         }
-        if (!isAppended) targetList.appendChild(taskBoxElement);
+        if (!isAppended) targetContainer.appendChild(taskBoxElement);
     }
-
     setProgressText(data.filteredTaskArr());
 
-
-
-    function getPutIntoContainer(taskId) {
+    function getContainerPutTaskInto(taskId) {
         return data.task(taskId).isDone ? doneTaskContainer : doingTaskContainer;
     }
 }
