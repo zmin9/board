@@ -1,14 +1,3 @@
-.bg-blue-color {
-  background-color: var(--main-color);
-  color: var(--bg-color);
-}
-.bg-red-color {
-  background-color: var(--oppo-color);
-  color: var(--bg-color);
-}
-.bg-sub-color { background-color: var(--bg-sub-color); }
-.bg-color { background-color: var(--bg-color); }
-
 .opacity-transition {
   opacity: 0;
   transition: opacity 0.15s;

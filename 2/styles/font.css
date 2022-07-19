@@ -16,9 +16,3 @@
 
 .line-height-24 { line-height: 24px; }
 .line-height-39 { line-height: 39px; }
-
-.font-color-main { color: var(--main-text-color); }
-.font-color-sub { color: var(--sub-text-color); }
-.font-color-title { color: var(--title-text-color); }
-.font-color-blue { color: var(--main-color); }
-.font-color-red { color: var(--oppo-color); }
