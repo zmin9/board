@@ -33,13 +33,12 @@ function attachEventListenerToAddingBtn(){
     function isTitleFieldEmpty(){ return titleInputElem.value.trim() === ''; }
 
     function showToastMsgForAdding(){
-        if(timer){
+        if (timer) {
             clearTimeout(timer);
         }
-        const toastMsg = document.querySelector('.modal');
-        toastMsg.style.opacity = '100';
+        document.querySelector('#toast-msg').style.opacity = '100';
         timer = setTimeout(() => {
-            toastMsg.style.opacity = '0';
+            document.querySelector('#toast-msg').style.opacity = '0';
             timer = null;
         }, 2000);
     }
