@@ -9,7 +9,7 @@ const doneTaskContainer = document.querySelector('.tasks-done');
 attachEventToTaskContainer(doingTaskContainer);
 attachEventToTaskContainer(doneTaskContainer);
 
-function showTaskBoxElem(){
+function showTaskBoxElement(){
     resetChildren(doingTaskContainer);
     resetChildren(doneTaskContainer);
     setProgressText(data.filteredTaskArr());
@@ -28,24 +28,24 @@ function showTaskBoxElem(){
 
 function attachEventToTaskContainer(container){
     container.addEventListener('change', (e) => {
-        const taskBoxElem = findTaskElemFor(e.target);
-        if(taskBoxElem.taskId) {
-            data.changeCheckedState(taskBoxElem.taskId);
-            locateTaskBoxElement(taskBoxElem);
+        const taskBoxElement = getTaskBoxElementFor(e.target);
+        if(taskBoxElement.taskId) {
+            data.changeCheckedState(taskBoxElement.taskId);
+            locateTaskBoxElement(taskBoxElement);
         }
     });
     container.addEventListener('contextmenu', (e) => {
         e.preventDefault();
-        const taskBoxElem = findTaskElemFor(e.target);
-        taskBoxElem && document.body.appendChild(createContextMenuModal(taskBoxElem.taskId));
+        const taskBoxElement = getTaskBoxElementFor(e.target);
+        taskBoxElement && document.body.appendChild(createContextMenuModal(taskBoxElement.taskId));
     }, false);
 
-    function findTaskElemFor(eventTarget) {
-        let curElem = eventTarget;
-        while (curElem.parentNode !== document) {
-            if(curElem.hasOwnProperty('taskId'))
-                return curElem;
-            curElem = curElem.parentNode;
+    function getTaskBoxElementFor(eventTarget) {
+        let curElement = eventTarget;
+        while (curElement.parentNode !== document) {
+            if(curElement.hasOwnProperty('taskId'))
+                return curElement;
+            curElement = curElement.parentNode;
         }
         return null;
     }
@@ -75,4 +75,4 @@ function locateTaskBoxElement(taskBoxElement) {
 }
 
 
-export default showTaskBoxElem;
+export default showTaskBoxElement;

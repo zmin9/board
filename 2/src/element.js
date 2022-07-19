@@ -1,9 +1,9 @@
 function createDivElement(className, appendedChildren){
-    const divElem = document.createElement('div');
-    className&& divElem.classList.add(...className);
-    appendedChildren && divElem.append(...appendedChildren);
+    const divElement = document.createElement('div');
+    className&& divElement.classList.add(...className);
+    appendedChildren && divElement.append(...appendedChildren);
 
-    return divElem;
+    return divElement;
 }
 
 function createInputForModal(value, placeholder){
@@ -45,10 +45,10 @@ function createTaskBoxElement(task) {
     checkboxTypeInput.id = 'task' + task.id;
     checkboxTypeInput.checked = task.isDone;
 
-    const taskBoxElem = createDivElement(['task-box', 'marginT-2', 'flex-box-row'], [checkboxTypeInput, labelForCheckbox]);
-    taskBoxElem.taskId = task.id;
+    const taskBoxElement = createDivElement(['task-box', 'marginT-2', 'flex-box-row'], [checkboxTypeInput, labelForCheckbox]);
+    taskBoxElement.taskId = task.id;
 
-    return taskBoxElem;
+    return taskBoxElement;
 }
 
 function createEmptyMsgElement() {

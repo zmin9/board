@@ -1,12 +1,12 @@
 import data from "../data.js";
 import {categoryContainer, createCategoryBtn} from "../category-button.js";
-import showTaskBoxElem from "./task-box-element.js";
+import showTaskBoxElement from "./task-box-element.js";
 
 data.setCurCategory('전체');
 
 setTodayDate();
 setCategoryBtnForMain();
-showTaskBoxElem();
+showTaskBoxElement();
 
 function setTodayDate () {
     const day = new Date();
@@ -17,7 +17,7 @@ function setCategoryBtnForMain() {
     ['전체', ...data.categoryArr()].forEach((category) => {
         const categoryBtn = createCategoryBtn(category);
         categoryBtn.addEventListener('click', () => {
-            showTaskBoxElem();
+            showTaskBoxElement();
         });
         categoryContainer.appendChild(categoryBtn);
     });

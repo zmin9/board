@@ -22,12 +22,12 @@ function setProgressText(taskList) {
 }
 
 
-function setEmptyMsgElement( taskNum, targetContainerElement, emptyMsgElem ) {
+function setEmptyMsgElement( taskNum, targetContainerElement, emptyMsgElement ) {
     if (taskNum === 0)
-        targetContainerElement.appendChild(emptyMsgElem);
+        targetContainerElement.appendChild(emptyMsgElement);
     else
-        if(targetContainerElement.contains(emptyMsgElem))
-            targetContainerElement.removeChild(emptyMsgElem);
+        if(targetContainerElement.contains(emptyMsgElement))
+            targetContainerElement.removeChild(emptyMsgElement);
 }
 
 export default setProgressText;
