@@ -72,6 +72,9 @@
 .task-input:focus {
   border-color: rgba(0, 0, 0, 0.8);
 }
+.task-input + .task-input {
+  margin: var(--spacing-1) 0 0;
+}
 
 .caution {
   visibility: hidden;

@@ -6,11 +6,11 @@ function createDivElement(className, appendedChildren){
     return divElem;
 }
 
-function createInputForModal(value, placeholder, ...additionalClass){
+function createInputForModal(value, placeholder){
     const inputForModal = document.createElement('input');
     inputForModal.value = value;
     inputForModal.placeholder = placeholder
-    inputForModal.classList.add('padding-8-16', 'font-size-15', 'task-input', 'bg-color', ...additionalClass);
+    inputForModal.classList.add('padding-8-16', 'font-size-15', 'task-input', 'bg-color');
     return inputForModal;
 }
 
