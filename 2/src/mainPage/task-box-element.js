@@ -9,12 +9,12 @@ const doneTaskContainer = document.querySelector('.tasks-done');
 attachEventToTaskContainer(doingTaskContainer);
 attachEventToTaskContainer(doneTaskContainer);
 
-function showTaskBoxElem(taskList){
+function showTaskBoxElem(){
     resetChildren(doingTaskContainer);
     resetChildren(doneTaskContainer);
     setProgressText(data.filteredTaskArr());
 
-    taskList.forEach((task) => {
+    data.filteredTaskArr().forEach((task) => {
         locateTaskBoxElement(createTaskBoxElement(task));
     });
 
