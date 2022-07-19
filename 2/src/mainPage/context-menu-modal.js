@@ -30,7 +30,7 @@ function createContextMenuModal(taskId){
 
     function createModifyingModal(task){
         const inputForTitle = createInputForModal(task.title, '타이틀');
-        const inputForCategory = createInputForModal(task.category, '카테고리', 'margin-top-8');
+        const inputForCategory = createInputForModal(task.category, '카테고리', 'marginT-1');
         const submitBtn = createBtnForModal('확인', 'blue');
         submitBtn.addEventListener('click', () => {
             data.modifyTask(task.id, inputForTitle.value, inputForCategory.value);

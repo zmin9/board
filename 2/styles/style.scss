@@ -22,6 +22,8 @@
   pointer-events: none;
 }
 
+#today { margin: var(--spacing-main-top) 0 0;}
+
 .task-box {
   .task-check{
     width: 24px;
@@ -53,8 +55,8 @@
 
 .plus-btn {
   position: fixed;
-  right: 16px;
-  bottom: 40px;
+  right: var(--spacing-2);
+  bottom: var(--spacing-5);
   width: 56px;
   height: 56px;
   border: solid 0;
@@ -66,6 +68,7 @@
   align-items: center;
   width: fit-content;
   padding: 10px 16px 10px 13px;
+  margin: var(--spacing-add-top) 0 0;
 
   img{
     width: 14px;
@@ -95,7 +98,7 @@
 .large-button {
   border: 0;
   border-radius: 4px;
-  padding: 15px 16px;
+  padding: var(--spacing-2);
 }
 
 .modal{
@@ -105,7 +108,7 @@
   transform: translate(-50%, -50%);
   width: 65%;
   border-radius: 4px;
-  padding: 15px 16px;
+  padding: var(--spacing-2);
   box-shadow: rgba(0,0,0,0.20) 0 0 10px;
   background-color: var(--bg-color);
 

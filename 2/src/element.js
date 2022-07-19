@@ -23,7 +23,7 @@ function createWhiteModalBox(...appendedChildren){
 
 function createBtnForModal(text, color){
     const btn = document.createElement('button');
-    btn.classList.add('large-button', 'button-modal', `bg-${color}-color`, 'margin-top-8');
+    btn.classList.add('large-button', 'button-modal', `bg-${color}-color`, 'marginT-1');
     btn.append(text);
     return btn;
 }
@@ -32,7 +32,7 @@ function createTaskBoxElement(task) {
     const taskCheckbox = createDivElement(['task-check']);
 
     const taskTitle = createDivElement(['task-title', 'font-weight-500', 'line-height-24', 'font-color-main'], [task.title]);
-    const taskCategory = createDivElement(['task-category', 'font-weight-600', 'margin-top-8', 'font-color-sub'], [task.category]);
+    const taskCategory = createDivElement(['task-category', 'font-weight-600', 'marginT-1', 'font-color-sub'], [task.category]);
     const taskInformation = createDivElement(['task-info'], [taskTitle, taskCategory]);
 
     const labelForCheckbox = document.createElement('label');
@@ -45,7 +45,7 @@ function createTaskBoxElement(task) {
     checkboxTypeInput.id = 'task' + task.id;
     checkboxTypeInput.checked = task.isDone;
 
-    const taskBoxElem = createDivElement(['task-box', 'margin-top-16', 'flex-box-row'], [checkboxTypeInput, labelForCheckbox]);
+    const taskBoxElem = createDivElement(['task-box', 'marginT-2', 'flex-box-row'], [checkboxTypeInput, labelForCheckbox]);
     taskBoxElem.taskId = task.id;
 
     return taskBoxElem;
@@ -53,7 +53,7 @@ function createTaskBoxElement(task) {
 
 function createEmptyMsgElement() {
     return createDivElement(
-        ['font-color-sub', 'font-size-15', 'flex-box-row', 'flex-alignment-center', 'margin-top-24'],
+        ['font-color-sub', 'font-size-15', 'flex-box-row', 'flex-alignment-center', 'marginT-3'],
         ['항목이 없습니다']
     );
 }
