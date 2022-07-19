@@ -37,7 +37,7 @@ function attachEventToTaskContainer(container){
     container.addEventListener('contextmenu', (e) => {
         e.preventDefault();
         const taskBoxElem = findTaskElemFor(e.target);
-        taskBoxElem.taskId && document.body.appendChild(createContextMenuModal(taskBoxElem.taskId));
+        taskBoxElem && document.body.appendChild(createContextMenuModal(taskBoxElem.taskId));
     }, false);
 
     function findTaskElemFor(eventTarget) {
