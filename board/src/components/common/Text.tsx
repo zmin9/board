@@ -1,14 +1,20 @@
 import styled from "styled-components";
-import {TextStyle} from "../../types/styles";
 import React from "react";
 
-const CustomText = styled.span`
-    font-size: ${(props: { size: string; }) => props.size};
-  font-weight: ${(props: { weight: string; }) => props.weight};
+type TextStyle = {
+    size: string,
+    weight: number,
+};
+type Props = {
+    style: TextStyle,
+    children: string
+};
+
+const CustomText = styled.span<TextStyle>`
+    font-size: ${({size}) => size};
+  font-weight: ${({weight}) => weight};
 `;
 
-const Text: React.FC<TextStyle> = ({style, children}) =>
-    <CustomText {...style}>{children}</CustomText>
-;
-
-export default Text;
+export default function Text ({style, children} : Props) {
+    return <CustomText {...style}>{children}</CustomText>;
+}
