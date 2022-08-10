@@ -1,8 +1,10 @@
 import React from 'react';
 import styled, {ThemeProvider} from "styled-components";
-import Text from "./components/common/Text";
-import PostList from "./components/list/PostList";
-import {lightTheme} from "./styles/theme";
+import Text from "../components/common/Text";
+import {lightTheme} from "../styles/theme";
+import {BrowserRouter, Route, Routes} from "react-router-dom";
+import Post from "../components/post/Post";
+import PostList from "../components/list/PostList";
 
 
 const Background = styled.div`
@@ -26,7 +28,7 @@ const ContentBox = styled.section`
   height: fit-content;
 `;
 
-function App() {
+function MainPage() {
   return (
       <ThemeProvider theme={lightTheme}>
         <Background>
@@ -34,11 +36,16 @@ function App() {
                 <Text style={{size: '40px', weight: 600}}>Board</Text>
             </Header>
             <ContentBox>
-                <PostList />
+                <BrowserRouter>
+                    <Routes>
+                        <Route path='/' element={<PostList />} />
+                        <Route path='/:postId' element={<Post />} />
+                    </Routes>
+                </BrowserRouter>
             </ContentBox>
         </Background>
       </ThemeProvider>
   );
 }
 
-export default App;
+export default MainPage;

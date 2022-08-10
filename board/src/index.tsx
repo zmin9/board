@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import App from './App';
+import MainPage from './pages/MainPage';
 import './styles/normalize.css'
 import './styles/font.css'
 
@@ -9,6 +9,6 @@ const root = ReactDOM.createRoot(
 );
 root.render(
   <React.StrictMode>
-    <App />
+    <MainPage />
   </React.StrictMode>
 );

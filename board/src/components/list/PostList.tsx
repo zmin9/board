@@ -1,4 +1,4 @@
-import posts from '../../mock/posts.json';
+import posts from '../../posts.json';
 import PostListItem from "./PostListItem";
 
 const PostList = () => {
