@@ -6,15 +6,11 @@ const PostList = () => {
   return (
     <>
       {posts.data.map(post =>
-        <Link to={`/${post.id}`} key={post.id}>
-          <PostListItem>
-            <PostListItem.Title>
-              {post.title}
-            </PostListItem.Title>
-            <PostListItem.PostedDate>
-              {new Date(post.time).toISOString().split('T')[0]}
-            </PostListItem.PostedDate>
-          </PostListItem>
+        <Link
+          key={post.id}
+          to={`/${post.id}`}
+        >
+          <PostListItem {...post} />
         </Link>,
       )}
     </>
