@@ -1,6 +1,7 @@
-import { Post } from '../../types/post';
+import { PostType } from '../../types/post';
 import styled from 'styled-components';
 import Text from '../common/Text';
+import { getLocalDate } from '../../script/dateManager';
 
 const ItemContainer = styled.div`
   padding: ${({ theme }) => theme.defaultPadding};
@@ -16,7 +17,7 @@ const ItemDate = styled.div`
   color: ${({ theme }) => theme.colors.textSub};
 `;
 
-const PostListItem = ({ ...post }: Post) => {
+const PostListItem = ({ ...post }: PostType) => {
   return (
     <ItemContainer>
       <ItemTitle>
@@ -26,7 +27,7 @@ const PostListItem = ({ ...post }: Post) => {
       </ItemTitle>
       <ItemDate>
         <Text style={{ size: '14px', weight: 400 }}>
-          {new Date(post.time).toISOString().split('T')[0]}
+          {getLocalDate(post.time)}
         </Text>
       </ItemDate>
     </ItemContainer>
