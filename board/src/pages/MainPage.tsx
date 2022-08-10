@@ -16,6 +16,7 @@ const Background = styled.div`
 `;
 
 const Header = styled.div`
+  color: ${({theme})=>theme.colors.textMain};
     margin: 50px 0;
 `;
 

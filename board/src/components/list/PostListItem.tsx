@@ -6,18 +6,14 @@ const ItemContainer = styled.div`
   padding: 16px 24px;
   display: flex;
   justify-content: space-between;
-
-  & + & {
-    border-top: solid 1px #dedede;
-  }
 `;
 
-const Title = styled.div`
-    
+const ItemTitle = styled.div`
+  color: ${({theme})=>theme.colors.textMain};
 `;
 
-const WrittenDate = styled.div`
-  color: #b9b9b9
+const ItemDate = styled.div`
+  color: ${({theme})=>theme.colors.textSub};
 `;
 
 const PostListItem = ({ ...post } : Post) => {
