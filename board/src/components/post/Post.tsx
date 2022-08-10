@@ -10,6 +10,7 @@ const PostHeader = styled.div`
 `;
 
 const Title = styled.h2`
+  line-height: 1;
   margin: 0;
 `;
 
@@ -24,11 +25,11 @@ const Post = () => {
     <Container>
       <PostHeader>
         <Title>
-          <Text style={{ size: '20px', weight: 700, color:'textMain' }}>
+          <Text style={{ size: '16px', weight: 600, color:'textMain' }}>
             {post.title}
           </Text>
         </Title>
-          <Text style={{ size: '14px', weight: 400, color:'textSub' }}>
+          <Text style={{ size: '12px', weight: 400, color:'textSub' }}>
             {`${getLocalDate(post.time)} ${getLocalTime(post.time)}`}
           </Text>
       </PostHeader>
