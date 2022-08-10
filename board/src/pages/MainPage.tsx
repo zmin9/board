@@ -1,7 +1,6 @@
 import React from 'react';
-import styled, { ThemeProvider } from 'styled-components';
+import styled from 'styled-components';
 import Text from '../components/common/Text';
-import { lightTheme } from '../styles/theme';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Post from '../components/post/Post';
 import PostList from '../components/list/PostList';
@@ -19,7 +18,7 @@ const Background = styled.div`
 
 const Header = styled.div`
   margin: 50px 0;
-  
+
   ${mediaQuery.small} {
     span {
       font-size: 30px;
@@ -33,7 +32,7 @@ const ContentBox = styled.section`
   width: 70vw;
   max-width: 600px;
   height: fit-content;
-  
+
   ${mediaQuery.small} {
     width: 100vw;
     border-radius: 32px 32px 0 0;
@@ -44,22 +43,20 @@ const ContentBox = styled.section`
 
 function MainPage() {
   return (
-    <ThemeProvider theme={lightTheme}>
-      <Background>
-        <Header>
-          <Text style={{ size: '40px', weight: 600, color: 'textMain' }}>Board</Text>
-        </Header>
-        <ContentBox>
-          <BrowserRouter>
-            <Routes>
-              <Route path="/" element={<PostList/>}/>
-              <Route path="/write" element={<WritePage/>}/>
-              <Route path="/:postId" element={<Post/>}/>
-            </Routes>
-          </BrowserRouter>
-        </ContentBox>
-      </Background>
-    </ThemeProvider>
+    <Background>
+      <Header>
+        <Text style={{ size: '40px', weight: 600, color: 'textMain' }}>Board</Text>
+      </Header>
+      <ContentBox>
+        <BrowserRouter>
+          <Routes>
+            <Route path="/" element={<PostList/>}/>
+            <Route path="/write" element={<WritePage/>}/>
+            <Route path="/:postId" element={<Post/>}/>
+          </Routes>
+        </BrowserRouter>
+      </ContentBox>
+    </Background>
   );
 }
 

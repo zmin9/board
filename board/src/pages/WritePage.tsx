@@ -8,9 +8,8 @@ import mediaQuery from '../styles/mediaQuery';
 
 type TextInputElementType = HTMLInputElement | HTMLTextAreaElement;
 
-
 const Container = styled.div`
-  padding: 24px;
+  padding: ${({ theme }) => theme.defaultPadding};
   display: flex;
   flex-direction: column;
   gap: 30px;
@@ -35,6 +34,7 @@ const WritePage = () => {
   const refs = useRef<TextInputElementType[]>([]);
 
   const onclickHandler = () => {
+    // 데이터베이스에 저장해야하는데.... firebase..? ㅎㅎ..
     alert(`${refs.current[0].value} / ${refs.current[1].value} / ${refs.current[2].value} / ${refs.current[3].value}`);
   };
 
@@ -54,7 +54,7 @@ const WritePage = () => {
       </div>
       <div>
         <UserInfoHeader>
-          <Text style={{ size: '15px', weight: 500, color: 'textMain' }}>
+          <Text style={{ size: '18px', weight: 600, color: 'textMain' }}>
             게시자 정보
           </Text>
         </UserInfoHeader>
@@ -75,7 +75,7 @@ const WritePage = () => {
           type="submit"
           designType="primary"
         >
-          <Text style={{size: '16px', weight: 500}}>등록</Text>
+          <Text style={{ size: '16px', weight: 500 }}>등록</Text>
         </Button>
       </WrapButtonRightAlign>
     </Container>

@@ -1,14 +1,6 @@
 import { createGlobalStyle } from 'styled-components';
 
 const GlobalStyle = createGlobalStyle`
-  @import url('https://rsms.me/inter/inter.css');
-
-  @supports (font-variation-settings: normal) {
-    * {
-      font-family: 'Inter var', sans-serif;
-    }
-  }
-
   * {
     box-sizing: border-box;
     margin: 0;
@@ -34,7 +26,7 @@ const GlobalStyle = createGlobalStyle`
   a {
     text-decoration: none;
   }
-  
+
   input[type='text'], textarea {
     border-radius: 0;
     background-color: transparent;

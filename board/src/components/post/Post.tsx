@@ -9,11 +9,6 @@ const PostHeader = styled.div`
   margin-bottom: 24px;
 `;
 
-const Title = styled.h2`
-  line-height: 1;
-  margin: 0;
-`;
-
 const Container = styled.div`
   padding: ${({ theme }) => theme.defaultPadding};
 `;
@@ -24,18 +19,18 @@ const Post = () => {
   return (
     <Container>
       <PostHeader>
-        <Title>
-          <Text style={{ size: '16px', weight: 600, color:'textMain' }}>
+        <h2>
+          <Text style={{ size: '16px', weight: 600, color: 'textMain' }}>
             {post.title}
           </Text>
-        </Title>
-          <Text style={{ size: '12px', weight: 400, color:'textSub' }}>
-            {`${getLocalDate(post.time)} ${getLocalTime(post.time)}`}
-          </Text>
-      </PostHeader>
-        <Text style={{ size: '15px', weight: 400, color:'textMain' }}>
-          {post.content}
+        </h2>
+        <Text style={{ size: '12px', weight: 400, color: 'textSub' }}>
+          {`${getLocalDate(post.time)} ${getLocalTime(post.time)}`}
         </Text>
+      </PostHeader>
+      <Text style={{ size: '15px', weight: 400, color: 'textMain' }}>
+        {post.content}
+      </Text>
     </Container>
   );
 };

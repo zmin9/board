@@ -1,7 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import MainPage from './pages/MainPage';
 import GlobalStyle from './styles/globalStyle';
+import { lightTheme } from './styles/theme';
+import { ThemeProvider } from 'styled-components';
+import './styles/font.css';
+import MainPage from './pages/MainPage';
 
 
 const root = ReactDOM.createRoot(
@@ -9,7 +12,9 @@ const root = ReactDOM.createRoot(
 );
 root.render(
   <React.StrictMode>
-    <GlobalStyle />
-    <MainPage/>
+    <ThemeProvider theme={lightTheme}>
+      <GlobalStyle/>
+      <MainPage/>
+    </ThemeProvider>
   </React.StrictMode>,
 );
