@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import mediaQuery from '../../styles/mediaQuery';
+import { forwardRef } from 'react';
 
 type TextAreaProps = {
   placeholder: string,
@@ -23,11 +24,12 @@ const CustomTextArea = styled.textarea<TextAreaProps>`
   }
 `;
 
-const TextArea = (props: TextAreaProps) =>
+const TextArea = forwardRef((props: TextAreaProps, ref ) =>
   <CustomTextArea
+    ref={ref as any}
     placeholder={props.placeholder}
     height={props.height || 'auto'}
   />
-;
+);
 
 export default TextArea;

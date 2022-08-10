@@ -9,6 +9,10 @@ declare module 'styled-components' {
       bgSub: string,
       textMain: string,
       textSub: string,
-    };
+    },
+    button: {
+      primary: string,
+      secondary: string,
+    }
   }
 }

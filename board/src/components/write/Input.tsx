@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import mediaQuery from '../../styles/mediaQuery';
+import { forwardRef } from 'react';
 
 type InputProps = {
   type: string,
@@ -20,11 +21,12 @@ const CustomInput = styled.input`
   }
 `;
 
-const Input = (props: InputProps) =>
+const Input = forwardRef((props: InputProps, ref) =>
   <CustomInput
+    ref={ref as any}
     type={props.type}
     placeholder={props.placeholder}
   />
-;
+);
 
 export default Input;
