@@ -9,7 +9,6 @@
  */
 
 html {
-    box-sizing: border-box;
     line-height: 1.15; /* 1 */
     -webkit-text-size-adjust: 100%; /* 2 */
 }
@@ -167,6 +166,8 @@ textarea {
     font-size: 100%; /* 1 */
     line-height: 1.15; /* 1 */
     margin: 0; /* 2 */
+    box-sizing: border-box;
+    border-radius: 0;
 }
 
 /**
@@ -176,7 +177,9 @@ textarea {
 
 button,
 input { /* 1 */
+    box-sizing: border-box;
     overflow: visible;
+    border-radius: 0;
 }
 
 /**

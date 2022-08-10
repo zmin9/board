@@ -5,6 +5,7 @@ import { lightTheme } from '../styles/theme';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Post from '../components/post/Post';
 import PostList from '../components/list/PostList';
+import WritePage from './WritePage';
 import mediaQuery from '../styles/mediaQuery';
 
 
@@ -46,12 +47,13 @@ function MainPage() {
     <ThemeProvider theme={lightTheme}>
       <Background>
         <Header>
-          <Text style={{ size: '40px', weight: 600, color:'textMain' }}>Board</Text>
+          <Text style={{ size: '40px', weight: 600, color: 'textMain' }}>Board</Text>
         </Header>
         <ContentBox>
           <BrowserRouter>
             <Routes>
               <Route path="/" element={<PostList/>}/>
+              <Route path="/write" element={<WritePage/>}/>
               <Route path="/:postId" element={<Post/>}/>
             </Routes>
           </BrowserRouter>
