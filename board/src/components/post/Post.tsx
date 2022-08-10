@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import Text from '../common/Text';
 
 import data from '../../posts.json';
-import { getLocalDate, getLocalTime } from '../../script/dateManager';
+import { getLocalDate, getLocalTime } from '../../script/utils';
 
 const PostHeader = styled.div`
   margin-bottom: 24px;

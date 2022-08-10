@@ -1,7 +1,7 @@
 import { PostType } from '../../types/post';
 import styled from 'styled-components';
 import Text from '../common/Text';
-import { getLocalDate } from '../../script/dateManager';
+import { getLocalDate } from '../../script/utils';
 
 const ItemContainer = styled.div`
   padding: ${({ theme }) => theme.defaultPadding};
