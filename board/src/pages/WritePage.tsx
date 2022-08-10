@@ -4,6 +4,7 @@ import TextArea from '../components/write/TextArea';
 import Text from '../components/common/Text';
 import Button from '../components/common/Button';
 import { useRef } from 'react';
+import mediaQuery from '../styles/mediaQuery';
 
 type TextInputElementType = HTMLInputElement | HTMLTextAreaElement;
 
@@ -22,6 +23,12 @@ const UserInfoHeader = styled.div`
 const WrapButtonRightAlign = styled.div`
   display: flex;
   justify-content: end;
+
+  ${mediaQuery.small} {
+    button {
+      width: 100%;
+    }
+  }
 `;
 
 const WritePage = () => {
@@ -29,7 +36,7 @@ const WritePage = () => {
 
   const onclickHandler = () => {
     alert(`${refs.current[0].value} / ${refs.current[1].value} / ${refs.current[2].value} / ${refs.current[3].value}`);
-  }
+  };
 
   return (
     <Container>
@@ -68,7 +75,7 @@ const WritePage = () => {
           type="submit"
           designType="primary"
         >
-          등록
+          <Text style={{size: '16px', weight: 500}}>등록</Text>
         </Button>
       </WrapButtonRightAlign>
     </Container>

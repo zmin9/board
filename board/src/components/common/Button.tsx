@@ -5,7 +5,7 @@ type ButtonProps = {
   designType: 'primary' | 'secondary',
   onClick: (e?: any) => void,
   fullWidth?: boolean,
-  children: string
+  children: JSX.Element
 }
 
 const BasicButton = styled.button<ButtonProps>`

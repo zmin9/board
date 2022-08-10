@@ -4,7 +4,7 @@ import React from 'react';
 type TextStyle = {
   size: string,
   weight: number,
-  color: string,
+  color?: string,
 };
 type Props = {
   style: TextStyle,
@@ -14,7 +14,7 @@ type Props = {
 const CustomText = styled.span<TextStyle>`
   font-size: ${({ size }) => size};
   font-weight: ${({ weight }) => weight};
-  color: ${({ color, theme }) => theme.colors[color] || theme.colors.textMain};
+  color: ${({ color, theme }) => color && (theme.colors[color] || theme.colors.textMain)};
 `;
 
 export default function Text({ style, children }: Props) {
