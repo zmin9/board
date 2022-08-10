@@ -1,12 +1,13 @@
 import React from 'react';
-import styled from "styled-components";
+import styled, {ThemeProvider} from "styled-components";
 import Text from "./components/common/Text";
 import PostList from "./components/list/PostList";
+import {lightTheme} from "./styles/theme";
 
 
 const Background = styled.div`
   height: 100vw;
-  background: #f9fbfc;
+  background: ${({theme})=>theme.colors.bgMain};
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -17,7 +18,7 @@ const Header = styled.div`
 `;
 
 const ContentBox = styled.section`
-  background: #ffffff;
+  background: ${({theme})=>theme.colors.bgSub};
   border-radius: 8px;
   padding: 4px 4px;
   width: 70vw;
@@ -27,14 +28,16 @@ const ContentBox = styled.section`
 
 function App() {
   return (
-    <Background>
-        <Header>
-            <Text style={{size: '40px', weight: 600}}>Board</Text>
-        </Header>
-        <ContentBox>
-            <PostList />
-        </ContentBox>
-    </Background>
+      <ThemeProvider theme={lightTheme}>
+        <Background>
+            <Header>
+                <Text style={{size: '40px', weight: 600}}>Board</Text>
+            </Header>
+            <ContentBox>
+                <PostList />
+            </ContentBox>
+        </Background>
+      </ThemeProvider>
   );
 }
 
