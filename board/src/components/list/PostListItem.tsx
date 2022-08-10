@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import Text from '../common/Text';
 
 const ItemContainer = styled.div`
-  padding: 16px 24px;
+  padding: ${({ theme }) => theme.defaultPadding};
   display: flex;
   justify-content: space-between;
 `;
