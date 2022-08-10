@@ -1,7 +1,7 @@
-import styled from "styled-components";
-import Text from "../common/Text";
+import styled from 'styled-components';
+import Text from '../common/Text';
 
-type TextChildren = {children : string};
+type TextChildren = { children: string };
 
 const ItemContainer = styled.div`
   padding: 16px 24px;
@@ -10,25 +10,25 @@ const ItemContainer = styled.div`
 `;
 
 const ItemTitle = styled.div`
-  color: ${({theme})=>theme.colors.textMain};
+  color: ${({ theme }) => theme.colors.textMain};
 `;
 
 const ItemDate = styled.div`
-  color: ${({theme})=>theme.colors.textSub};
+  color: ${({ theme }) => theme.colors.textSub};
 `;
 
-const PostListItem = ({children}: {children : JSX.Element | JSX.Element[] | string}) => {
-    return<ItemContainer>{children}</ItemContainer>
+const PostListItem = ({ children }: { children: JSX.Element | JSX.Element[] | string }) => {
+  return <ItemContainer>{children}</ItemContainer>;
 };
 
-function Title({children}:TextChildren){
-    return <ItemTitle><Text style={{size: '16px', weight: 600}}>{children}</Text></ItemTitle>
+function Title({ children }: TextChildren) {
+  return <ItemTitle><Text style={{ size: '16px', weight: 600 }}>{children}</Text></ItemTitle>;
 }
 
-function PostedDate({children}:TextChildren){
-    return <ItemDate><Text style={{size: '14px', weight: 400}}>{children}</Text></ItemDate>
+function PostedDate({ children }: TextChildren) {
+  return <ItemDate><Text style={{ size: '14px', weight: 400 }}>{children}</Text></ItemDate>;
 }
 
 PostListItem.Title = Title;
 PostListItem.PostedDate = PostedDate;
-export default  PostListItem;
+export default PostListItem;
