@@ -5,7 +5,7 @@ import { forwardRef } from 'react';
 type InputProps = {
   type: string,
   placeholder: string,
-}
+};
 
 const CustomInput = styled.input`
   box-sizing: border-box;
@@ -23,7 +23,7 @@ const CustomInput = styled.input`
 
 const Input = forwardRef((props: InputProps, ref) =>
   <CustomInput
-    ref={ref as any}
+    ref={ref as never}
     type={props.type}
     placeholder={props.placeholder}
   />

@@ -5,7 +5,7 @@ import { forwardRef } from 'react';
 type TextAreaProps = {
   placeholder: string,
   height: string,
-}
+};
 
 const CustomTextArea = styled.textarea<TextAreaProps>`
   resize: none;
@@ -26,7 +26,7 @@ const CustomTextArea = styled.textarea<TextAreaProps>`
 
 const TextArea = forwardRef((props: TextAreaProps, ref ) =>
   <CustomTextArea
-    ref={ref as any}
+    ref={ref as never}
     placeholder={props.placeholder}
     height={props.height || 'auto'}
   />
