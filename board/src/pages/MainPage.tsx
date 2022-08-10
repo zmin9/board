@@ -16,7 +16,6 @@ const Background = styled.div`
 `;
 
 const Header = styled.div`
-  color: ${({ theme }) => theme.colors.textMain};
   margin: 50px 0;
 `;
 
@@ -34,7 +33,7 @@ function MainPage() {
     <ThemeProvider theme={lightTheme}>
       <Background>
         <Header>
-          <Text style={{ size: '40px', weight: 600 }}>Board</Text>
+          <Text style={{ size: '40px', weight: 600, color:'textMain' }}>Board</Text>
         </Header>
         <ContentBox>
           <BrowserRouter>

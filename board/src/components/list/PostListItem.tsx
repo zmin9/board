@@ -9,27 +9,16 @@ const ItemContainer = styled.div`
   justify-content: space-between;
 `;
 
-const ItemTitle = styled.div`
-  color: ${({ theme }) => theme.colors.textMain};
-`;
-
-const ItemDate = styled.div`
-  color: ${({ theme }) => theme.colors.textSub};
-`;
 
 const PostListItem = ({ ...post }: PostType) => {
   return (
     <ItemContainer>
-      <ItemTitle>
-        <Text style={{ size: '16px', weight: 600 }}>
+        <Text style={{ size: '16px', weight: 600, color:'textMain' }}>
           {post.title}
         </Text>
-      </ItemTitle>
-      <ItemDate>
-        <Text style={{ size: '14px', weight: 400 }}>
+        <Text style={{ size: '14px', weight: 400, color:'textSub' }}>
           {getLocalDate(post.time)}
         </Text>
-      </ItemDate>
     </ItemContainer>
   );
 };

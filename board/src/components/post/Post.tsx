@@ -10,16 +10,7 @@ const PostHeader = styled.div`
 `;
 
 const Title = styled.h2`
-  color: ${({ theme }) => theme.colors.textMain};
   margin: 0;
-`;
-
-const PostedTime = styled.div`
-  color: ${({ theme }) => theme.colors.textSub};
-`;
-
-const Content = styled.article`
-  color: ${({ theme }) => theme.colors.textMain};
 `;
 
 const Container = styled.div`
@@ -33,21 +24,17 @@ const Post = () => {
     <Container>
       <PostHeader>
         <Title>
-          <Text style={{ size: '20px', weight: 700 }}>
+          <Text style={{ size: '20px', weight: 700, color:'textMain' }}>
             {post.title}
           </Text>
         </Title>
-        <PostedTime>
-          <Text style={{ size: '14px', weight: 400 }}>
+          <Text style={{ size: '14px', weight: 400, color:'textSub' }}>
             {`${getLocalDate(post.time)} ${getLocalTime(post.time)}`}
           </Text>
-        </PostedTime>
       </PostHeader>
-      <Content>
-        <Text style={{ size: '15px', weight: 400 }}>
+        <Text style={{ size: '15px', weight: 400, color:'textMain' }}>
           {post.content}
         </Text>
-      </Content>
     </Container>
   );
 };
