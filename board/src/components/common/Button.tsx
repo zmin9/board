@@ -1,9 +1,10 @@
 import styled from 'styled-components';
+import { ThemeButtonType } from '../../styles/theme';
 
 type ButtonProps = {
   type: 'submit' | 'button' | 'reset',
-  designType: 'primary' | 'secondary',
-  onClick: (e?: unknown) => void,
+  designType: ThemeButtonType,
+  onClick: (e?: any) => void,
   fullWidth?: boolean,
   children: JSX.Element
 };

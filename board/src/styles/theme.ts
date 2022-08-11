@@ -1,5 +1,8 @@
 import { DefaultTheme } from 'styled-components';
 
+export type ThemeColorsType = keyof DefaultTheme['colors'];
+export type ThemeButtonType = keyof DefaultTheme['button'];
+
 export const lightTheme: DefaultTheme = {
   defaultPadding: '16px 24px',
 
