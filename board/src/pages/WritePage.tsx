@@ -5,18 +5,20 @@ import Text from '../components/common/Text';
 import Button from '../components/common/Button';
 import { useRef } from 'react';
 import mediaQuery from '../styles/mediaQuery';
+import { useNavigate } from 'react-router-dom';
 
 type TextInputElementType = HTMLInputElement | HTMLTextAreaElement;
 
 const Container = styled.div`
   padding: ${({ theme }) => theme.defaultPadding};
-  display: flex;
-  flex-direction: column;
-  gap: 30px;
 `;
 
-const UserInfoHeader = styled.div`
+const Header = styled.div`
   margin: 0 0 12px;
+`;
+
+const WrappingSection = styled.div`
+  margin: 24px 0;
 `;
 
 const WrapButtonRightAlign = styled.div`
@@ -34,13 +36,25 @@ const WritePage = () => {
   const refs = useRef<TextInputElementType[]>([]);
 
   const onclickHandler = () => {
-    // 데이터베이스에 저장해야하는데.... firebase..? ㅎㅎ..
+    // 데이터베이스에 저장
     alert(`${refs.current[0].value} / ${refs.current[1].value} / ${refs.current[2].value} / ${refs.current[3].value}`);
+  };
+
+  const backOnClickHandler = () => {
+    nav(-1);
   };
 
   return (
     <Container>
-      <div>
+      <Button designType="secondary" onClick={backOnClickHandler}>
+        <Text size='15px' weight={500}>뒤로가기</Text>
+      </Button>
+      <WrappingSection>
+        <Header>
+          <Text size='18px' weight={600} color='textMain'>
+            게시글 내용
+          </Text>
+        </Header>
         <Input
           ref={el => refs.current[0] = (el as TextInputElementType)}
           type="text"
@@ -51,13 +65,13 @@ const WritePage = () => {
           placeholder="내용"
           height="250px"
         />
-      </div>
-      <div>
-        <UserInfoHeader>
-          <Text style={{ size: '18px', weight: 600, color: 'textMain' }}>
+      </WrappingSection>
+      <WrappingSection>
+        <Header>
+          <Text size='18px' weight={600} color='textMain'>
             게시자 정보
           </Text>
-        </UserInfoHeader>
+        </Header>
         <Input
           ref={el => refs.current[2] = (el as TextInputElementType)}
           type="text"
@@ -68,7 +82,7 @@ const WritePage = () => {
           type="text"
           placeholder="비밀번호"
         />
-      </div>
+      </WrappingSection>
       <WrapButtonRightAlign>
         <Button
           onClick={onclickHandler}
