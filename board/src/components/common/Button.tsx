@@ -1,12 +1,14 @@
+import React from 'react';
 import styled from 'styled-components';
 import { ThemeButtonType } from '../../styles/theme';
+import { filterTransition } from '../../styles/transition';
+import Text from './Text';
 
 type ButtonProps = {
-  type: 'submit' | 'button' | 'reset',
+  text: string,
   designType: ThemeButtonType,
-  onClick: (e?: any) => void,
-  fullWidth?: boolean,
-  children: JSX.Element
+  onClick?: (e?: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void,
+  fullWidth?: boolean
 };
 
 const BasicButton = styled.button<ButtonProps>`
@@ -14,16 +16,20 @@ const BasicButton = styled.button<ButtonProps>`
   border-radius: 8px;
   width: ${({ fullWidth }) => fullWidth ? '100%' : 'auto'};
   ${({ designType, theme }) => theme.button[designType]}
+  ${filterTransition}
 `;
 
-const Button = (props: ButtonProps) =>
+const Button = ({ text, designType, onClick, fullWidth }: ButtonProps) =>
   <BasicButton
-    type={props.type}
-    onClick={props.onClick}
-    designType={props.designType}
-    fullWidth={props.fullWidth}
+    type="button"
+    text={text}
+    onClick={onClick}
+    designType={designType}
+    fullWidth={fullWidth}
   >
-    {props.children}
+    <Text size="15px" weight={500}>
+      {text}
+    </Text>
   </BasicButton>
 ;
 

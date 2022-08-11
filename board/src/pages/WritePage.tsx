@@ -47,9 +47,7 @@ const WritePage = () => {
 
   return (
     <Container>
-      <Button designType="secondary" onClick={backOnClickHandler}>
-        <Text size='15px' weight={500}>뒤로가기</Text>
-      </Button>
+      <Button text="뒤로가기" designType="secondary" onClick={backOnClickHandler} />
       <WrappingSection>
         <Header>
           <Text size='18px' weight={600} color='textMain'>
@@ -86,11 +84,10 @@ const WritePage = () => {
       </WrappingSection>
       <WrapButtonRightAlign>
         <Button
+          text="등록"
           onClick={onclickHandler}
           designType="primary"
-        >
-          <Text size="16px" weight={500}>등록</Text>
-        </Button>
+        />
       </WrapButtonRightAlign>
     </Container>
   );

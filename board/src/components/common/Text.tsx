@@ -15,6 +15,10 @@ const CustomText = styled.span<TextStyle>`
 `;
 
 export default function Text({ children, ...style }: React.PropsWithChildren<TextStyle>) {
+  if (!children || typeof children !== 'string') {
+    console.error('wrong type of child, Text');
+    return null;
+  }
   return (
     <CustomText
       size={style.size}
