@@ -9,6 +9,7 @@ import PageLayout from './components/layout/PageLayout';
 import PostList from './components/list/PostList';
 import WritePage from './pages/WritePage';
 import Post from './components/post/Post';
+import MainPage from './pages/MainPage';
 
 
 const root = ReactDOM.createRoot(
@@ -19,13 +20,17 @@ root.render(
     <ThemeProvider theme={lightTheme}>
       <GlobalStyle/>
       <PageLayout>
-        <BrowserRouter basename="/board">
+        <BrowserRouter>
           <Routes>
-            <Route path="/">
-              <Route path="/" element={<PostList/>}/>
-              <Route path="/:postId" element={<Post/>}/>
-            </Route>
             <Route path="/write" element={<WritePage/>}/>
+            <Route path="*" element={
+              <MainPage>
+                <Routes>
+                  <Route path="/" element={<PostList/>}/>
+                  <Route path="/:postId" element={<Post/>}/>
+                </Routes>
+              </MainPage>
+            }/>
           </Routes>
         </BrowserRouter>
       </PageLayout>

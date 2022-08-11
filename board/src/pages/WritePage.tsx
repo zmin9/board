@@ -42,7 +42,7 @@ const WritePage = () => {
   };
 
   const backOnClickHandler = () => {
-    nav(-1);
+    nav('/');
   };
 
   return (
