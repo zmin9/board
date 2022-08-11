@@ -1,4 +1,4 @@
-import { css, DefaultTheme } from 'styled-components';
+import { DefaultTheme } from 'styled-components';
 
 export const lightTheme: DefaultTheme = {
   defaultPadding: '16px 24px',
@@ -10,14 +10,14 @@ export const lightTheme: DefaultTheme = {
     textSub: '#b9b9b9',
   },
   button: {
-    primary: css`
+    primary: `
       background-color: #575757;
       color: #f9fbfc;
     `,
-    secondary: css`
+    secondary: `
       color: #575757;
-    `
-  }
+    `,
+  },
 };
 
 export const darkTheme: DefaultTheme = {
@@ -30,12 +30,12 @@ export const darkTheme: DefaultTheme = {
     textSub: '#898f91',
   },
   button: {
-    primary: css`
+    primary: `
       background-color: #b5b5b5;
       color: #323436;
     `,
-    secondary: css`
+    secondary: `
       color: #b5b5b5;
-    `
-  }
+    `,
+  },
 };

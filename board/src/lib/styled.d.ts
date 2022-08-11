@@ -1,7 +1,7 @@
 import 'styled-components';
 
 declare module 'styled-components' {
-  export interface defaultTheme {
+  export interface DefaultTheme {
     defaultPadding: string,
 
     colors: {

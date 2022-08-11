@@ -15,7 +15,7 @@ const Container = styled.div`
 
 const Post = () => {
   const { postId } = useParams();
-  const [post] = data.data.filter(data => data.id === Number(postId));
+  const [post] = data.data.filter(p => p.id === Number(postId));
   return (
     <Container>
       <PostHeader>

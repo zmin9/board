@@ -21,12 +21,13 @@ const CustomInput = styled.input`
   }
 `;
 
+
 const Input = forwardRef((props: InputProps, ref) =>
   <CustomInput
     ref={ref as never}
     type={props.type}
     placeholder={props.placeholder}
-  />
+  />,
 );
 
 export default Input;

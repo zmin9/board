@@ -29,7 +29,7 @@ const TextArea = forwardRef((props: TextAreaProps, ref ) =>
     ref={ref as never}
     placeholder={props.placeholder}
     height={props.height || 'auto'}
-  />
+  />,
 );
 
 export default TextArea;

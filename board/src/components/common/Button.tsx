@@ -3,10 +3,10 @@ import styled from 'styled-components';
 type ButtonProps = {
   type: 'submit' | 'button' | 'reset',
   designType: 'primary' | 'secondary',
-  onClick: (e?: any) => void,
+  onClick: (e?: unknown) => void,
   fullWidth?: boolean,
   children: JSX.Element
-}
+};
 
 const BasicButton = styled.button<ButtonProps>`
   padding: 12px 16px;
