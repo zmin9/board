@@ -7,10 +7,6 @@ type TextStyle = {
   weight: number,
   color?: ThemeColorsType,
 };
-type Props = {
-  style: TextStyle,
-  children: string
-};
 
 const CustomText = styled.span<TextStyle>`
   font-size: ${({ size }) => size};
@@ -18,7 +14,7 @@ const CustomText = styled.span<TextStyle>`
   color: ${({ color, theme }) => color ? theme.colors[color] : 'currentColor'};
 `;
 
-export default function Text({ style, children }: Props) {
+export default function Text({ children, ...style }: React.PropsWithChildren<TextStyle>) {
   return (
     <CustomText
       size={style.size}

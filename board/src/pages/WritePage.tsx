@@ -33,6 +33,7 @@ const WrapButtonRightAlign = styled.div`
 `;
 
 const WritePage = () => {
+  const nav = useNavigate();
   const refs = useRef<TextInputElementType[]>([]);
 
   const onclickHandler = () => {
@@ -86,10 +87,9 @@ const WritePage = () => {
       <WrapButtonRightAlign>
         <Button
           onClick={onclickHandler}
-          type="submit"
           designType="primary"
         >
-          <Text style={{ size: '16px', weight: 500 }}>등록</Text>
+          <Text size="16px" weight={500}>등록</Text>
         </Button>
       </WrapButtonRightAlign>
     </Container>

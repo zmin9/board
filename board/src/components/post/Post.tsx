@@ -20,15 +20,15 @@ const Post = () => {
     <Container>
       <PostHeader>
         <h2>
-          <Text style={{ size: '16px', weight: 600, color: 'textMain' }}>
+          <Text size='16px' weight={600} color='textMain'>
             {post.title}
           </Text>
         </h2>
-        <Text style={{ size: '12px', weight: 400, color: 'textSub' }}>
+        <Text size='12px' weight={400} color='textSub' >
           {`${getLocalDate(post.time)} ${getLocalTime(post.time)}`}
         </Text>
       </PostHeader>
-      <Text style={{ size: '15px', weight: 400, color: 'textMain' }}>
+      <Text size='15px' weight={400} color='textMain' >
         {post.content}
       </Text>
     </Container>

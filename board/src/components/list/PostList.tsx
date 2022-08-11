@@ -10,7 +10,7 @@ const PostList = () => {
           key={post.id}
           to={`/${post.id}`}
         >
-          <PostListItem {...post} />
+          <PostListItem post={post} />
         </Link>,
       )}
     </>
