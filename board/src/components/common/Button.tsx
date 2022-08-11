@@ -1,13 +1,11 @@
-import React from 'react';
+import React, { HTMLProps } from 'react';
 import styled from 'styled-components';
 import { ThemeButtonType } from '../../styles/theme';
 import { filterTransition } from '../../styles/transition';
 import Text from './Text';
 
 type ButtonProps = {
-  text: string,
   designType: ThemeButtonType,
-  onClick?: (e?: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void,
   fullWidth?: boolean
 };
 
@@ -19,18 +17,21 @@ const BasicButton = styled.button<ButtonProps>`
   ${filterTransition}
 `;
 
-const Button = ({ text, designType, onClick, fullWidth }: ButtonProps) =>
-  <BasicButton
-    type="button"
-    text={text}
-    onClick={onClick}
-    designType={designType}
-    fullWidth={fullWidth}
-  >
-    <Text size="15px" weight={500}>
-      {text}
-    </Text>
-  </BasicButton>
-;
+const Button = ({ designType, onClick, fullWidth, children }: ButtonProps & HTMLProps<HTMLButtonElement>) => {
+  if (typeof children !== 'string')
+    return null;
+  return (
+    <BasicButton
+      type="button"
+      onClick={onClick}
+      designType={designType}
+      fullWidth={fullWidth}
+    >
+      <Text size="15px" weight={500}>
+        {children}
+      </Text>
+    </BasicButton>
+  );
+};
 
 export default Button;
