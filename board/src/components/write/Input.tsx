@@ -16,7 +16,7 @@ const CustomInput = styled.input`
   color: ${({ theme }) => theme.colors.textMain};
   font-size: 16px;
   
-  ${mediaQuery.small} {
+  ${mediaQuery.mobile} {
     font-size: 14px;
   }
 `;

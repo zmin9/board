@@ -15,7 +15,7 @@ const Background = styled.div`
 const Header = styled.div`
   margin: 50px 0;
 
-  ${mediaQuery.small} {
+  ${mediaQuery.mobile} {
     span {
       font-size: 30px;
     }
@@ -29,7 +29,7 @@ const ContentBox = styled.section`
   max-width: 600px;
   height: fit-content;
 
-  ${mediaQuery.small} {
+  ${mediaQuery.mobile} {
     width: 100vw;
     border-radius: 32px 32px 0 0;
     padding-top: 16px;

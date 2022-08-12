@@ -27,7 +27,7 @@ const WrapButtonRightAlign = styled.div`
   display: flex;
   justify-content: end;
 
-  ${mediaQuery.small} {
+  ${mediaQuery.mobile} {
     button {
       width: 100%;
     }

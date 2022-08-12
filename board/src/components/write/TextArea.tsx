@@ -19,7 +19,7 @@ const CustomTextArea = styled.textarea<TextAreaProps>`
   font-size: 16px;
   vertical-align: top;
   
-  ${mediaQuery.small} {
+  ${mediaQuery.mobile} {
     font-size: 14px;
   }
 `;
