@@ -1,10 +1,10 @@
-import { PostType } from '../../types/post';
 import styled from 'styled-components';
 import Text from '../common/Text';
-import { getLocalDate } from '../../script/utils'; // 절대 경로로 바꿔주기
+import { getLocalDate } from '../../script/utils';
 
-type Props = {
-  post: PostType
+type ListItemProps = {
+  title: string,
+  time: number
 };
 
 const ItemContainer = styled.div`
@@ -14,14 +14,14 @@ const ItemContainer = styled.div`
 `;
 
 
-const PostListItem = ({ post }: Props) => {
+const PostListItem = ({ title, time }: ListItemProps) => {
   return (
     <ItemContainer>
-      <Text size='16px' weight={600} color='textMain'>
-        {post.title}
+      <Text size="16px" weight={600} color="textMain">
+        {title}
       </Text>
-      <Text size='14px' weight={400} color='textSub'>
-        {getLocalDate(post.time)}
+      <Text size="14px" weight={400} color="textSub">
+        {getLocalDate(time)}
       </Text>
     </ItemContainer>
   );
