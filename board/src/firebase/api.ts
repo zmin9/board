@@ -3,9 +3,8 @@ import { PostType } from '../types/post';
 
 const addPost = async (post: PostType) => {
   try {
-    const res = await addDoc(collection(db, 'posts'), post);
-    console.log('addDoc success');
-    return res;
+    // console.log('addDoc success');
+    return await addDoc(collection(db, 'posts'), post);
   } catch (e) {
     console.error(e);
   }
@@ -13,9 +12,8 @@ const addPost = async (post: PostType) => {
 
 const getPosts = async () => {
   try {
-    const res = await getDocs(collection(db, 'posts'));
-    console.log('getDocs success');
-    return res;
+    // console.log('getDocs success');
+    return await getDocs(collection(db, 'posts'));
   } catch (e) {
     console.error(e);
   }
@@ -23,9 +21,8 @@ const getPosts = async () => {
 
 const getPost = async (id: string) => {
   try {
-    const res = await getDoc(doc(db, 'posts', id));
-    console.log('getDoc success');
-    return res;
+    // console.log('getDoc success');
+    return await getDoc(doc(db, 'posts', id));
   } catch (e) {
     console.error(e);
   }

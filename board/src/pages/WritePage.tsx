@@ -6,6 +6,8 @@ import Button from '../components/common/Button';
 import { useRef } from 'react';
 import mediaQuery from '../styles/mediaQuery';
 import { useNavigate } from 'react-router-dom';
+import { PostType } from '../types/post';
+import { AddPost } from '../firebase/data';
 
 type TextInputElementType = HTMLInputElement | HTMLTextAreaElement;
 
@@ -36,23 +38,30 @@ const WritePage = () => {
   const nav = useNavigate();
   const refs = useRef<TextInputElementType[]>([]);
 
-  const onclickHandler = () => {
-    // 데이터베이스에 저장
-    alert(`${refs.current[0].value} / ${refs.current[1].value} / ${refs.current[2].value} / ${refs.current[3].value}`);
+  const onClickPostHandler = async () => {
+    const data: PostType = {
+      time: Date.now(),
+      title: refs.current[0].value,
+      content: refs.current[1].value,
+      name: refs.current[2].value,
+      email: refs.current[3].value,
+    };
+    const id = await AddPost(data);
+    nav(`/${id}`);
   };
 
-  const backOnClickHandler = () => {
+  const onClickBackHandler = () => {
     nav('/');
   };
 
   return (
     <Container>
-      <Button designType="secondary" onClick={backOnClickHandler}>
+      <Button designType="secondary" onClick={onClickBackHandler}>
         뒤로가기
       </Button>
       <WrappingSection>
         <Header>
-          <Text size='18px' weight={600} color='textMain'>
+          <Text size="18px" weight={600} color="textMain">
             게시글 내용
           </Text>
         </Header>
@@ -69,24 +78,24 @@ const WritePage = () => {
       </WrappingSection>
       <WrappingSection>
         <Header>
-          <Text size='18px' weight={600} color='textMain'>
+          <Text size="18px" weight={600} color="textMain">
             게시자 정보
           </Text>
         </Header>
         <Input
           ref={el => refs.current[2] = (el as TextInputElementType)}
           type="text"
-          placeholder="이메일"
+          placeholder="이름"
         />
         <Input
           ref={el => refs.current[3] = (el as TextInputElementType)}
           type="text"
-          placeholder="비밀번호"
+          placeholder="이메일"
         />
       </WrappingSection>
       <WrapButtonRightAlign>
         <Button
-          onClick={onclickHandler}
+          onClick={onClickPostHandler}
           designType="primary"
         >
           등록

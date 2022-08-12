@@ -21,5 +21,11 @@ export const GetPost = async (id: string): Promise<PostTypeWithId> => {
   if (res) {
     return res.data() as PostTypeWithId;
   }
-  throw reportError('wrong post id');
+  throw new Error('잘못된 post id');
+};
+
+export const AddPost = async (post: PostType) => {
+  const res = await DB.addPost(post);
+  if (res) return res.id;
+  throw new Error('포스팅 실패');
 };

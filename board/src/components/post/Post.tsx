@@ -1,13 +1,14 @@
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import styled from 'styled-components';
 import Text from '../common/Text';
 import { getLocalDate, getLocalTime } from '../../script/utils';
 import { useEffect, useState } from 'react';
 import { GetPost } from '../../firebase/data';
 import { PostTypeWithId } from '../../types/post';
+import Button from '../common/Button';
 
 const PostHeader = styled.div`
-  margin-bottom: 24px;
+  margin: 24px 0;
 `;
 
 const Container = styled.div`
@@ -31,6 +32,11 @@ const Post = () => {
 
   return (
     <Container>
+      <Link to='/'>
+        <Button designType='secondary'>
+          뒤로가기
+        </Button>
+      </Link>
       <PostHeader>
         <h2>
           <Text size="16px" weight={600} color="textMain">
