@@ -1,4 +1,4 @@
-import React, { HTMLProps } from 'react';
+import React, { ButtonHTMLAttributes } from 'react';
 import styled from 'styled-components';
 import { ThemeButtonType } from '../../styles/theme';
 import { filterTransition } from '../../styles/transition';
@@ -7,7 +7,7 @@ import Text from './Text';
 type ButtonProps = {
   designType: ThemeButtonType,
   fullWidth?: boolean
-};
+} & ButtonHTMLAttributes<HTMLButtonElement>;
 
 const BasicButton = styled.button<ButtonProps>`
   padding: 12px 16px;
@@ -17,15 +17,15 @@ const BasicButton = styled.button<ButtonProps>`
   ${filterTransition}
 `;
 
-const Button = ({ designType, onClick, fullWidth, children }: ButtonProps & HTMLProps<HTMLButtonElement>) => {
+const Button = ({ designType, fullWidth, children, ...props  }: ButtonProps) => {
   if (typeof children !== 'string')
     return null;
   return (
     <BasicButton
       type="button"
-      onClick={onClick}
       designType={designType}
       fullWidth={fullWidth}
+      {...props}
     >
       <Text size="15px" weight={500}>
         {children}
