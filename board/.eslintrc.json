@@ -7,14 +7,19 @@
     "plugin:import/recommended"
   ],
   "parser": "@typescript-eslint/parser",
-  "plugins": ["@typescript-eslint"],
+  "plugins": [
+    "@typescript-eslint"
+  ],
   "parserOptions": {
-    "project": ["./tsconfig.json"]
+    "project": [
+      "./tsconfig.json"
+    ]
   },
   "root": true,
   "rules": {
     "semi": "off",
     "@typescript-eslint/semi": "error",
+    "@typescript-eslint/no-throw-literal": "off",
     "react/react-in-jsx-scope": "off",
     "react/display-name": "off",
     "import/named": "off"

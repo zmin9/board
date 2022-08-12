@@ -1,7 +1,7 @@
 import DB from './api';
 import { PostType, PostTypeWithId } from '../types/post';
 
-export const GetAllPost = async (): Promise<Array<PostTypeWithId>> => {
+export const GetAllPosts = async (): Promise<Array<PostTypeWithId>> => {
   const res = await DB.getPosts();
   const data: PostTypeWithId[] = [];
   if (res) {
@@ -14,4 +14,12 @@ export const GetAllPost = async (): Promise<Array<PostTypeWithId>> => {
     });
   }
   return data;
+};
+
+export const GetPost = async (id: string): Promise<PostTypeWithId> => {
+  const res = await DB.getPost(id);
+  if (res) {
+    return res.data() as PostTypeWithId;
+  }
+  throw reportError('wrong post id');
 };

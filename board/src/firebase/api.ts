@@ -1,4 +1,4 @@
-import db, { addDoc, collection, getDocs } from './init';
+import db, { addDoc, collection, doc, getDoc, getDocs } from './init';
 import { PostType } from '../types/post';
 
 const addPost = async (post: PostType) => {
@@ -21,5 +21,15 @@ const getPosts = async () => {
   }
 };
 
-const DB = { addPost, getPosts };
+const getPost = async (id: string) => {
+  try {
+    const res = await getDoc(doc(db, 'posts', id));
+    console.log('getDoc success');
+    return res;
+  } catch (e) {
+    console.error(e);
+  }
+};
+
+const DB = { addPost, getPosts, getPost };
 export default DB;

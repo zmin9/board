@@ -1,13 +1,13 @@
 import PostListItem from './PostListItem';
 import { Link } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-import { GetAllPost } from '../../firebase/postdata';
+import { GetAllPosts } from '../../firebase/data';
 import { PostTypeWithId } from '../../types/post';
 
 const PostList = () => {
-  const [posts, setPosts] = useState(Array<PostTypeWithId>());
+  const [posts, setPosts] = useState<PostTypeWithId[]>([]);
   useEffect(() => {
-    GetAllPost().then(res => setPosts(res));
+    GetAllPosts().then(res => setPosts(res));
   }, []);
 
   return (
