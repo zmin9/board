@@ -15,7 +15,11 @@ function MainPage({ children }: PropsWithChildren) {
       {children}
       <WrapButtonRightAlign>
         <Link to="/write">
-          <Button designType="secondary">글쓰기</Button>
+          <Button
+            text="글쓰기"
+            size="md"
+            designType="secondary"
+          />
         </Link>
       </WrapButtonRightAlign>
     </>

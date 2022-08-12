@@ -32,10 +32,12 @@ const Post = () => {
 
   return (
     <Container>
-      <Link to='/'>
-        <Button designType='secondary'>
-          뒤로가기
-        </Button>
+      <Link to="/">
+        <Button
+          text="뒤로가기"
+          size="md"
+          designType="secondary"
+        />
       </Link>
       <PostHeader>
         <h2>

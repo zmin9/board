@@ -1,35 +1,51 @@
 import React, { ButtonHTMLAttributes } from 'react';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import { ThemeButtonType } from '../../styles/theme';
 import { filterTransition } from '../../styles/transition';
-import Text from './Text';
 
 type ButtonProps = {
-  designType: ThemeButtonType,
+  text: string,
+  size: keyof typeof buttonSize,
+  designType: ThemeButtonType, //keyof typeof buttonType
   fullWidth?: boolean
-} & ButtonHTMLAttributes<HTMLButtonElement>;
+} & Omit<ButtonHTMLAttributes<HTMLButtonElement>, 'children'>;
+
+const buttonSize = {
+  'lg': css`
+    padding: 16px 48px;
+    font-size: 16px;
+  `,
+  'md': css`
+    padding: 12px 24px;
+    font-size: 15px;
+  `,
+  'sm': css`
+    padding: 8px 12px;
+    font-size: 14px;
+  `,
+};
+
+// const buttonType = {
+//   primary: css``,
+//   secondary: css``,
+//   outline: css``,
+// };
 
 const BasicButton = styled.button<ButtonProps>`
-  padding: 12px 16px;
-  border-radius: 8px;
+  border-radius: 9999px;
   width: ${({ fullWidth }) => fullWidth ? '100%' : 'auto'};
   ${({ designType, theme }) => theme.button[designType]}
+  ${({ size }) => buttonSize[size]}
   ${filterTransition}
 `;
 
-const Button = ({ designType, fullWidth, children, ...props  }: ButtonProps) => {
-  if (typeof children !== 'string')
-    return null;
+const Button = ({ ...props }: ButtonProps) => {
   return (
     <BasicButton
       type="button"
-      designType={designType}
-      fullWidth={fullWidth}
       {...props}
     >
-      <Text size="15px" weight={500}>
-        {children}
-      </Text>
+      {props.text}
     </BasicButton>
   );
 };

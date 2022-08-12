@@ -1,11 +1,13 @@
-export const filterTransition = `
+import { css } from 'styled-components';
+
+export const filterTransition = css`
   transition: filter;
   transition-duration: 0.2s;
   
   :hover {
-    filter: brightness(0.9);
+    filter: brightness(0.95);
   }
   :active {
-    filter: brightness(0.8);
+    filter: brightness(0.9);
   }
 `;

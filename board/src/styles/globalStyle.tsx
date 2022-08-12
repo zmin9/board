@@ -31,6 +31,10 @@ const GlobalStyle = createGlobalStyle`
     border-radius: 0;
     background-color: transparent;
   }
+  
+  hr {
+    border: solid 1px #f9fbfc;
+  }
 `;
 
 export default GlobalStyle;
