@@ -13,6 +13,7 @@ export const GetAllPosts = async (): Promise<Array<PostTypeWithId>> => {
       data.push(temp);
     });
   }
+  data.sort((p1, p2) => p2.time - p1.time);
   return data;
 };
 
