@@ -2,7 +2,7 @@ import { DefaultTheme } from 'styled-components';
 
 const color = {
   green: '94, 28%',
-  red: '0, 52%',
+  red: '0, 70%',
   black: '60, 2%',
 };
 
@@ -29,6 +29,7 @@ export const lightTheme: DefaultTheme = {
     medium: getHSL('black', 30),
     low: getHSL('black', 90),
   },
+  error: getHSL('red', 40),
 };
 
 export const darkTheme: DefaultTheme = {
@@ -45,6 +46,7 @@ export const darkTheme: DefaultTheme = {
     medium: getHSL('black', 80),
     low: getHSL('black', 30),
   },
+  error: getHSL('red', 80),
 };
 
 export type TextColorType = keyof DefaultTheme['text'];

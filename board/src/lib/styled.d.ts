@@ -18,5 +18,7 @@ declare module 'styled-components' {
 
     btnPrimary: string,
     btnOnPrimary: string,
+
+    error: string
   }
 }

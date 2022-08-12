@@ -3,7 +3,7 @@ import Input from '../components/write/Input';
 import TextArea from '../components/write/TextArea';
 import Text from '../components/common/Text';
 import Button from '../components/common/Button';
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
 import mediaQuery from '../styles/mediaQuery';
 import { useNavigate } from 'react-router-dom';
 import { PostType } from '../types/post';
@@ -21,11 +21,18 @@ const WrappingSection = styled.div`
   gap: 12px;
 `;
 
-const WrapButtonRightAlign = styled.div`
+const InvalidMsg = styled.div`
+  color: ${({ theme }) => theme.error}
+`;
+
+const WrappingFooter = styled.div`
   display: flex;
   justify-content: end;
+  align-items: center;
+  gap: 12px;
 
   ${mediaQuery.mobile} {
+    flex-direction: column;
     button {
       width: 100%;
     }
@@ -35,8 +42,16 @@ const WrapButtonRightAlign = styled.div`
 const WritePage = () => {
   const nav = useNavigate();
   const refs = useRef<TextInputElementType[]>([]);
+  const [invalidMsg, setInvalidMsg] = useState(false);
 
   const onClickPostHandler = async () => {
+    for (let i = 0; i < 4; i++) {
+      if (refs.current[i].value.trim() === '') {
+        setInvalidMsg(true);
+        return;
+      }
+    }
+
     const data: PostType = {
       time: Date.now(),
       title: refs.current[0].value,
@@ -91,14 +106,22 @@ const WritePage = () => {
           placeholder="이메일"
         />
       </WrappingSection>
-      <WrapButtonRightAlign>
+      <WrappingFooter>
+        {
+          invalidMsg &&
+          <InvalidMsg>
+            <Text size="15px" weight={500}>
+              모든 칸을 채워주세요
+            </Text>
+          </InvalidMsg>
+        }
         <Button
           text="등록"
           size="md"
           designType="primary"
           onClick={onClickPostHandler}
         />
-      </WrapButtonRightAlign>
+      </WrappingFooter>
     </Container>
   );
 };
