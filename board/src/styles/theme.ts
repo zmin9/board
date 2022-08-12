@@ -1,44 +1,50 @@
 import { DefaultTheme } from 'styled-components';
 
-export type ThemeColorsType = keyof DefaultTheme['colors'];
-export type ThemeButtonType = keyof DefaultTheme['button'];
+const color = {
+  green: '94, 28%',
+  red: '0, 52%',
+  black: '60, 2%',
+};
+
+const getHSL = (colorName: keyof typeof color, l: number): string => {
+  return `hsl(${color[colorName]}, ${l}%)`;
+};
+
+// 타입을 따로 지정해서 넘겨주는 것이 좋을 듯 싶습니다.
+// export const commonTheme = {
+//
+// }
 
 export const lightTheme: DefaultTheme = {
   defaultPadding: '16px 24px',
-
-  colors: {
-    bgMain: '#f9fbfc',
-    bgSub: '#ffffff',
-    textMain: '#3d3d4b',
-    textSub: '#b9b9b9',
-  },
-  button: {
-    primary: `
-      background-color: #575757;
-      color: #f9fbfc;
-    `,
-    secondary: `
-      color: #575757;
-    `,
+  background: getHSL('black', 99),
+  backgroundSub: getHSL('black', 95),
+  btnPrimary: getHSL('green', 40),
+  btnOnPrimary: getHSL('green', 100),
+  divider: getHSL('black', 80),
+  outline: getHSL('black', 50),
+  surface: getHSL('black', 90),
+  text: {
+    high: getHSL('black', 10),
+    medium: getHSL('black', 30),
+    low: getHSL('black', 90),
   },
 };
 
 export const darkTheme: DefaultTheme = {
   defaultPadding: '16px 24px',
-
-  colors: {
-    bgMain: '#323436',
-    bgSub: '#2c2c2c',
-    textMain: '#b5b5b5',
-    textSub: '#898f91',
-  },
-  button: {
-    primary: `
-      background-color: #b5b5b5;
-      color: #323436;
-    `,
-    secondary: `
-      color: #b5b5b5;
-    `,
+  background: getHSL('black', 10),
+  backgroundSub: getHSL('black', 15),
+  btnPrimary: getHSL('green', 80),
+  btnOnPrimary: getHSL('green', 20),
+  divider: getHSL('black', 30),
+  outline: getHSL('black', 60),
+  surface: getHSL('black', 30),
+  text: {
+    high: getHSL('black', 90),
+    medium: getHSL('black', 80),
+    low: getHSL('black', 30),
   },
 };
+
+export type TextColorType = keyof DefaultTheme['text'];

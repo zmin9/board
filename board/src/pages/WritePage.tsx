@@ -15,12 +15,10 @@ const Container = styled.div`
   padding: ${({ theme }) => theme.defaultPadding};
 `;
 
-const Header = styled.div`
-  margin: 0 0 12px;
-`;
-
 const WrappingSection = styled.div`
   margin: 24px 0;
+  display: grid;
+  gap: 12px;
 `;
 
 const WrapButtonRightAlign = styled.div`
@@ -64,11 +62,9 @@ const WritePage = () => {
       />
       <hr/>
       <WrappingSection>
-        <Header>
-          <Text size="18px" weight={600} color="textMain">
-            게시글 내용
-          </Text>
-        </Header>
+        <Text size="18px" weight={600} color="high">
+          게시글 내용
+        </Text>
         <Input
           ref={el => refs.current[0] = (el as TextInputElementType)}
           type="text"
@@ -81,11 +77,9 @@ const WritePage = () => {
         />
       </WrappingSection>
       <WrappingSection>
-        <Header>
-          <Text size="18px" weight={600} color="textMain">
-            게시자 정보
-          </Text>
-        </Header>
+        <Text size="18px" weight={600} color="high">
+          게시자 정보
+        </Text>
         <Input
           ref={el => refs.current[2] = (el as TextInputElementType)}
           type="text"
@@ -100,7 +94,7 @@ const WritePage = () => {
       <WrapButtonRightAlign>
         <Button
           text="등록"
-          size="lg"
+          size="md"
           designType="primary"
           onClick={onClickPostHandler}
         />

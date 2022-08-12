@@ -17,10 +17,10 @@ const ItemContainer = styled.div`
 const PostListItem = ({ title, time }: ListItemProps) => {
   return (
     <ItemContainer>
-      <Text size="16px" weight={600} color="textMain">
+      <Text size="16px" weight={600} color="medium">
         {title}
       </Text>
-      <Text size="14px" weight={400} color="textSub">
+      <Text size="14px" weight={400} color="low">
         {getLocalDate(time)}
       </Text>
     </ItemContainer>

@@ -1,17 +1,17 @@
 import styled from 'styled-components';
 import React from 'react';
-import { ThemeColorsType } from '../../styles/theme';
+import { TextColorType } from '../../styles/theme';
 
 type TextStyle = {
   size: string,
   weight: number,
-  color?: ThemeColorsType,
+  color?: TextColorType,
 };
 
 const CustomText = styled.span<TextStyle>`
   font-size: ${({ size }) => size};
   font-weight: ${({ weight }) => weight};
-  color: ${({ color, theme }) => color ? theme.colors[color] : 'currentColor'};
+  color: ${({ color, theme }) => color ? theme.text[color] : 'currentColor'};
 `;
 
 export default function Text({ children, ...style }: React.PropsWithChildren<TextStyle>) {

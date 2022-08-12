@@ -18,7 +18,7 @@ function MainPage({ children }: PropsWithChildren) {
           <Button
             text="글쓰기"
             size="md"
-            designType="secondary"
+            designType="outline"
           />
         </Link>
       </WrapButtonRightAlign>

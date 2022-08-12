@@ -5,11 +5,21 @@ import React from 'react';
 
 const Background = styled.div`
   height: 100vh;
-  background: ${({ theme }) => theme.colors.bgMain};
+  background: ${({ theme }) => theme.backgroundSub};
+  overflow: scroll;
+`;
+
+const WrappingPage = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  overflow: scroll;
+  ${mediaQuery.desktop} {
+    margin-bottom: 36px;
+  }
+  
+  ${mediaQuery.mobile} {
+    height: 100vh;
+  }
 `;
 
 const Header = styled.div`
@@ -23,7 +33,7 @@ const Header = styled.div`
 `;
 
 const ContentBox = styled.section`
-  background: ${({ theme }) => theme.colors.bgSub};
+  background: ${({ theme }) => theme.background};
   border-radius: 16px;
   width: 70vw;
   max-width: 600px;
@@ -40,12 +50,14 @@ const ContentBox = styled.section`
 const PageLayout = ({ children }: React.PropsWithChildren) => {
   return (
     <Background>
-      <Header>
-        <Text size='40px' weight={600} color='textMain'>Board</Text>
-      </Header>
-      <ContentBox>
-        {children}
-      </ContentBox>
+      <WrappingPage>
+        <Header>
+          <Text size="40px" weight={600} color="high">Board</Text>
+        </Header>
+        <ContentBox>
+          {children}
+        </ContentBox>
+      </WrappingPage>
     </Background>
   );
 };

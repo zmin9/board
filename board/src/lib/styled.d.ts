@@ -4,15 +4,19 @@ declare module 'styled-components' {
   export interface DefaultTheme {
     defaultPadding: string,
 
-    colors: {
-      bgMain: string,
-      bgSub: string,
-      textMain: string,
-      textSub: string,
-    },
-    button: {
-      primary: string,
-      secondary: string,
+    background: string,
+    backgroundSub: string,
+    surface: string,
+    outline: string,
+    divider: string,
+
+    text: {
+      high: string,
+      medium: string,
+      low: string,
     }
+
+    btnPrimary: string,
+    btnOnPrimary: string,
   }
 }

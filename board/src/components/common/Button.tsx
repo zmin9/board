@@ -1,12 +1,10 @@
 import React, { ButtonHTMLAttributes } from 'react';
 import styled, { css } from 'styled-components';
-import { ThemeButtonType } from '../../styles/theme';
-import { filterTransition } from '../../styles/transition';
 
 type ButtonProps = {
   text: string,
   size: keyof typeof buttonSize,
-  designType: ThemeButtonType, //keyof typeof buttonType
+  designType: keyof typeof buttonColorType
   fullWidth?: boolean
 } & Omit<ButtonHTMLAttributes<HTMLButtonElement>, 'children'>;
 
@@ -25,18 +23,27 @@ const buttonSize = {
   `,
 };
 
-// const buttonType = {
-//   primary: css``,
-//   secondary: css``,
-//   outline: css``,
-// };
+const buttonColorType = {
+  primary: css`
+    background-color: ${({ theme }) => theme.btnPrimary};
+    color: ${({ theme }) => theme.btnOnPrimary};
+  `,
+  secondary: css`
+    background-color: transparent;
+    color: ${({ theme }) => theme.btnPrimary};
+  `,
+  outline: css`
+    background-color: transparent;
+    color: ${({ theme }) => theme.btnPrimary};
+    border: solid 1px ${({ theme }) => theme.outline};
+  `,
+};
 
 const BasicButton = styled.button<ButtonProps>`
   border-radius: 9999px;
   width: ${({ fullWidth }) => fullWidth ? '100%' : 'auto'};
-  ${({ designType, theme }) => theme.button[designType]}
+  ${({ designType }) => buttonColorType[designType]}
   ${({ size }) => buttonSize[size]}
-  ${filterTransition}
 `;
 
 const Button = ({ ...props }: ButtonProps) => {

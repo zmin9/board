@@ -39,17 +39,18 @@ const Post = () => {
           designType="secondary"
         />
       </Link>
+      <hr />
       <PostHeader>
         <h2>
-          <Text size="16px" weight={600} color="textMain">
+          <Text size="16px" weight={600} color="medium">
             {post.title}
           </Text>
         </h2>
-        <Text size="12px" weight={400} color="textSub">
+        <Text size="12px" weight={400} color="low">
           {`${getLocalDate(post.time)} ${getLocalTime(post.time)}`}
         </Text>
       </PostHeader>
-      <Text size="15px" weight={400} color="textMain">
+      <Text size="15px" weight={400} color="medium">
         {post.content}
       </Text>
     </Container>

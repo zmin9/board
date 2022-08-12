@@ -11,11 +11,11 @@ const CustomTextArea = styled.textarea<TextAreaProps>`
   resize: none;
   box-sizing: border-box;
   border: 0;
-  border-bottom: solid 1px #d0d0d0;
   padding: 12px;
   width: 100%;
   height: ${({ height }) => height};
-  color: ${({ theme }) => theme.colors.textMain};
+  background-color: ${({ theme }) => theme.surface};
+  color: ${({ theme }) => theme.text.medium};
   font-size: 16px;
   vertical-align: top;
   

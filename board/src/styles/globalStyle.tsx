@@ -6,9 +6,9 @@ const GlobalStyle = createGlobalStyle`
     margin: 0;
   }
 
-  body {
+  html, body {
     margin: 0;
-    background-color: hsl(0, 0%, 97%);
+    padding: 0;
   }
 
   h1, h2, h3 {
@@ -28,12 +28,16 @@ const GlobalStyle = createGlobalStyle`
   }
 
   input[type='text'], textarea {
-    border-radius: 0;
-    background-color: transparent;
+    border-radius: 8px;
   }
   
+  textarea {
+    white-space: pre-wrap;
+  }
+
   hr {
-    border: solid 1px #f9fbfc;
+    margin: 4px 0 ;
+    border: solid 0.5px ${({ theme }) => theme.divider};
   }
 `;
 
