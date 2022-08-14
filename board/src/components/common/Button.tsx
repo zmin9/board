@@ -42,6 +42,7 @@ const buttonColorType = {
 const BasicButton = styled.button<ButtonProps>`
   border-radius: 9999px;
   width: ${({ fullWidth }) => fullWidth ? '100%' : 'auto'};
+  font-weight: 600;
   ${({ designType }) => buttonColorType[designType]}
   ${({ size }) => buttonSize[size]}
 `;

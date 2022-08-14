@@ -8,6 +8,7 @@ import mediaQuery from '../styles/mediaQuery';
 import { useNavigate } from 'react-router-dom';
 import { PostType } from '../types/post';
 import { AddPost } from '../firebase/data';
+import IconButton from '../components/common/IconButton';
 
 type TextInputElementType = HTMLInputElement | HTMLTextAreaElement;
 
@@ -65,9 +66,10 @@ const WritePage = () => {
 
   return (
     <>
-      <Button
-        text="뒤로가기"
-        size="md"
+      <IconButton
+        icon='back'
+        text={{ content: '뒤로가기', position: 'right' }}
+        size="sm"
         designType="secondary"
         onClick={onClickBackHandler}
       />
