@@ -10,7 +10,7 @@ type ButtonProps = {
 
 const buttonSize = {
   'lg': css`
-    padding: 16px 48px;
+    padding: 16px 28px;
     font-size: 16px;
   `,
   'md': css`
