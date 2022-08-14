@@ -1,18 +1,19 @@
-import React, { PropsWithChildren } from 'react';
+import React from 'react';
 import Button from '../components/common/Button';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
+import PostList from '../components/list/PostList';
 
 const WrapButtonRightAlign = styled.div`
   display: flex;
   justify-content: end;
-  margin: 12px 12px;
+  margin-top: 8px;
 `;
 
-function MainPage({ children }: PropsWithChildren) {
+function MainPage() {
   return (
     <>
-      {children}
+      <PostList />
       <WrapButtonRightAlign>
         <Link to="/write">
           <Button

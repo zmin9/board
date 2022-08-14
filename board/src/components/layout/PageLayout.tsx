@@ -13,6 +13,7 @@ const WrappingPage = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  
   ${mediaQuery.desktop} {
     margin-bottom: 36px;
   }
@@ -34,6 +35,7 @@ const Header = styled.div`
 
 const ContentBox = styled.section`
   background: ${({ theme }) => theme.background};
+  padding: ${({ theme }) => theme.defaultPadding};
   border-radius: 16px;
   width: 70vw;
   max-width: 600px;

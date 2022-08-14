@@ -1,18 +1,17 @@
-import { Link, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import styled from 'styled-components';
 import Text from '../common/Text';
 import { getLocalDate, getLocalTime } from '../../script/utils';
 import { useEffect, useState } from 'react';
 import { GetPost } from '../../firebase/data';
 import { PostTypeWithId } from '../../types/post';
-import Button from '../common/Button';
 
-const PostHeader = styled.div`
-  margin: 24px 0;
+const PostContainer = styled.div`
+  padding: 12px;
 `;
 
-const Container = styled.div`
-  padding: ${({ theme }) => theme.defaultPadding};
+const PostHeader = styled.div`
+  margin: 0 0 16px ;
 `;
 
 const Post = () => {
@@ -31,15 +30,7 @@ const Post = () => {
   }, []);
 
   return (
-    <Container>
-      <Link to="/">
-        <Button
-          text="뒤로가기"
-          size="md"
-          designType="secondary"
-        />
-      </Link>
-      <hr />
+    <PostContainer>
       <PostHeader>
         <h2>
           <Text size="16px" weight={600} color="medium">
@@ -53,7 +44,7 @@ const Post = () => {
       <Text size="15px" weight={400} color="medium">
         {post.content}
       </Text>
-    </Container>
+    </PostContainer>
   );
 };
 

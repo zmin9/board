@@ -11,10 +11,6 @@ import { AddPost } from '../firebase/data';
 
 type TextInputElementType = HTMLInputElement | HTMLTextAreaElement;
 
-const Container = styled.div`
-  padding: ${({ theme }) => theme.defaultPadding};
-`;
-
 const WrappingSection = styled.div`
   margin: 24px 0;
   display: grid;
@@ -68,7 +64,7 @@ const WritePage = () => {
   };
 
   return (
-    <Container>
+    <>
       <Button
         text="뒤로가기"
         size="md"
@@ -117,12 +113,12 @@ const WritePage = () => {
         }
         <Button
           text="등록"
-          size="md"
+          size="lg"
           designType="primary"
           onClick={onClickPostHandler}
         />
       </WrappingFooter>
-    </Container>
+    </>
   );
 };
 

@@ -8,7 +8,7 @@ type ListItemProps = {
 };
 
 const ItemContainer = styled.div`
-  padding: ${({ theme }) => theme.defaultPadding};
+  padding: 16px 8px;
   display: flex;
   justify-content: space-between;
 `;

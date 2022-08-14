@@ -6,10 +6,9 @@ import { ThemeProvider } from 'styled-components';
 import './styles/font.css';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import PageLayout from './components/layout/PageLayout';
-import PostList from './components/list/PostList';
 import WritePage from './pages/WritePage';
-import Post from './components/post/Post';
 import MainPage from './pages/MainPage';
+import PostPage from './pages/PostPage';
 
 
 const root = ReactDOM.createRoot(
@@ -22,15 +21,9 @@ root.render(
       <PageLayout>
         <BrowserRouter>
           <Routes>
+            <Route path="/" element={<MainPage/>}/>
+            <Route path="/:postId" element={<PostPage/>}/>
             <Route path="/write" element={<WritePage/>}/>
-            <Route path="*" element={
-              <MainPage>
-                <Routes>
-                  <Route path="/" element={<PostList/>}/>
-                  <Route path="/:postId" element={<Post/>}/>
-                </Routes>
-              </MainPage>
-            }/>
           </Routes>
         </BrowserRouter>
       </PageLayout>
