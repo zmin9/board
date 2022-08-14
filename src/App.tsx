@@ -4,7 +4,7 @@ import { ThemeProvider } from 'styled-components';
 import { darkTheme, lightTheme } from './styles/theme';
 import GlobalStyle from './styles/globalStyle';
 import PageLayout from './components/layout/PageLayout';
-import MainPage from './pages/MainPage';
+import PostListPage from './pages/PostListPage';
 import PostPage from './pages/PostPage';
 import WritePage from './pages/WritePage';
 import './styles/font.css';
@@ -20,7 +20,7 @@ const App = () => {
       <PageLayout isDarkTheme={isDarkTheme} themeController={toggleTheme}>
         <BrowserRouter>
           <Routes>
-            <Route path="/" element={<MainPage/>}/>
+            <Route path="/" element={<PostListPage/>}/>
             <Route path="/:postId" element={<PostPage/>}/>
             <Route path="/write" element={<WritePage/>}/>
           </Routes>

@@ -10,7 +10,7 @@ const WrapButtonRightAlign = styled.div`
   margin-top: 8px;
 `;
 
-function MainPage() {
+function PostListPage() {
   return (
     <>
       <PostList />
@@ -27,4 +27,4 @@ function MainPage() {
   );
 }
 
-export default MainPage;
+export default PostListPage;
