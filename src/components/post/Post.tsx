@@ -11,7 +11,7 @@ const PostContainer = styled.div`
 `;
 
 const PostHeader = styled.div`
-  margin: 0 0 16px ;
+  margin: 0 0 16px;
 `;
 
 const Post = () => {
@@ -37,9 +37,11 @@ const Post = () => {
             {post.title}
           </Text>
         </h2>
-        <Text size="12px" weight={400} color="low">
-          {`${getLocalDate(post.time)} ${getLocalTime(post.time)}`}
-        </Text>
+        {post.time !== 0 &&
+          <Text size="12px" weight={400} color="low">
+            {`${getLocalDate(post.time)} ${getLocalTime(post.time)}`}
+          </Text>
+        }
       </PostHeader>
       <Text size="15px" weight={400} color="medium">
         {post.content}
