@@ -1,7 +1,7 @@
 import React from 'react';
-import Button from '../components/common/Button';
-import styled from 'styled-components';
 import { Link } from 'react-router-dom';
+import styled from 'styled-components';
+import Button from '../components/common/Button';
 import PostList from '../components/list/PostList';
 
 const WrapButtonRightAlign = styled.div`

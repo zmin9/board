@@ -1,8 +1,8 @@
 import { useParams } from 'react-router-dom';
 import styled from 'styled-components';
+import { useEffect, useState } from 'react';
 import Text from '../common/Text';
 import { getLocalDate, getLocalTime } from '../../script/utils';
-import { useEffect, useState } from 'react';
 import { GetPost } from '../../firebase/data';
 import { PostTypeWithId } from '../../types/post';
 

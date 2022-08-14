@@ -1,8 +1,8 @@
-import PostListItem from './PostListItem';
-import { Link } from 'react-router-dom';
 import { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import { GetAllPosts } from '../../firebase/data';
 import { PostTypeWithId } from '../../types/post';
+import PostListItem from './PostListItem';
 
 const PostList = () => {
   const [posts, setPosts] = useState<PostTypeWithId[]>([]);

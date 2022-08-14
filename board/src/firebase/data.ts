@@ -1,5 +1,5 @@
-import DB from './api';
 import { PostType, PostTypeWithId } from '../types/post';
+import DB from './api';
 
 export const GetAllPosts = async (): Promise<Array<PostTypeWithId>> => {
   const res = await DB.getPosts();

@@ -1,11 +1,11 @@
 import styled from 'styled-components';
+import { useNavigate } from 'react-router-dom';
+import { useRef, useState } from 'react';
 import Input from '../components/write/Input';
 import TextArea from '../components/write/TextArea';
 import Text from '../components/common/Text';
 import Button from '../components/common/Button';
-import { useRef, useState } from 'react';
 import mediaQuery from '../styles/mediaQuery';
-import { useNavigate } from 'react-router-dom';
 import { PostType } from '../types/post';
 import { AddPost } from '../firebase/data';
 import IconButton from '../components/common/IconButton';
@@ -30,6 +30,7 @@ const WrappingFooter = styled.div`
 
   ${mediaQuery.mobile} {
     flex-direction: column;
+
     button {
       width: 100%;
     }
@@ -67,7 +68,7 @@ const WritePage = () => {
   return (
     <>
       <IconButton
-        icon='back'
+        icon="back"
         text={{ content: '뒤로가기', position: 'right' }}
         size="sm"
         designType="secondary"

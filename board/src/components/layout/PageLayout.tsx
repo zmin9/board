@@ -1,7 +1,7 @@
+import React, { PropsWithChildren } from 'react';
 import styled from 'styled-components';
 import mediaQuery from '../../styles/mediaQuery';
 import Text from '../common/Text';
-import React, { PropsWithChildren } from 'react';
 import IconButton from '../common/IconButton';
 
 type LayoutProps = {

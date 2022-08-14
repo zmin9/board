@@ -1,5 +1,5 @@
-import db, { addDoc, collection, doc, getDoc, getDocs } from './init';
 import { PostType } from '../types/post';
+import db, { addDoc, collection, doc, getDoc, getDocs } from './init';
 
 const addPost = async (post: PostType) => {
   try {

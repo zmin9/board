@@ -1,6 +1,6 @@
+import { forwardRef } from 'react';
 import styled from 'styled-components';
 import mediaQuery from '../../styles/mediaQuery';
-import { forwardRef } from 'react';
 
 type InputProps = {
   type: string,
