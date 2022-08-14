@@ -2,7 +2,7 @@ import 'styled-components';
 
 declare module 'styled-components' {
   export interface DefaultTheme {
-    defaultPadding: string,
+    mainColor: string,
 
     background: string,
     backgroundSub: string,

@@ -11,9 +11,14 @@ type LayoutProps = {
 
 const Background = styled.div`
   position: relative;
-  height: 100vh;
+  height: fit-content;
+  min-height: 100vh;
+  padding-bottom: 36px;
   background: ${({ theme }) => theme.backgroundSub};
-  overflow: scroll;
+
+  ${mediaQuery.mobile} {
+    padding-bottom: 0;
+  }
 `;
 
 const WrappingThemeButton = styled.div`
@@ -26,10 +31,6 @@ const WrappingPage = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-
-  ${mediaQuery.desktop} {
-    margin-bottom: 36px;
-  }
 
   ${mediaQuery.mobile} {
     height: 100vh;
@@ -48,7 +49,7 @@ const Header = styled.div`
 
 const ContentBox = styled.section`
   background: ${({ theme }) => theme.background};
-  padding: ${({ theme }) => theme.defaultPadding};
+  padding: 16px 24px;
   border-radius: 16px;
   width: 70vw;
   max-width: 600px;

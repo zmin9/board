@@ -1,5 +1,7 @@
 import { DefaultTheme } from 'styled-components';
 
+export type TextColorType = keyof DefaultTheme['text'];
+
 const color = {
   green: '94, 28%',
   red: '0, 70%',
@@ -10,13 +12,8 @@ const getHSL = (colorName: keyof typeof color, l: number): string => {
   return `hsl(${color[colorName]}, ${l}%)`;
 };
 
-// 타입을 따로 지정해서 넘겨주는 것이 좋을 듯 싶습니다.
-// export const commonTheme = {
-//
-// }
-
 export const lightTheme: DefaultTheme = {
-  defaultPadding: '16px 24px',
+  mainColor: getHSL('green', 40),
   background: getHSL('black', 99),
   backgroundSub: getHSL('black', 95),
   btnPrimary: getHSL('green', 40),
@@ -33,7 +30,7 @@ export const lightTheme: DefaultTheme = {
 };
 
 export const darkTheme: DefaultTheme = {
-  defaultPadding: '16px 24px',
+  mainColor: getHSL('green', 80),
   background: getHSL('black', 10),
   backgroundSub: getHSL('black', 15),
   btnPrimary: getHSL('green', 80),
@@ -48,5 +45,3 @@ export const darkTheme: DefaultTheme = {
   },
   error: getHSL('red', 80),
 };
-
-export type TextColorType = keyof DefaultTheme['text'];
