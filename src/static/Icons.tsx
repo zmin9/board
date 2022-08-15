@@ -20,6 +20,11 @@ const icon = {
     <line x1="19" y1="12" x2="5" y2="12"/>
     <polyline points="12 19 5 12 12 5"/>
   </g>,
+  more: <g>
+    <circle cx="12" cy="12" r="1"/>
+    <circle cx="19" cy="12" r="1"/>
+    <circle cx="5" cy="12" r="1"/>
+  </g>,
 };
 
 const Icons = ({ type }: IconProp) => {

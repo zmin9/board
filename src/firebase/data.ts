@@ -19,9 +19,7 @@ export const GetAllPosts = async (): Promise<Array<PostTypeWithId>> => {
 
 export const GetPost = async (id: string): Promise<PostTypeWithId> => {
   const res = await DB.getPost(id);
-  if (res) {
-    return res.data() as PostTypeWithId;
-  }
+  if (res) return res.data() as PostTypeWithId;
   throw new Error('잘못된 post id');
 };
 
@@ -29,4 +27,8 @@ export const AddPost = async (post: PostType) => {
   const res = await DB.addPost(post);
   if (res) return res.id;
   throw new Error('포스팅 실패');
+};
+
+export const DeletePost = async (id: string) => {
+  return DB.deletePost(id);
 };

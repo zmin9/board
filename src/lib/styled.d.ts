@@ -6,6 +6,7 @@ declare module 'styled-components' {
 
     background: string,
     backgroundSub: string,
+    shadow: string,
     surface: string,
     outline: string,
     divider: string,
