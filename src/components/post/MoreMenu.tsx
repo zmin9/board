@@ -31,7 +31,7 @@ const ModalContainer = styled.div`
   border-radius: 4px;
   background-color: ${({ theme }) => theme.background};
   color: ${({ theme }) => theme.text.medium};
-  box-shadow: ${({ theme }) => theme.shadow} 0 0 3px 3px;
+  box-shadow: ${({ theme }) => theme.shadow} 0 0 4px 4px;
 
   ${mediaQuery.mobile} {
     box-shadow: none;

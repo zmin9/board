@@ -15,11 +15,20 @@ declare module 'styled-components' {
       high: string,
       medium: string,
       low: string,
+    },
+
+    button: {
+      primary: ButtonColorType,
+      secondary: ButtonColorType,
+      outline: ButtonColorType,
     }
 
-    btnPrimary: string,
-    btnOnPrimary: string,
-
-    error: string
+    error: string;
   }
 }
+
+type ButtonColorType = {
+  bgColor: string,
+  hoverBgColor: string,
+  color: string,
+};

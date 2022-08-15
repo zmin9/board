@@ -1,10 +1,12 @@
 import React, { ButtonHTMLAttributes } from 'react';
 import styled, { css } from 'styled-components';
+import { ButtonColorType } from '../../styles/theme';
+import { colorTransition } from '../../styles/transition';
 
 type ButtonProps = {
   text: string,
   size: keyof typeof buttonSize,
-  designType: keyof typeof buttonColorType
+  designType: ButtonColorType
   fullWidth?: boolean
 } & Omit<ButtonHTMLAttributes<HTMLButtonElement>, 'children'>;
 
@@ -23,27 +25,21 @@ const buttonSize = {
   `,
 };
 
-const buttonColorType = {
-  primary: css`
-    background-color: ${({ theme }) => theme.btnPrimary};
-    color: ${({ theme }) => theme.btnOnPrimary};
-  `,
-  secondary: css`
-    background-color: transparent;
-    color: ${({ theme }) => theme.btnPrimary};
-  `,
-  outline: css`
-    background-color: transparent;
-    color: ${({ theme }) => theme.btnPrimary};
-    border: solid 1px ${({ theme }) => theme.outline};
-  `,
-};
+const buttonColor = (type: ButtonColorType) => css`
+  background-color: ${({ theme })=> theme.button[type].bgColor};
+  color: ${({ theme })=> theme.button[type].color};
+  ${({ theme }) => type === 'outline' && `border: solid 1px ${theme.outline};`}
+  :hover {
+    background-color: ${({ theme })=> theme.button[type].hoverBgColor};
+  }
+`;
 
 const BasicButton = styled.button<ButtonProps>`
   border-radius: 9999px;
   width: ${({ fullWidth }) => fullWidth ? '100%' : 'auto'};
   font-weight: 600;
-  ${({ designType }) => buttonColorType[designType]}
+  ${colorTransition}
+  ${({ designType }) => buttonColor(designType)}
   ${({ size }) => buttonSize[size]}
 `;
 

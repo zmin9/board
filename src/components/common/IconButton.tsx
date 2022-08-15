@@ -1,6 +1,8 @@
 import React, { ButtonHTMLAttributes } from 'react';
 import styled, { css } from 'styled-components';
 import Icons, { IconType } from '../../static/Icons';
+import { ButtonColorType } from '../../styles/theme';
+import { colorTransition } from '../../styles/transition';
 
 type IconButtonProps = {
   icon: IconType,
@@ -9,7 +11,7 @@ type IconButtonProps = {
     position: keyof typeof textPosition,
   },
   size: keyof typeof buttonSize,
-  designType: keyof typeof buttonColorType
+  designType: ButtonColorType
 } & Omit<ButtonHTMLAttributes<HTMLButtonElement>, 'children'>;
 
 const textPosition = {
@@ -43,21 +45,15 @@ const buttonSize = {
   `,
 };
 
-const buttonColorType = {
-  primary: css`
-    background-color: ${({ theme }) => theme.btnPrimary};
-    color: ${({ theme }) => theme.btnOnPrimary};
-  `,
-  secondary: css`
-    background-color: transparent;
-    color: ${({ theme }) => theme.btnPrimary};
-  `,
-  outline: css`
-    background-color: transparent;
-    color: ${({ theme }) => theme.btnPrimary};
-    border: solid 1px ${({ theme }) => theme.outline};
-  `,
-};
+const buttonColor = (type: ButtonColorType) => css`
+  background-color: ${({ theme }) => theme.button[type].bgColor};
+  color: ${({ theme }) => theme.button[type].color};
+
+  ${({ theme }) => type === 'outline' && `border: solid 1px ${theme.outline};`}
+  :hover {
+    background-color: ${({ theme }) => theme.button[type].hoverBgColor};
+  }
+`;
 
 const BasicIconButton = styled.button<IconButtonProps>`
   display: flex;
@@ -65,8 +61,9 @@ const BasicIconButton = styled.button<IconButtonProps>`
   line-height: 0;
   border-radius: 9999px;
   font-weight: 600;
+  ${colorTransition}
   ${({ text }) => text && textPosition[text.position]}
-  ${({ designType }) => buttonColorType[designType]}
+  ${({ designType }) => buttonColor(designType)}
   ${({ size }) => buttonSize[size]}
 `;
 
