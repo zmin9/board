@@ -21,7 +21,6 @@ export const palette = {
   green10: getHSL('green', 99),
 
   black1: getHSL('black', 10),
-  black1_5: getHSL('black', 15),
   black2: getHSL('black', 20),
   black3: getHSL('black', 30),
   black4: getHSL('black', 40),
@@ -30,7 +29,6 @@ export const palette = {
   black7: getHSL('black', 70),
   black8: getHSL('black', 80),
   black9: getHSL('black', 90),
-  black9_5: getHSL('black', 95),
   black10: getHSL('black', 99),
 
   red1: getHSL('red', 10),

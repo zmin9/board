@@ -4,12 +4,10 @@ import { palette } from './palette';
 export type TextColorType = keyof DefaultTheme['text'];
 export type ButtonColorType = keyof DefaultTheme['button'];
 
-
-
 export const lightTheme: DefaultTheme = {
   mainColor: palette.green4,
   background: palette.black10,
-  backgroundSub: palette.black9,
+  backgroundSub: '#F2F3F2',
   shadow: 'hsla(0, 0%, 10%, 0.1)',
   divider: palette.black8,
   outline: palette.black5,
@@ -27,12 +25,12 @@ export const lightTheme: DefaultTheme = {
     },
     secondary:{
       bgColor: 'transparent',
-      hoverBgColor: palette.black9_5,
+      hoverBgColor: palette.black9,
       color: palette.green4,
     },
     outline:{
       bgColor: 'transparent',
-      hoverBgColor: palette.black9_5,
+      hoverBgColor: palette.black9,
       color: palette.green4,
     },
   },
@@ -42,7 +40,7 @@ export const lightTheme: DefaultTheme = {
 export const darkTheme: DefaultTheme = {
   mainColor: palette.green8,
   background: palette.black1,
-  backgroundSub: palette.black2,
+  backgroundSub: '#262825',
   shadow: 'hsla(0, 0%, 90%, 0.1)',
   divider: palette.black3,
   outline: palette.black6,
@@ -60,12 +58,12 @@ export const darkTheme: DefaultTheme = {
     },
     secondary:{
       bgColor: 'transparent',
-      hoverBgColor: palette.black1_5,
+      hoverBgColor: palette.black2,
       color: palette.green8,
     },
     outline:{
       bgColor: 'transparent',
-      hoverBgColor: palette.black1_5,
+      hoverBgColor: palette.black2,
       color: palette.green8,
     },
   },
