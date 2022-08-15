@@ -1,6 +1,6 @@
-import styled from 'styled-components';
+import React, { ButtonHTMLAttributes, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useRef, useState } from 'react';
+import styled from 'styled-components';
 import Input from '../components/write/Input';
 import TextArea from '../components/write/TextArea';
 import Text from '../components/common/Text';
@@ -42,7 +42,8 @@ const WritePage = () => {
   const refs = useRef<TextInputElementType[]>([]);
   const [invalidMsg, setInvalidMsg] = useState(false);
 
-  const onClickPostHandler = async () => {
+  const onClickPostHandler = async (el: React.MouseEvent<HTMLButtonElement>) => {
+    (el as ButtonHTMLAttributes<HTMLButtonElement>).disabled = true;
     for (let i = 0; i < 4; i++) {
       if (refs.current[i].value.trim() === '') {
         setInvalidMsg(true);
@@ -118,7 +119,7 @@ const WritePage = () => {
           text="등록"
           size="lg"
           designType="primary"
-          onClick={onClickPostHandler}
+          onClick={(el) => onClickPostHandler(el)}
         />
       </WrappingFooter>
     </>
