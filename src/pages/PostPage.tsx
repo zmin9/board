@@ -13,8 +13,9 @@ const PageHeader = styled.div`
 `;
 
 const WrappingMenuModal = styled.div`
+  z-index: 2;
   position: absolute;
-  transform: translate(0, 16px);
+  transform: translate(0, -18px);
   right: calc((100vw - 600px) / 2 + 40px);
   
   ${mediaQuery.tablet} {
@@ -40,16 +41,16 @@ const PostPage = () => {
   };
 
   const deletePost = () => {
-    close();
     DeletePost(String(postId))
       .then(() => {
         nav('/');
       });
+    close();
   };
 
   const modifyPost = () => {
-    close();
     nav(`/${postId}`);
+    close();
   };
 
   const modalMenuList = [
@@ -75,15 +76,15 @@ const PostPage = () => {
           />
         </Link>
         <IconButton icon="more" size="sm" designType="secondary" onClick={open}/>
-        {more &&
-          <WrappingMenuModal>
-            <MoreMenu
-              close={close}
-              contents={modalMenuList}
-            />
-          </WrappingMenuModal>
-        }
       </PageHeader>
+      {more &&
+        <WrappingMenuModal>
+          <MoreMenu
+            close={close}
+            contents={modalMenuList}
+          />
+        </WrappingMenuModal>
+      }
       <hr/>
       <Post/>
     </>

@@ -25,7 +25,6 @@ const Background = styled.div`
 `;
 
 const ModalContainer = styled.div`
-  z-index: 1;
   position: relative;
 
   border-radius: 4px;
