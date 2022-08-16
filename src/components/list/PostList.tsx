@@ -1,17 +1,17 @@
 import { Link } from 'react-router-dom';
-import useAllPosts from '../../script/useAllPosts';
+import { useContext } from 'react';
 import Loading from '../loading/Loading';
+import { Posts } from '../../pages/PostListPage';
 import PostListItem from './PostListItem';
 
 const PostList = () => {
-  const [posts, isLoading] = useAllPosts();
+  const context = useContext(Posts);
   return (
     <>
-      {isLoading ?
+      {context.isLoading ?
         <Loading/>
         :
-        Array.isArray(posts)
-        && posts.map(post =>
+        context.posts.map(post =>
           <Link
             key={post.id}
             to={`/${post.id}`}
