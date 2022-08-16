@@ -1,19 +1,18 @@
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 import Icons from '../../static/Icons';
 
+const spinner = keyframes`
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+`;
 
 const RotatingAnimation = styled.div`
   & > * {
-    animation: spinner 1.5s linear infinite;
-  }
-
-  @keyframes spinner {
-    from {
-      transform: rotate(0deg);
-    }
-    to {
-      transform: rotate(360deg);
-    }
+    animation: ${spinner} 1.5s linear infinite;
   }
 `;
 
