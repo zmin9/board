@@ -17,12 +17,12 @@ const WrappingMenuModal = styled.div`
   position: absolute;
   transform: translate(0, -18px);
   right: calc((100vw - 600px) / 2 + 40px);
-  
+
   ${mediaQuery.tablet} {
     right: calc(15vw + 40px);
   }
-  
-  ${mediaQuery.mobile}{
+
+  ${mediaQuery.mobile} {
     position: static;
     transform: none;
   }
@@ -48,19 +48,10 @@ const PostPage = () => {
     close();
   };
 
-  const modifyPost = () => {
-    nav(`/${postId}`);
-    close();
-  };
-
   const modalMenuList = [
     {
       text: '삭제',
       onClick: deletePost,
-    },
-    {
-      text: '수정',
-      onClick: modifyPost,
     },
   ];
 

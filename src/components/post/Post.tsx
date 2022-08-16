@@ -16,14 +16,7 @@ const PostHeader = styled.div`
 
 const Post = () => {
   const { postId } = useParams();
-  const [post, setPost] = useState<PostTypeWithId>({
-    content: '',
-    email: '',
-    id: '',
-    name: '',
-    time: 0,
-    title: '',
-  });
+  const [post, setPost] = useState<PostTypeWithId>();
 
   useEffect(() => {
     GetPost(String(postId)).then(res => setPost(res));
@@ -31,21 +24,25 @@ const Post = () => {
 
   return (
     <PostContainer>
-      <PostHeader>
-        <h2>
-          <Text size="16px" weight={600} color="medium">
-            {post.title}
+      {post !== undefined &&
+        <>
+          <PostHeader>
+            <h2>
+              <Text size="16px" weight={600} color="medium">
+                {post.title}
+              </Text>
+            </h2>
+            {post.time !== 0 &&
+              <Text size="12px" weight={400} color="low">
+                {`${getLocalDate(post.time)} ${getLocalTime(post.time)}`}
+              </Text>
+            }
+          </PostHeader>
+          <Text size="15px" weight={400} color="medium">
+            {post.content}
           </Text>
-        </h2>
-        {post.time !== 0 &&
-          <Text size="12px" weight={400} color="low">
-            {`${getLocalDate(post.time)} ${getLocalTime(post.time)}`}
-          </Text>
-        }
-      </PostHeader>
-      <Text size="15px" weight={400} color="medium">
-        {post.content}
-      </Text>
+        </>
+      }
     </PostContainer>
   );
 };
