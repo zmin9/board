@@ -1,4 +1,4 @@
-import React, { ButtonHTMLAttributes, useRef, useState } from 'react';
+import React, { useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import Input from '../components/write/Input';
@@ -41,9 +41,9 @@ const WritePage = () => {
   const nav = useNavigate();
   const refs = useRef<TextInputElementType[]>([]);
   const [invalidMsg, setInvalidMsg] = useState(false);
+  const [postLoading, setPostLoading] = useState(false);
 
-  const onClickPostHandler = async (el: React.MouseEvent<HTMLButtonElement>) => {
-    (el as ButtonHTMLAttributes<HTMLButtonElement>).disabled = true;
+  const onClickPostHandler = async () => {
     for (let i = 0; i < 4; i++) {
       if (refs.current[i].value.trim() === '') {
         setInvalidMsg(true);
@@ -58,6 +58,7 @@ const WritePage = () => {
       name: refs.current[2].value,
       email: refs.current[3].value,
     };
+    setPostLoading(true);
     const id = await AddPost(data);
     nav(`/${id}`);
   };
@@ -119,7 +120,8 @@ const WritePage = () => {
           text="등록"
           size="lg"
           designType="primary"
-          onClick={(el) => onClickPostHandler(el)}
+          loading={postLoading}
+          onClick={onClickPostHandler}
         />
       </WrappingFooter>
     </>
