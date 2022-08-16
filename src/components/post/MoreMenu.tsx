@@ -25,6 +25,7 @@ const Background = styled.div`
 `;
 
 const ModalContainer = styled.div`
+  z-index: 2;
   position: relative;
 
   border-radius: 4px;
@@ -69,7 +70,6 @@ const MoreMenu = ({ close, contents }: ModalProps) => {
 
   return (
     <>
-      <BackgroundPortal/>
       <ModalContainer>
         {
           contents.map((content) =>
@@ -81,6 +81,7 @@ const MoreMenu = ({ close, contents }: ModalProps) => {
           )
         }
       </ModalContainer>
+      <BackgroundPortal/>
     </>
   );
 };
