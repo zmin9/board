@@ -11,6 +11,7 @@ import './styles/font.css';
 import AuthPage from './pages/Auth/AuthPage';
 import SignIn from './pages/Auth/SignIn';
 import SignUp from './pages/Auth/SignUp';
+import ProfilePage from './pages/ProfilePage';
 
 const App = () => {
   const [isDarkTheme, setIsDarkTheme] = useState(false);
@@ -28,10 +29,11 @@ const App = () => {
             <Route path="/:postId" element={<PostPage/>}/>
             <Route path="/write" element={<WritePage/>}/>
             <Route path="/auth" element={<AuthPage/>}>
-              <Route index element={<div>페이지 없음</div>} />
+              <Route index element={<div>페이지 없음</div>}/>
               <Route path="signin" element={<SignIn/>}/>
               <Route path="signup" element={<SignUp/>}/>
             </Route>
+            <Route path="/profile" element={<ProfilePage/>}/>
             <Route path="*" element={<div>페이지 없음</div>}/>
           </Routes>
         </PageDefault>

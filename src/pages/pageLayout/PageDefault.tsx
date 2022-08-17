@@ -1,10 +1,11 @@
 import React, { PropsWithChildren } from 'react';
 import styled from 'styled-components';
 // import { Link } from 'react-router-dom';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import mediaQuery from '../../styles/mediaQuery';
 import Text from '../../components/common/Text';
 import IconButton from '../../components/common/IconButton';
+import Auth from '../../firebase/authuser';
 
 type LayoutProps = {
   isDarkTheme: boolean,
@@ -59,13 +60,18 @@ const Header = styled.div`
 
 
 const PageDefault = ({ ...props }: LayoutProps) => {
+  const nav = useNavigate();
   const icon = props.isDarkTheme ? 'moon' : 'sun';
+
+  const userIconOnClickHandler = () => {
+    if (Auth.getCurrentUserInfo()) nav('/profile');
+    else nav('/auth/signin');
+  };
+
   return (
     <Background>
       <WrappingIconButtons>
-        <Link to="/auth/signin">
-          <IconButton icon="user" size="md" designType="secondary"/>
-        </Link>
+        <IconButton icon="user" size="md" designType="secondary" onClick={userIconOnClickHandler}/>
         <IconButton icon={icon} size="md" designType="secondary" onClick={props.themeController}/>
       </WrappingIconButtons>
       <WrappingPage>

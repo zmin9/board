@@ -2,16 +2,15 @@ import React, { useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import DB from '../firebase/database';
+import { PostType } from '../types/post';
+import TextInputElementType from '../types/input';
 import Input from '../components/write/Input';
 import TextArea from '../components/write/TextArea';
 import Text from '../components/common/Text';
 import Button from '../components/common/Button';
 import mediaQuery from '../styles/mediaQuery';
-import { PostType } from '../types/post';
 import IconButton from '../components/common/IconButton';
 import ContentBox from './pageLayout/ContentBox';
-
-type TextInputElementType = HTMLInputElement | HTMLTextAreaElement;
 
 const WrappingSection = styled.div`
   margin: 24px 0;
