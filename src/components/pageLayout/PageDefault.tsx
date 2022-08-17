@@ -5,7 +5,7 @@ import Text from '../common/Text';
 import IconButton from '../common/IconButton';
 
 type LayoutProps = {
-  isDarkTheme: boolean
+  isDarkTheme: boolean,
   themeController: () => void
 } & PropsWithChildren;
 
@@ -47,23 +47,8 @@ const Header = styled.div`
   }
 `;
 
-const ContentBox = styled.section`
-  background: ${({ theme }) => theme.background};
-  padding: 16px 24px;
-  border-radius: 16px;
-  width: 70vw;
-  max-width: 600px;
-  height: fit-content;
 
-  ${mediaQuery.mobile} {
-    width: 100vw;
-    border-radius: 32px 32px 0 0;
-    padding-top: 16px;
-    height: 100%;
-  }
-`;
-
-const PageLayout = ({ ...props }: LayoutProps) => {
+const PageDefault = ({ ...props }: LayoutProps) => {
   const icon = props.isDarkTheme ? 'moon' : 'sun';
   return (
     <Background>
@@ -74,12 +59,10 @@ const PageLayout = ({ ...props }: LayoutProps) => {
         <Header>
           <Text size="40px" weight={600} color="high">Board</Text>
         </Header>
-        <ContentBox>
           {props.children}
-        </ContentBox>
       </WrappingPage>
     </Background>
   );
 };
 
-export default PageLayout;
+export default PageDefault;

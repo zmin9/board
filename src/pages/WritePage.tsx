@@ -9,6 +9,7 @@ import mediaQuery from '../styles/mediaQuery';
 import { PostType } from '../types/post';
 import { AddPost } from '../firebase/data';
 import IconButton from '../components/common/IconButton';
+import ContentBox from '../components/pageLayout/ContentBox';
 
 type TextInputElementType = HTMLInputElement | HTMLTextAreaElement;
 
@@ -68,7 +69,7 @@ const WritePage = () => {
   };
 
   return (
-    <>
+    <ContentBox>
       <IconButton
         icon="back"
         text={{ content: '뒤로가기', position: 'right' }}
@@ -124,7 +125,7 @@ const WritePage = () => {
           onClick={onClickPostHandler}
         />
       </WrappingFooter>
-    </>
+    </ContentBox>
   );
 };
 

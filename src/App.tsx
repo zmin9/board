@@ -3,11 +3,12 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { ThemeProvider } from 'styled-components';
 import { darkTheme, lightTheme } from './styles/theme';
 import GlobalStyle from './styles/globalStyle';
-import PageLayout from './components/layout/PageLayout';
+import PageDefault from './components/pageLayout/PageDefault';
 import PostListPage from './pages/PostListPage';
 import PostPage from './pages/PostPage';
 import WritePage from './pages/WritePage';
 import './styles/font.css';
+import AuthPage from './pages/AuthPage';
 
 const App = () => {
   const [isDarkTheme, setIsDarkTheme] = useState(false);
@@ -17,16 +18,17 @@ const App = () => {
   return (
     <ThemeProvider theme={isDarkTheme ? darkTheme : lightTheme}>
       <GlobalStyle/>
-      <div className='modal'/>
-      <PageLayout isDarkTheme={isDarkTheme} themeController={toggleTheme}>
+      <div className="modal"/>
+      <PageDefault isDarkTheme={isDarkTheme} themeController={toggleTheme}>
         <BrowserRouter>
           <Routes>
             <Route path="/" element={<PostListPage/>}/>
-            <Route path="/:postId" element={<PostPage/>}/>
-            <Route path="/write" element={<WritePage/>}/>
+            <Route path=":postId" element={<PostPage/>}/>
+            <Route path="write" element={<WritePage/>}/>
+            <Route path="auth" element={<AuthPage/>}/>
           </Routes>
         </BrowserRouter>
-      </PageLayout>
+      </PageDefault>
     </ThemeProvider>
   );
 };

@@ -5,6 +5,7 @@ import Button from '../components/common/Button';
 import PostList from '../components/list/PostList';
 import { PostTypeWithId } from '../types/post';
 import { GetAllPosts } from '../firebase/data';
+import ContentBox from '../components/pageLayout/ContentBox';
 
 const WrapButtonRightAlign = styled.div`
   display: flex;
@@ -35,7 +36,7 @@ function PostListPage() {
   }, []);
 
   return (
-    <>
+    <ContentBox>
       <Posts.Provider value={{
         posts: posts,
         isLoading: isLoading,
@@ -52,7 +53,7 @@ function PostListPage() {
           />
         </Link>
       </WrapButtonRightAlign>
-    </>
+    </ContentBox>
   );
 }
 
