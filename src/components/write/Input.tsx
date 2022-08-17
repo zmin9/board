@@ -16,10 +16,10 @@ const CustomInput = styled.input`
   }
 `;
 
-const Input = forwardRef<HTMLInputElement, Partial<HTMLInputElement>>((props, ref) =>
+const Input = forwardRef<HTMLInputElement, Partial<HTMLInputElement>>(({ type, ...props }, ref) =>
   <CustomInput
     ref={ref}
-    type="text"
+    type={type || 'text'}
     placeholder={props.placeholder}
   />,
 );

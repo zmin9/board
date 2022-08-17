@@ -3,8 +3,8 @@ import styled from 'styled-components';
 // import { Link } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import mediaQuery from '../../styles/mediaQuery';
-import Text from '../common/Text';
-import IconButton from '../common/IconButton';
+import Text from '../../components/common/Text';
+import IconButton from '../../components/common/IconButton';
 
 type LayoutProps = {
   isDarkTheme: boolean,

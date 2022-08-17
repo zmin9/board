@@ -27,16 +27,16 @@ const GlobalStyle = createGlobalStyle`
     text-decoration: none;
   }
 
-  input[type='text'], textarea {
+  input[type='text'], input[type='password'], textarea {
     border-radius: 8px;
   }
-  
+
   textarea {
     white-space: pre-wrap;
   }
 
   hr {
-    margin: 4px 0 ;
+    margin: 4px 0;
     border: solid 0.5px ${({ theme }) => theme.divider};
   }
 `;

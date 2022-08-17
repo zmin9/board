@@ -5,7 +5,7 @@ import Button from '../components/common/Button';
 import PostList from '../components/list/PostList';
 import { PostTypeWithId } from '../types/post';
 import { GetAllPosts } from '../firebase/data';
-import ContentBox from '../components/pageLayout/ContentBox';
+import ContentBox from './pageLayout/ContentBox';
 
 const WrapButtonRightAlign = styled.div`
   display: flex;

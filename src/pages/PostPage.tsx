@@ -6,7 +6,7 @@ import IconButton from '../components/common/IconButton';
 import MoreMenu from '../components/post/MoreMenu';
 import { DeletePost } from '../firebase/data';
 import mediaQuery from '../styles/mediaQuery';
-import ContentBox from '../components/pageLayout/ContentBox';
+import ContentBox from './pageLayout/ContentBox';
 
 const PageHeader = styled.div`
   display: flex;
