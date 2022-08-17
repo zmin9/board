@@ -14,7 +14,7 @@ const PostList = () => {
         context.posts.map(post =>
           <Link
             key={post.id}
-            to={`/${post.id}`}
+            to={`/post/${post.id}`}
           >
             <PostListItem title={post.title} time={post.time}/>
           </Link>,

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
 import { ThemeProvider } from 'styled-components';
 import { darkTheme, lightTheme } from './styles/theme';
 import GlobalStyle from './styles/globalStyle';
@@ -26,18 +26,20 @@ const App = () => {
         <PageDefault isDarkTheme={isDarkTheme} themeController={toggleTheme}>
           <Routes>
             <Route path="/" element={<PostListPage/>}/>
-            <Route path="/:postId" element={<PostPage/>}/>
+            <Route path="/post/:postId" element={<PostPage/>}/>
             <Route path="/write" element={<WritePage/>}/>
             <Route path="/auth" element={<AuthPage/>}>
-              <Route index element={<div>페이지 없음</div>}/>
+              <Route index element={<Navigate replace to="/no-content"/>}/>
               <Route path="signin" element={<SignIn/>}/>
               <Route path="signup" element={<SignUp/>}/>
             </Route>
             <Route path="/profile" element={<ProfilePage/>}/>
-            <Route path="*" element={<div>페이지 없음</div>}/>
+            <Route path="*" element={<Navigate replace to="/no-content"/>}/>
+            <Route path="/no-content" element={<div>페이지 없음</div>}/>
           </Routes>
         </PageDefault>
       </BrowserRouter>
+      <div id="toast"/>
     </ThemeProvider>
   );
 };
