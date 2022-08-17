@@ -1,4 +1,4 @@
-import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
+import { createUserWithEmailAndPassword, getAuth, signInWithEmailAndPassword } from 'firebase/auth';
 import FirebaseApp from './init';
 
 const auth = getAuth(FirebaseApp);
@@ -24,7 +24,7 @@ const logout = async () => {
 
 const createAccount = async ({ email, password }: AuthInfo) => {
   try {
-    const res = await signInWithEmailAndPassword(auth, email, password);
+    const res = await createUserWithEmailAndPassword(auth, email, password);
     return res.user;
   } catch (e) {
     console.log('로그인 실패', e);

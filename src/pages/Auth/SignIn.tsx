@@ -37,6 +37,7 @@ const SignIn = () => {
   const [loading, setLoading] = useState(false);
 
   // TODO : console.log() 전부 UI로 변경하기
+  // TODO 리팩토링
   const loginOnClickHandler = () => {
     setLoading(true);
     Auth.login({ email: refs.current[0].value, password: refs.current[1].value })
