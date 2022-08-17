@@ -1,7 +1,6 @@
 import React, { useRef, useState } from 'react';
 import styled from 'styled-components';
 import { Link, useNavigate } from 'react-router-dom';
-import Input from '../../components/write/Input';
 import Button from '../../components/common/Button';
 import Text from '../../components/common/Text';
 import mediaQuery from '../../styles/mediaQuery';
@@ -9,7 +8,8 @@ import TextInputElementType from '../../types/textInput';
 import Auth from '../../firebase/authuser';
 
 const WrappingInputs = styled.div`
-  width: 250px;
+  margin-top: 12px;
+  width: 270px;
 
   & > input + input {
     margin-top: 8px;
@@ -62,11 +62,12 @@ const SignIn = () => {
   return (
     <>
       <WrappingInputs>
-        <Input
+        <input
           ref={el => refs.current[0] = el as TextInputElementType}
           placeholder="이메일"
+          type="text"
         />
-        <Input
+        <input
           ref={el => refs.current[1] = el as TextInputElementType}
           placeholder="비밀번호"
           type="password"

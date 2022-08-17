@@ -4,7 +4,6 @@ import styled from 'styled-components';
 import DB from '../firebase/database';
 import { PostType } from '../types/post';
 import TextInputElementType from '../types/textInput';
-import Input from '../components/write/Input';
 import TextArea from '../components/write/TextArea';
 import Text from '../components/common/Text';
 import Button from '../components/common/Button';
@@ -81,12 +80,13 @@ const WritePage = () => {
         <Text size="18px" weight={600} color="high">
           게시글 내용
         </Text>
-        <Input
-          ref={el => refs.current[0] = (el as TextInputElementType)}
+        <input
+          ref={el => refs.current[0] = el as TextInputElementType}
           placeholder="제목"
+          type="text"
         />
         <TextArea
-          ref={el => refs.current[1] = (el as TextInputElementType)}
+          ref={el => refs.current[1] = el as TextInputElementType}
           placeholder="내용"
           height="300px"
         />

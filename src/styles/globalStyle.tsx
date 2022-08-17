@@ -1,4 +1,5 @@
 import { createGlobalStyle } from 'styled-components';
+import mediaQuery from './mediaQuery';
 
 const GlobalStyle = createGlobalStyle`
   * {
@@ -33,6 +34,14 @@ const GlobalStyle = createGlobalStyle`
     background-color: ${({ theme }) => theme.surface};
     color: ${({ theme }) => theme.text.medium};
     border-radius: 4px 4px 0 0;
+    font-size: 15px;
+    box-sizing: border-box;
+    padding: 16px;
+    width: 100%;
+
+    ${mediaQuery.mobile} {
+      font-size: 15px;
+    }
   }
 
   textarea {
