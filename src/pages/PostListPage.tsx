@@ -1,10 +1,11 @@
 import React, { createContext, useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import DB from '../firebase/database';
 import Button from '../components/common/Button';
 import PostList from '../components/list/PostList';
 import { PostTypeWithId } from '../types/post';
+import Auth from '../firebase/authuser';
 import ContentBox from './pageLayout/ContentBox';
 
 const WrapButtonRightAlign = styled.div`
@@ -26,6 +27,7 @@ export const Posts = createContext<PostsContextType>({
 });
 
 function PostListPage() {
+  const nav = useNavigate();
   const [posts, setPosts] = useState<PostTypeWithId[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(true);
   useEffect(() => {
@@ -34,6 +36,13 @@ function PostListPage() {
       setIsLoading(false);
     });
   }, []);
+
+  const writeOnClickHandler = () => {
+    if (Auth.getCurrentUserInfo())
+      nav('/write');
+    else
+      nav('/auth/signin');
+  };
 
   return (
     <ContentBox>
@@ -45,13 +54,12 @@ function PostListPage() {
         <PostList/>
       </Posts.Provider>
       <WrapButtonRightAlign>
-        <Link to="/write">
-          <Button
-            text="글쓰기"
-            size="md"
-            designType="outline"
-          />
-        </Link>
+        <Button
+          text="글쓰기"
+          size="md"
+          designType="outline"
+          onClick={writeOnClickHandler}
+        />
       </WrapButtonRightAlign>
     </ContentBox>
   );
