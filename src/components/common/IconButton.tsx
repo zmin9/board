@@ -74,7 +74,7 @@ const IconButton = ({ ...props }: IconButtonProps) => {
       {...props}
     >
       <Icons type={props.icon}/>
-      {props.text && props.text.content}
+      {!!props.text && props.text.content}
     </BasicIconButton>
   );
 };
