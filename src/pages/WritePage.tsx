@@ -10,6 +10,7 @@ import Text from '../components/common/Text';
 import Button from '../components/common/Button';
 import mediaQuery from '../styles/mediaQuery';
 import IconButton from '../components/common/IconButton';
+import Auth from '../firebase/authuser';
 import ContentBox from './pageLayout/ContentBox';
 
 const WrappingSection = styled.div`
@@ -43,8 +44,8 @@ const WritePage = () => {
   const [invalidMsg, setInvalidMsg] = useState(false);
   const [postLoading, setPostLoading] = useState(false);
 
-  const onClickPostHandler = async () => {
-    for (let i = 0; i < 4; i++) {
+  const postOnClickHandler = async () => {
+    for (let i = 0; i < 2; i++) {
       if (refs.current[i].value.trim() === '') {
         setInvalidMsg(true);
         return;
@@ -55,12 +56,11 @@ const WritePage = () => {
       time: Date.now(),
       title: refs.current[0].value,
       content: refs.current[1].value,
-      name: refs.current[2].value,
-      email: refs.current[3].value,
+      email: String(Auth.getCurrentUserInfo()?.email),
     };
     setPostLoading(true);
     const id = await DB.addPost(data);
-    nav(`/${id}`);
+    nav(`/post/${id}`);
   };
 
   const onClickBackHandler = () => {
@@ -88,20 +88,7 @@ const WritePage = () => {
         <TextArea
           ref={el => refs.current[1] = (el as TextInputElementType)}
           placeholder="내용"
-          height="250px"
-        />
-      </WrappingSection>
-      <WrappingSection>
-        <Text size="18px" weight={600} color="high">
-          게시자 정보
-        </Text>
-        <Input
-          ref={el => refs.current[2] = (el as TextInputElementType)}
-          placeholder="이름"
-        />
-        <Input
-          ref={el => refs.current[3] = (el as TextInputElementType)}
-          placeholder="이메일"
+          height="300px"
         />
       </WrappingSection>
       <WrappingFooter>
@@ -118,7 +105,7 @@ const WritePage = () => {
           size="lg"
           designType="primary"
           loading={postLoading}
-          onClick={onClickPostHandler}
+          onClick={postOnClickHandler}
         />
       </WrappingFooter>
     </ContentBox>
