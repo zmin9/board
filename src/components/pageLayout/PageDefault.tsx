@@ -1,5 +1,7 @@
 import React, { PropsWithChildren } from 'react';
 import styled from 'styled-components';
+// import { Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import mediaQuery from '../../styles/mediaQuery';
 import Text from '../common/Text';
 import IconButton from '../common/IconButton';
@@ -21,10 +23,18 @@ const Background = styled.div`
   }
 `;
 
-const WrappingThemeButton = styled.div`
+const WrappingIconButtons = styled.div`
   position: absolute;
   top: 12px;
   right: 12px;
+
+  display: flex;
+  gap: 8px;
+
+  ${mediaQuery.mobile} {
+    left: 12px;
+    justify-content: space-between;
+  }
 `;
 
 const WrappingPage = styled.div`
@@ -52,14 +62,19 @@ const PageDefault = ({ ...props }: LayoutProps) => {
   const icon = props.isDarkTheme ? 'moon' : 'sun';
   return (
     <Background>
-      <WrappingThemeButton>
+      <WrappingIconButtons>
+        <Link to="auth">
+          <IconButton icon="user" size="md" designType="secondary"/>
+        </Link>
         <IconButton icon={icon} size="md" designType="secondary" onClick={props.themeController}/>
-      </WrappingThemeButton>
+      </WrappingIconButtons>
       <WrappingPage>
         <Header>
-          <Text size="40px" weight={600} color="high">Board</Text>
+          <Link to="/">
+            <Text size="40px" weight={600} color="high">Board</Text>
+          </Link>
         </Header>
-          {props.children}
+        {props.children}
       </WrappingPage>
     </Background>
   );

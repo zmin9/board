@@ -19,16 +19,16 @@ const App = () => {
     <ThemeProvider theme={isDarkTheme ? darkTheme : lightTheme}>
       <GlobalStyle/>
       <div className="modal"/>
-      <PageDefault isDarkTheme={isDarkTheme} themeController={toggleTheme}>
-        <BrowserRouter>
+      <BrowserRouter>
+        <PageDefault isDarkTheme={isDarkTheme} themeController={toggleTheme}>
           <Routes>
             <Route path="/" element={<PostListPage/>}/>
-            <Route path=":postId" element={<PostPage/>}/>
-            <Route path="write" element={<WritePage/>}/>
-            <Route path="auth" element={<AuthPage/>}/>
+            <Route path="/:postId" element={<PostPage/>}/>
+            <Route path="/write" element={<WritePage/>}/>
+            <Route path="/auth" element={<AuthPage/>}/>
           </Routes>
-        </BrowserRouter>
-      </PageDefault>
+        </PageDefault>
+      </BrowserRouter>
     </ThemeProvider>
   );
 };

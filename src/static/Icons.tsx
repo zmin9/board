@@ -34,6 +34,10 @@ const icon = {
     <line x1="18" y1="12" x2="22" y2="12"/>
     <line x1="4.93" y1="19.07" x2="7.76" y2="16.24"/>
   </g>,
+  user: <g>
+    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+    <circle cx="12" cy="7" r="4"/>
+  </g>,
 };
 
 const Icons = ({ type }: IconProp) => {
