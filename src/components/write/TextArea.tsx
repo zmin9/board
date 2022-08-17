@@ -9,12 +9,9 @@ type TextAreaProps = {
 const CustomTextArea = styled.textarea<TextAreaProps>`
   resize: none;
   box-sizing: border-box;
-  border: 0;
   padding: 12px;
   width: 100%;
   height: ${({ height }) => height};
-  background-color: ${({ theme }) => theme.surface};
-  color: ${({ theme }) => theme.text.medium};
   font-size: 16px;
   vertical-align: top;
   

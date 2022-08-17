@@ -28,7 +28,11 @@ const GlobalStyle = createGlobalStyle`
   }
 
   input[type='text'], input[type='password'], textarea {
-    border-radius: 8px;
+    border: 0;
+    border-bottom: solid 1px ${({ theme }) => theme.outline};
+    background-color: ${({ theme }) => theme.surface};
+    color: ${({ theme }) => theme.text.medium};
+    border-radius: 4px 4px 0 0;
   }
 
   textarea {
