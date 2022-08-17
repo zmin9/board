@@ -21,7 +21,7 @@ const App = () => {
   return (
     <ThemeProvider theme={isDarkTheme ? darkTheme : lightTheme}>
       <GlobalStyle/>
-      <div className="modal"/>
+      <div id="modal-background"/>
       <BrowserRouter>
         <PageDefault isDarkTheme={isDarkTheme} themeController={toggleTheme}>
           <Routes>

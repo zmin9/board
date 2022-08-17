@@ -59,12 +59,12 @@ const ModalItem = styled.div`
 
 const MoreMenu = ({ close, contents }: ModalProps) => {
   const BackgroundPortal = () => {
-    const [modal] = document.getElementsByClassName('modal');
-    if (!modal) throw new Error('error! cannot find modal div');
+    const modalBackground = document.getElementById('modal-background');
+    if (!modalBackground) throw new Error('error! cannot find modal-background div');
 
     return createPortal(
       <Background onClick={close}/>
-      , modal,
+      , modalBackground,
     );
   };
 
