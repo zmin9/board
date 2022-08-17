@@ -1,5 +1,5 @@
 import { DefaultTheme } from 'styled-components';
-import { palette } from './palette';
+import { hexOpacity, palette } from './palette';
 
 export type TextColorType = keyof DefaultTheme['text'];
 export type ButtonColorType = keyof DefaultTheme['button'];
@@ -8,7 +8,7 @@ export const lightTheme: DefaultTheme = {
   mainColor: palette.green4,
   background: palette.black10,
   backgroundSub: '#F2F3F2',
-  shadow: 'hsla(0, 0%, 10%, 0.1)',
+  shadow: palette.black1 + hexOpacity['10'],
   divider: palette.black8,
   outline: palette.black5,
   surface: palette.black9,
@@ -41,7 +41,7 @@ export const darkTheme: DefaultTheme = {
   mainColor: palette.green8,
   background: palette.black1,
   backgroundSub: '#262825',
-  shadow: 'hsla(0, 0%, 90%, 0.1)',
+  shadow: palette.black9 + hexOpacity['10'],
   divider: palette.black3,
   outline: palette.black6,
   surface: palette.black3,

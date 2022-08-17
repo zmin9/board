@@ -20,16 +20,17 @@ export const palette = {
   green9: getHSL('green', 90),
   green10: getHSL('green', 99),
 
-  black1: getHSL('black', 10),
-  black2: getHSL('black', 20),
-  black3: getHSL('black', 30),
-  black4: getHSL('black', 40),
-  black5: getHSL('black', 50),
-  black6: getHSL('black', 60),
-  black7: getHSL('black', 70),
-  black8: getHSL('black', 80),
-  black9: getHSL('black', 90),
-  black10: getHSL('black', 99),
+  // TODO: 색상 체계 HEX로 수정해보기 -> 이후 불투명도 조절이 필요하다면 뒤에 두 자리 더 붙여서 8자리로도 사용 가능
+  black1: '#1A1A19',
+  black2: '#343432',
+  black3: '#4E4E4B',
+  black4: '#686864',
+  black5: '#82827D',
+  black6: '#9B9B97',
+  black7: '#B4B4B1',
+  black8: '#CDCDCB',
+  black9: '#E6E6E5',
+  black10: '#FDFCFC',
 
   red1: getHSL('red', 10),
   red2: getHSL('red', 20),
@@ -41,4 +42,16 @@ export const palette = {
   red8: getHSL('red', 80),
   red9: getHSL('red', 90),
   red10: getHSL('red', 99),
+};
+
+export const hexOpacity = {
+  10: '1A',
+  20: '33',
+  30: '4D',
+  40: '66',
+  50: '80',
+  60: '99',
+  70: 'B3',
+  80: 'CC',
+  90: 'E6',
 };
