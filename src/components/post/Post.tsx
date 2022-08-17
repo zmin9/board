@@ -1,9 +1,9 @@
+import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import styled from 'styled-components';
-import { useEffect, useState } from 'react';
+import DB from '../../firebase/database';
 import Text from '../common/Text';
 import { getLocalDate, getLocalTime } from '../../script/utils';
-import { GetPost } from '../../firebase/data';
 import { PostTypeWithId } from '../../types/post';
 
 const PostContainer = styled.div`
@@ -19,7 +19,7 @@ const Post = () => {
   const [post, setPost] = useState<PostTypeWithId>();
 
   useEffect(() => {
-    GetPost(String(postId)).then(res => setPost(res));
+    DB.getPost(String(postId)).then(res => setPost(res));
   }, []);
 
   return (

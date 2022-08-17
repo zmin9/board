@@ -63,7 +63,7 @@ const PageDefault = ({ ...props }: LayoutProps) => {
   return (
     <Background>
       <WrappingIconButtons>
-        <Link to="auth">
+        <Link to="/auth/signin">
           <IconButton icon="user" size="md" designType="secondary"/>
         </Link>
         <IconButton icon={icon} size="md" designType="secondary" onClick={props.themeController}/>

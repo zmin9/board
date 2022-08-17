@@ -1,10 +1,10 @@
+import { useState } from 'react';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import styled from 'styled-components';
-import { useState } from 'react';
+import DB from '../firebase/database';
 import Post from '../components/post/Post';
 import IconButton from '../components/common/IconButton';
 import MoreMenu from '../components/post/MoreMenu';
-import { DeletePost } from '../firebase/data';
 import mediaQuery from '../styles/mediaQuery';
 import ContentBox from './pageLayout/ContentBox';
 
@@ -42,7 +42,7 @@ const PostPage = () => {
   };
 
   const deletePost = () => {
-    DeletePost(String(postId))
+    DB.deletePost(String(postId))
       .then(() => {
         nav('/');
       });

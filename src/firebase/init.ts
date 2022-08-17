@@ -1,8 +1,5 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from 'firebase/app';
-import { getFirestore } from 'firebase/firestore';
-export { getDocs, getDoc, addDoc, deleteDoc, doc, collection } from 'firebase/firestore';
-// https://firebase.google.com/docs/web/setup#available-libraries
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
@@ -14,6 +11,6 @@ const firebaseConfig = {
   appId: process.env.REACT_APP_ID,
 };
 
-const db = getFirestore(initializeApp(firebaseConfig));
+const FirebaseApp = initializeApp(firebaseConfig);
 
-export default db;
+export default FirebaseApp;
