@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import DB from '../firebase/database';
 import { PostType } from '../types/post';
-import TextInputElementType from '../types/input';
+import TextInputElementType from '../types/textInput';
 import Input from '../components/write/Input';
 import TextArea from '../components/write/TextArea';
 import Text from '../components/common/Text';

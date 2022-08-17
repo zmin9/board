@@ -5,7 +5,7 @@ import Input from '../../components/write/Input';
 import Button from '../../components/common/Button';
 import Text from '../../components/common/Text';
 import mediaQuery from '../../styles/mediaQuery';
-import TextInputElementType from '../../types/input';
+import TextInputElementType from '../../types/textInput';
 import Auth from '../../firebase/authuser';
 
 const WrappingInputs = styled.div`
