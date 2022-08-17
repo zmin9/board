@@ -1,11 +1,10 @@
-import { forwardRef } from 'react';
+import { forwardRef, HTMLAttributes } from 'react';
 import styled from 'styled-components';
 import mediaQuery from '../../styles/mediaQuery';
 
 type TextAreaProps = {
-  placeholder: string,
   height: string,
-};
+} & Partial<HTMLAttributes<HTMLTextAreaElement>>;
 
 const CustomTextArea = styled.textarea<TextAreaProps>`
   resize: none;
@@ -24,9 +23,9 @@ const CustomTextArea = styled.textarea<TextAreaProps>`
   }
 `;
 
-const TextArea = forwardRef((props: TextAreaProps, ref ) =>
+const TextArea = forwardRef<HTMLTextAreaElement, TextAreaProps>((props, ref ) =>
   <CustomTextArea
-    ref={ref as never}
+    ref={ref}
     placeholder={props.placeholder}
     height={props.height || 'auto'}
   />,

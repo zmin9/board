@@ -2,11 +2,6 @@ import { forwardRef } from 'react';
 import styled from 'styled-components';
 import mediaQuery from '../../styles/mediaQuery';
 
-type InputProps = {
-  type: string,
-  placeholder: string,
-};
-
 const CustomInput = styled.input`
   box-sizing: border-box;
   border: 0;
@@ -15,17 +10,16 @@ const CustomInput = styled.input`
   background-color: ${({ theme }) => theme.surface};
   color: ${({ theme }) => theme.text.medium};
   font-size: 16px;
-  
+
   ${mediaQuery.mobile} {
     font-size: 14px;
   }
 `;
 
-
-const Input = forwardRef((props: InputProps, ref) =>
+const Input = forwardRef<HTMLInputElement, Partial<HTMLInputElement>>((props, ref) =>
   <CustomInput
-    ref={ref as never}
-    type={props.type}
+    ref={ref}
+    type="text"
     placeholder={props.placeholder}
   />,
 );

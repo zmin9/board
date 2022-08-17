@@ -9,7 +9,7 @@ import mediaQuery from '../styles/mediaQuery';
 import { PostType } from '../types/post';
 import { AddPost } from '../firebase/data';
 import IconButton from '../components/common/IconButton';
-import ContentBox from '../components/pageLayout/ContentBox';
+import ContentBox from './pageLayout/ContentBox';
 
 type TextInputElementType = HTMLInputElement | HTMLTextAreaElement;
 
@@ -84,7 +84,6 @@ const WritePage = () => {
         </Text>
         <Input
           ref={el => refs.current[0] = (el as TextInputElementType)}
-          type="text"
           placeholder="제목"
         />
         <TextArea
@@ -99,12 +98,10 @@ const WritePage = () => {
         </Text>
         <Input
           ref={el => refs.current[2] = (el as TextInputElementType)}
-          type="text"
           placeholder="이름"
         />
         <Input
           ref={el => refs.current[3] = (el as TextInputElementType)}
-          type="text"
           placeholder="이메일"
         />
       </WrappingSection>
