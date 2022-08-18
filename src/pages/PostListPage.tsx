@@ -1,5 +1,5 @@
 import React, { createContext, useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import DB from '../firebase/database';
 import Button from '../components/common/Button';
@@ -27,7 +27,6 @@ export const Posts = createContext<PostsContextType>({
 });
 
 function PostListPage() {
-  const nav = useNavigate();
   const [posts, setPosts] = useState<PostTypeWithId[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(true);
   useEffect(() => {
@@ -36,13 +35,6 @@ function PostListPage() {
       setIsLoading(false);
     });
   }, []);
-
-  const writeOnClickHandler = () => {
-    if (Auth.getCurrentUserInfo())
-      nav('/write');
-    else
-      nav('/auth/signin');
-  };
 
   return (
     <ContentBox>
@@ -53,14 +45,17 @@ function PostListPage() {
       }}>
         <PostList/>
       </Posts.Provider>
-      <WrapButtonRightAlign>
-        <Button
-          text="글쓰기"
-          size="md"
-          designType="outline"
-          onClick={writeOnClickHandler}
-        />
-      </WrapButtonRightAlign>
+      {Auth.getCurrentUserInfo() &&
+        <WrapButtonRightAlign>
+          <Link to="/write">
+            <Button
+              text="글쓰기"
+              size="md"
+              designType="outline"
+            />
+          </Link>
+        </WrapButtonRightAlign>
+      }
     </ContentBox>
   );
 }
