@@ -6,26 +6,24 @@ import { colorTransition } from '../../styles/transition';
 
 type IconButtonProps = {
   icon: IconType,
-  text?: {
-    content: string,
-    position: keyof typeof textPosition,
-  },
-  size: keyof typeof buttonSize,
+  text?: string,
+  layout?: keyof typeof iconButtonLayout,
+  size: keyof typeof iconButtonSize,
   designType: ButtonColorType
 } & Omit<ButtonHTMLAttributes<HTMLButtonElement>, 'children'>;
 
-const textPosition = {
-  'right': css`
+const iconButtonLayout = {
+  'horizontal': css`
     flex-direction: row;
     gap: 4px;
   `,
-  'bottom': css`
+  'vertical': css`
     flex-direction: column;
     gap: 8px;
   `,
 };
 
-const buttonSize = {
+const iconButtonSize = {
   'lg': css`
     padding: 16px 16px;
     font-size: 16px;
@@ -45,7 +43,7 @@ const buttonSize = {
   `,
 };
 
-const buttonColor = (type: ButtonColorType) => css`
+const iconButtonColor = (type: ButtonColorType) => css`
   background-color: ${({ theme }) => theme.button[type].bgColor};
   color: ${({ theme }) => theme.button[type].color};
 
@@ -55,26 +53,27 @@ const buttonColor = (type: ButtonColorType) => css`
   }
 `;
 
-const BasicIconButton = styled.button<IconButtonProps>`
+const BasicIconButton = styled.button<Omit<IconButtonProps, 'text'>>`
   display: flex;
   align-items: center;
   line-height: 0;
   border-radius: 9999px;
   font-weight: 600;
   ${colorTransition}
-  ${({ text }) => text && textPosition[text.position]}
-  ${({ designType }) => buttonColor(designType)}
-  ${({ size }) => buttonSize[size]}
+  ${({ layout }) => layout && iconButtonLayout[layout]}
+  ${({ designType }) => iconButtonColor(designType)}
+  ${({ size }) => iconButtonSize[size]}
 `;
 
-const IconButton = ({ ...props }: IconButtonProps) => {
+const IconButton = ({ text, layout = 'horizontal', ...props }: IconButtonProps) => {
   return (
     <BasicIconButton
       type="button"
+      layout={layout}
       {...props}
     >
       <Icons type={props.icon}/>
-      {!!props.text && props.text.content}
+      {text}
     </BasicIconButton>
   );
 };

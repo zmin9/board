@@ -65,7 +65,8 @@ const WritePage = () => {
     <ContentBox>
       <IconButton
         icon="back"
-        text={{ content: '뒤로가기', position: 'right' }}
+        text="뒤로가기"
+        layout="horizontal"
         size="sm"
         designType="secondary"
         onClick={onClickBackHandler}
