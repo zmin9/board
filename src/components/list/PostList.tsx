@@ -16,7 +16,10 @@ const PostList = () => {
             key={post.id}
             to={`/post/${post.id}`}
           >
-            <PostListItem title={post.title} time={post.time}/>
+            <PostListItem
+              title={post.title}
+              time={post.time}
+            />
           </Link>,
         )}
     </>

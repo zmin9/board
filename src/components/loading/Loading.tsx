@@ -14,7 +14,8 @@ const WrappingLoading = styled.div`
 const Loading = () => {
   return (
     <WrappingLoading>
-      <Spinner/>loading...
+      <Spinner/>
+      loading...
     </WrappingLoading>
   );
 };

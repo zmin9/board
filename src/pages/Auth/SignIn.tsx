@@ -7,7 +7,7 @@ import mediaQuery from '../../styles/mediaQuery';
 import TextInputElementType from '../../types/textInput';
 import Auth from '../../firebase/authuser';
 import Toast from '../../components/toast/Toast';
-import { ToastMessageContents, authErrorToastMsg } from '../../lib/toastMessages';
+import { authErrorToastMsg, ToastMessageContents } from '../../lib/toastMessages';
 
 const WrappingInputs = styled.div`
   margin-top: 12px;
@@ -91,7 +91,12 @@ const SignIn = () => {
           />
         </Link>
       </WrappingToggleAuth>
-      {toast && <Toast info={toast} close={close}/>}
+      {toast &&
+        <Toast
+          info={toast}
+          close={close}
+        />
+      }
     </>
   );
 };

@@ -72,7 +72,10 @@ const MoreMenu = ({ close, contents }: ModalProps) => {
       <ModalContainer>
         {
           contents.map((content) =>
-            <ModalItem onClick={content.onClick} key={content.text}>
+            <ModalItem
+              onClick={content.onClick}
+              key={content.text}
+            >
               {content.text}
             </ModalItem>,
           )

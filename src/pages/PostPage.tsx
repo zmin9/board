@@ -67,7 +67,12 @@ const PostPage = () => {
             designType="secondary"
           />
         </Link>
-        <IconButton icon="more" size="sm" designType="secondary" onClick={open}/>
+        <IconButton
+          icon="more"
+          size="sm"
+          designType="secondary"
+          onClick={open}
+        />
       </PageHeader>
       {more &&
         <WrappingMenuModal>

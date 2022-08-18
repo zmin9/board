@@ -103,7 +103,12 @@ const SignUp = () => {
           />
         </Link>
       </WrappingToggleAuth>
-      {toast && <Toast info={toast} close={close}/>}
+      {toast &&
+        <Toast
+          info={toast}
+          close={close}
+        />
+      }
     </>
   );
 };

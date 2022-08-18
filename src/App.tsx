@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-max-props-per-line */
 import React, { useState } from 'react';
 import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
 import { ThemeProvider } from 'styled-components';

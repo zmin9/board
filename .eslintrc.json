@@ -23,6 +23,13 @@
     "react/react-in-jsx-scope": "off",
     "react/display-name": "off",
     "import/named": "off",
-    "import/order": "error"
+    "import/order": "error",
+    "react/jsx-max-props-per-line": [
+      "error",
+      {
+        "maximum": 1,
+        "when": "always"
+      }
+    ]
   }
 }

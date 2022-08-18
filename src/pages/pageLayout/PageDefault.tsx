@@ -49,12 +49,6 @@ const WrappingPage = styled.div`
 
 const Header = styled.div`
   margin: 50px 0;
-
-  ${mediaQuery.mobile} {
-    span {
-      font-size: 30px;
-    }
-  }
 `;
 
 
@@ -70,8 +64,18 @@ const PageDefault = ({ ...props }: LayoutProps) => {
   return (
     <Background>
       <WrappingIconButtons>
-        <IconButton icon="user" size="md" designType="secondary" onClick={userIconOnClickHandler}/>
-        <IconButton icon={icon} size="md" designType="secondary" onClick={props.themeController}/>
+        <IconButton
+          icon="user"
+          size="md"
+          designType="secondary"
+          onClick={userIconOnClickHandler}
+        />
+        <IconButton
+          icon={icon}
+          size="md"
+          designType="secondary"
+          onClick={props.themeController}
+        />
       </WrappingIconButtons>
       <WrappingPage>
         <Header>
