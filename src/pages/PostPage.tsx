@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import styled from 'styled-components';
 import DB from '../firebase/database';
@@ -6,6 +6,8 @@ import Post from '../components/post/Post';
 import IconButton from '../components/common/IconButton';
 import MoreMenu from '../components/post/MoreMenu';
 import mediaQuery from '../styles/mediaQuery';
+import { PostTypeWithId } from '../types/post';
+import Loading from '../components/loading/Loading';
 import ContentBox from './pageLayout/ContentBox';
 
 const PageHeader = styled.div`
@@ -31,8 +33,13 @@ const WrappingMenuModal = styled.div`
 
 const PostPage = () => {
   const [more, setMore] = useState(false);
+  const [post, setPost] = useState<PostTypeWithId>();
   const { postId } = useParams();
   const nav = useNavigate();
+
+  useEffect(() => {
+    DB.getPost(String(postId)).then(res => setPost(res));
+  }, []);
 
   const close = () => {
     setMore(false);
@@ -58,32 +65,38 @@ const PostPage = () => {
 
   return (
     <ContentBox>
-      <PageHeader>
-        <Link to="/">
-          <IconButton
-            icon="back"
-            text={{ content: '뒤로가기', position: 'right' }}
-            size="sm"
-            designType="secondary"
-          />
-        </Link>
-        <IconButton
-          icon="more"
-          size="sm"
-          designType="secondary"
-          onClick={open}
-        />
-      </PageHeader>
-      {more &&
-        <WrappingMenuModal>
-          <MoreMenu
-            close={close}
-            contents={modalMenuList}
-          />
-        </WrappingMenuModal>
+      {post ?
+        <>
+          <PageHeader>
+            <Link to="/">
+              <IconButton
+                icon="back"
+                text={{ content: '뒤로가기', position: 'right' }}
+                size="sm"
+                designType="secondary"
+              />
+            </Link>
+            <IconButton
+              icon="more"
+              size="sm"
+              designType="secondary"
+              onClick={open}
+            />
+          </PageHeader>
+          {more &&
+            <WrappingMenuModal>
+              <MoreMenu
+                close={close}
+                contents={modalMenuList}
+              />
+            </WrappingMenuModal>
+          }
+          <hr/>
+          <Post {...post}/>
+        </>
+        :
+        <Loading/>
       }
-      <hr/>
-      <Post/>
     </ContentBox>
   );
 };

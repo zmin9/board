@@ -12,6 +12,7 @@ const PostList = () => {
         <Loading/>
         :
         context.isEmpty ?
+          // TODO empty 페이지 필요
           <div>
             <p>
               글이 없어요ㅠ
