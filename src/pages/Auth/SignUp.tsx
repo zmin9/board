@@ -6,9 +6,13 @@ import Text from '../../components/common/Text';
 import mediaQuery from '../../styles/mediaQuery';
 import TextInputElementType from '../../types/textInput';
 import Auth from '../../firebase/authuser';
+import Toast from '../../components/toast/Toast';
+import ToastMessages from '../../script/toastMessages';
+import { ToastMessageContents } from '../../types/toastMessage';
 
 const WrappingInputs = styled.div`
-  width: 250px;
+  margin-top: 12px;
+  width: 270px;
 
   & > input + input {
     margin-top: 8px;
@@ -34,6 +38,11 @@ const SignUp = () => {
   const refs = useRef<TextInputElementType[]>([]);
   const nav = useNavigate();
   const [loading, setLoading] = useState(false);
+  const [toast, setToast] = useState<ToastMessageContents | null>(null);
+
+  const close = () => {
+    setToast(null);
+  };
 
   const checkPasswordSame = (pw: string, checkingPw: string) => pw === checkingPw;
 
@@ -54,13 +63,16 @@ const SignUp = () => {
       .catch(e => {
         switch (e.code) {
           case 'auth/invalid-email':
-            console.log('정확한 정보를 입력해주세요');
+            setToast(ToastMessages['auth-invalid-input']);
             break;
           case 'auth/email-already-in-use':
-            console.log('이미 가입되어 있습니다.');
+            setToast(ToastMessages['signup-already-email']);
+            break;
+          case 'auth/weak-password':
+            setToast(ToastMessages['signup-weak-password']);
             break;
           default:
-            console.log('다시 시도해주세요');
+            setToast(ToastMessages['server-error']);
         }
       })
       .finally(() => setLoading(false));
@@ -68,6 +80,7 @@ const SignUp = () => {
 
   return (
     <>
+      {/* TODO 페이지 타이틀 추가: 회원가입 */}
       <WrappingInputs>
         <input
           ref={el => refs.current[0] = el as TextInputElementType}
@@ -102,6 +115,7 @@ const SignUp = () => {
           </Text>
         </Link>
       </WrappingToggleAuth>
+      {toast && <Toast info={toast} close={close}/>}
     </>
   );
 };

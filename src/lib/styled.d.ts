@@ -1,4 +1,5 @@
 import 'styled-components';
+import { ToastMessageType } from '../script/toastMessages';
 
 declare module 'styled-components' {
   export interface DefaultTheme {
@@ -16,13 +17,12 @@ declare module 'styled-components' {
       medium: string,
       low: string,
     },
-
     button: {
       primary: ButtonColorType,
       secondary: ButtonColorType,
       outline: ButtonColorType,
-    }
-
+    },
+    toast: Record<ToastMessageType, ToastColorType>,
     error: string;
   }
 }
@@ -30,5 +30,10 @@ declare module 'styled-components' {
 type ButtonColorType = {
   bgColor: string,
   hoverBgColor: string,
+  color: string,
+};
+
+type ToastColorType = {
+  bgColor: string,
   color: string,
 };

@@ -17,21 +17,31 @@ export const lightTheme: DefaultTheme = {
     medium: palette.black3,
     low: palette.black9,
   },
-  button : {
-    primary:{
+  button: {
+    primary: {
       bgColor: palette.green4,
       hoverBgColor: palette.green3,
       color: palette.green10,
     },
-    secondary:{
+    secondary: {
       bgColor: 'transparent',
       hoverBgColor: palette.black9,
       color: palette.green4,
     },
-    outline:{
+    outline: {
       bgColor: 'transparent',
       hoverBgColor: palette.black9,
       color: palette.green4,
+    },
+  },
+  toast: {
+    success: {
+      bgColor: palette.green9,
+      color: palette.green1,
+    },
+    error: {
+      bgColor: palette.red9,
+      color: palette.red1,
     },
   },
   error: palette.red4,
@@ -50,21 +60,31 @@ export const darkTheme: DefaultTheme = {
     medium: palette.black8,
     low: palette.black3,
   },
-  button : {
-    primary:{
+  button: {
+    primary: {
       bgColor: palette.green8,
       hoverBgColor: palette.green9,
       color: palette.green2,
     },
-    secondary:{
+    secondary: {
       bgColor: 'transparent',
       hoverBgColor: palette.black2,
       color: palette.green8,
     },
-    outline:{
+    outline: {
       bgColor: 'transparent',
       hoverBgColor: palette.black2,
       color: palette.green8,
+    },
+  },
+  toast: {
+    success: {
+      bgColor: palette.green3,
+      color: palette.green9,
+    },
+    error: {
+      bgColor: palette.red3,
+      color: palette.red9,
     },
   },
   error: palette.red8,

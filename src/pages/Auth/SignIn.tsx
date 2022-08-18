@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { useCallback, useRef, useState } from 'react';
 import styled from 'styled-components';
 import { Link, useNavigate } from 'react-router-dom';
 import Button from '../../components/common/Button';
@@ -6,6 +6,9 @@ import Text from '../../components/common/Text';
 import mediaQuery from '../../styles/mediaQuery';
 import TextInputElementType from '../../types/textInput';
 import Auth from '../../firebase/authuser';
+import Toast from '../../components/toast/Toast';
+import ToastMessages from '../../script/toastMessages';
+import { ToastMessageContents } from '../../types/toastMessage';
 
 const WrappingInputs = styled.div`
   margin-top: 12px;
@@ -35,10 +38,15 @@ const SignIn = () => {
   const refs = useRef<TextInputElementType[]>([]);
   const nav = useNavigate();
   const [loading, setLoading] = useState(false);
+  const [toast, setToast] = useState<ToastMessageContents | null>(null);
+
+  const close = () => {
+    setToast(null);
+  };
 
   // TODO : console.log() 전부 UI로 변경하기
   // TODO 리팩토링
-  const loginOnClickHandler = () => {
+  const loginOnClickHandler = useCallback(function ()  {
     setLoading(true);
     Auth.login({ email: refs.current[0].value, password: refs.current[1].value })
       .then((res) => {
@@ -50,17 +58,18 @@ const SignIn = () => {
           case 'auth/invalid-email':
           case 'auth/wrong-password':
           case 'user-not-found':
-            console.log('정확한 정보를 입력해주세요');
+            setToast(ToastMessages['auth-invalid-input']);
             break;
           default:
-            console.log('다시 시도해주세요');
+            setToast(ToastMessages['server-error']);
         }
       })
       .finally(() => setLoading(false));
-  };
+  }, []);
 
   return (
     <>
+      {/* TODO 페이지 타이틀 추가: 회원가입 */}
       <WrappingInputs>
         <input
           ref={el => refs.current[0] = el as TextInputElementType}
@@ -90,6 +99,7 @@ const SignIn = () => {
           </Text>
         </Link>
       </WrappingToggleAuth>
+      {toast && <Toast info={toast} close={close}/>}
     </>
   );
 };
