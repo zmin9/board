@@ -1,6 +1,5 @@
 import React, { PropsWithChildren } from 'react';
 import styled from 'styled-components';
-// import { Link } from 'react-router-dom';
 import { Link, useNavigate } from 'react-router-dom';
 import mediaQuery from '../../styles/mediaQuery';
 import Text from '../../components/common/Text';
@@ -77,7 +76,12 @@ const PageDefault = ({ ...props }: LayoutProps) => {
       <WrappingPage>
         <Header>
           <Link to="/">
-            <Text size="40px" weight={600} color="high">Board</Text>
+            <Text
+              text="Board"
+              size="40px"
+              weight={600}
+              color="high"
+            />
           </Link>
         </Header>
         {props.children}

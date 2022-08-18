@@ -18,10 +18,6 @@ const WrappingSection = styled.div`
   gap: 12px;
 `;
 
-const InvalidMsg = styled.div`
-  color: ${({ theme }) => theme.error}
-`;
-
 const WrappingFooter = styled.div`
   display: flex;
   justify-content: end;
@@ -40,13 +36,12 @@ const WrappingFooter = styled.div`
 const WritePage = () => {
   const nav = useNavigate();
   const refs = useRef<TextInputElementType[]>([]);
-  const [invalidMsg, setInvalidMsg] = useState(false);
   const [postLoading, setPostLoading] = useState(false);
 
   const postOnClickHandler = async () => {
     for (let i = 0; i < 2; i++) {
       if (refs.current[i].value.trim() === '') {
-        setInvalidMsg(true);
+        console.log('다 안 채워짐');
         return;
       }
     }
@@ -77,9 +72,12 @@ const WritePage = () => {
       />
       <hr/>
       <WrappingSection>
-        <Text size="18px" weight={600} color="high">
-          게시글 내용
-        </Text>
+        <Text
+          text="게시글 내용"
+          size="18px"
+          weight={600}
+          color="high"
+        />
         <input
           ref={el => refs.current[0] = el as TextInputElementType}
           placeholder="제목"
@@ -92,14 +90,6 @@ const WritePage = () => {
         />
       </WrappingSection>
       <WrappingFooter>
-        {
-          invalidMsg &&
-          <InvalidMsg>
-            <Text size="15px" weight={500}>
-              모든 칸을 채워주세요
-            </Text>
-          </InvalidMsg>
-        }
         <Button
           text="등록"
           size="lg"

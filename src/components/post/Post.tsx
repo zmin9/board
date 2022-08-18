@@ -28,19 +28,28 @@ const Post = () => {
         <>
           <PostHeader>
             <h2>
-              <Text size="16px" weight={600} color="medium">
-                {post.title}
-              </Text>
+              <Text
+                text={post.title}
+                size="16px"
+                weight={600}
+                color="medium"
+              />
             </h2>
             {post.time !== 0 &&
-              <Text size="12px" weight={400} color="low">
-                {`${getLocalDate(post.time)} ${getLocalTime(post.time)}`}
-              </Text>
+              <Text
+                text={`${getLocalDate(post.time)} ${getLocalTime(post.time)}`}
+                size="12px"
+                weight={400}
+                color="low"
+              />
             }
           </PostHeader>
-          <Text size="15px" weight={400} color="medium">
-            {post.content}
-          </Text>
+          <Text
+            text={post.content}
+            size="15px"
+            weight={400}
+            color="medium"
+          />
         </>
       }
     </PostContainer>

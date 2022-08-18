@@ -109,9 +109,12 @@ const SignUp = () => {
       </WrappingButton>
       <WrappingToggleAuth>
         <Link to="/auth/signin">
-          <Text size="15px" weight={500} color="low">
-            로그인
-          </Text>
+          <Text
+            text='로그인'
+            size="15px"
+            weight={500}
+            color="low"
+          />
         </Link>
       </WrappingToggleAuth>
       {toast && <Toast info={toast} close={close}/>}

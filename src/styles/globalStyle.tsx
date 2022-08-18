@@ -3,6 +3,7 @@ import mediaQuery from './mediaQuery';
 
 const GlobalStyle = createGlobalStyle`
   * {
+    font-size: 15px;
     box-sizing: border-box;
     margin: 0;
   }

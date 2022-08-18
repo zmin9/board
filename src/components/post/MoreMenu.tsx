@@ -1,6 +1,5 @@
 import styled from 'styled-components';
 import { createPortal } from 'react-dom';
-import Text from '../common/Text';
 import mediaQuery from '../../styles/mediaQuery';
 
 type ModalContentsType = {
@@ -74,9 +73,7 @@ const MoreMenu = ({ close, contents }: ModalProps) => {
         {
           contents.map((content) =>
             <ModalItem onClick={content.onClick} key={content.text}>
-              <Text size="15px" weight={400}>
-                {content.text}
-              </Text>
+              {content.text}
             </ModalItem>,
           )
         }

@@ -2,7 +2,6 @@ import styled from 'styled-components';
 import { useEffect } from 'react';
 import mediaQuery from '../../styles/mediaQuery';
 import { ToastMessageContents } from '../../lib/toastMessages';
-import Text from '../common/Text';
 
 type ToastProps = {
   info: ToastMessageContents
@@ -42,9 +41,7 @@ const Toast = ({ info, close }: ToastProps) => {
 
   return (
     <ToastContainer type={info.type}>
-      <Text size="15px" weight={500}>
-        {info.text}
-      </Text>
+      {info.text}
     </ToastContainer>
   );
 };

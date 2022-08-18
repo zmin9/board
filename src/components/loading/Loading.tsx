@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import Text from '../common/Text';
 import Spinner from './Spinner';
 
 const WrappingLoading = styled.div`
@@ -15,10 +14,7 @@ const WrappingLoading = styled.div`
 const Loading = () => {
   return (
     <WrappingLoading>
-      <Spinner/>
-      <Text size="15px" weight={500}>
-        loading...
-      </Text>
+      <Spinner/>loading...
     </WrappingLoading>
   );
 };

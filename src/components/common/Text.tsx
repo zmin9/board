@@ -3,29 +3,26 @@ import React from 'react';
 import { TextColorType } from '../../styles/theme';
 
 type TextStyle = {
+  text: string,
   size: string,
   weight: number,
-  color?: TextColorType,
+  color: TextColorType,
 };
 
-const CustomText = styled.span<TextStyle>`
+const CustomText = styled.span<Omit<TextStyle, 'text'>>`
   font-size: ${({ size }) => size};
   font-weight: ${({ weight }) => weight};
-  color: ${({ color, theme }) => color ? theme.text[color] : 'currentColor'};
+  color: ${({ color, theme }) => theme.text[color]};
 `;
 
-export default function Text({ children, ...style }: React.PropsWithChildren<TextStyle>) {
-  if (typeof children !== 'string') {
-    console.error('wrong type of child, Text');
-    return null;
-  }
+export default function Text({ text, size, weight, color }: TextStyle) {
   return (
     <CustomText
-      size={style.size}
-      weight={style.weight}
-      color={style.color}
+      size={size}
+      weight={weight}
+      color={color}
     >
-      {children}
+      {text}
     </CustomText>
   );
 }
