@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import { createPortal } from 'react-dom';
 import mediaQuery from '../../styles/mediaQuery';
+import Text from '../common/Text';
 
 type ModalContentsType = {
   text: string,
@@ -29,7 +30,6 @@ const ModalContainer = styled.div`
 
   border-radius: 4px;
   background-color: ${({ theme }) => theme.background};
-  color: ${({ theme }) => theme.text.medium};
   box-shadow: ${({ theme }) => theme.shadow} 0 0 4px 4px;
 
   ${mediaQuery.mobile} {
@@ -76,7 +76,12 @@ const MoreMenu = ({ close, contents }: ModalProps) => {
               onClick={content.onClick}
               key={content.text}
             >
-              {content.text}
+              <Text
+                text={content.text}
+                size="15px"
+                weight={500}
+                color="medium"
+              />
             </ModalItem>,
           )
         }
