@@ -7,7 +7,7 @@ import mediaQuery from '../../styles/mediaQuery';
 import TextInputElementType from '../../types/textInput';
 import Auth from '../../firebase/authuser';
 import Toast from '../../components/toast/Toast';
-import ToastMessages, { ToastMessageContents } from '../../lib/toastMessages';
+import { ToastMessageContents, authErrorToastMsg } from '../../lib/toastMessages';
 
 const WrappingInputs = styled.div`
   margin-top: 12px;
@@ -43,9 +43,7 @@ const SignIn = () => {
     setToast(null);
   };
 
-  // TODO : console.log() 전부 UI로 변경하기
-  // TODO 리팩토링
-  const loginOnClickHandler = useCallback(function ()  {
+  const loginOnClickHandler = useCallback(function () {
     setLoading(true);
     Auth.login({ email: refs.current[0].value, password: refs.current[1].value })
       .then((res) => {
@@ -53,15 +51,7 @@ const SignIn = () => {
         nav('/');
       })
       .catch(e => {
-        switch (e.code) {
-          case 'auth/invalid-email':
-          case 'auth/wrong-password':
-          case 'user-not-found':
-            setToast(ToastMessages['auth-invalid-input']);
-            break;
-          default:
-            setToast(ToastMessages['server-error']);
-        }
+        setToast(authErrorToastMsg(e.code));
       })
       .finally(() => setLoading(false));
   }, []);
@@ -94,7 +84,7 @@ const SignIn = () => {
       <WrappingToggleAuth>
         <Link to="/auth/signup">
           <Text
-            text='회원가입'
+            text="회원가입"
             size="15px"
             weight={500}
             color="low"

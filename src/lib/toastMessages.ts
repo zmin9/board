@@ -26,4 +26,17 @@ const ToastMessages: Record<ToastMessage, ToastMessageContents> = {
   },
 };
 
-export default ToastMessages;
+export function authErrorToastMsg(errorCode: string): ToastMessageContents {
+  switch (errorCode) {
+    case 'auth/invalid-email':
+    case 'auth/wrong-password':
+    case 'user-not-found':
+      return ToastMessages['auth-invalid-input'];
+    case 'auth/email-already-in-use':
+      return ToastMessages['signup-already-email'];
+    case 'auth/weak-password':
+      return ToastMessages['signup-weak-password'];
+    default:
+      return ToastMessages['server-error'];
+  }
+}

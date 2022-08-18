@@ -7,7 +7,7 @@ import mediaQuery from '../../styles/mediaQuery';
 import TextInputElementType from '../../types/textInput';
 import Auth from '../../firebase/authuser';
 import Toast from '../../components/toast/Toast';
-import ToastMessages, { ToastMessageContents } from '../../lib/toastMessages';
+import { ToastMessageContents, authErrorToastMsg } from '../../lib/toastMessages';
 
 const WrappingInputs = styled.div`
   margin-top: 12px;
@@ -45,8 +45,6 @@ const SignUp = () => {
 
   const checkPasswordSame = (pw: string, checkingPw: string) => pw === checkingPw;
 
-  // TODO : console.log() 전부 UI로 변경하기
-  // TODO 리팩토링
   const signUpOnClickHandler = () => {
     if (!checkPasswordSame(refs.current[1].value, refs.current[2].value)) {
       console.log('입력된 비밀번호가 다름');
@@ -60,19 +58,7 @@ const SignUp = () => {
         nav('/');
       })
       .catch(e => {
-        switch (e.code) {
-          case 'auth/invalid-email':
-            setToast(ToastMessages['auth-invalid-input']);
-            break;
-          case 'auth/email-already-in-use':
-            setToast(ToastMessages['signup-already-email']);
-            break;
-          case 'auth/weak-password':
-            setToast(ToastMessages['signup-weak-password']);
-            break;
-          default:
-            setToast(ToastMessages['server-error']);
-        }
+        setToast(authErrorToastMsg(e.code));
       })
       .finally(() => setLoading(false));
   };
@@ -110,7 +96,7 @@ const SignUp = () => {
       <WrappingToggleAuth>
         <Link to="/auth/signin">
           <Text
-            text='로그인'
+            text="로그인"
             size="15px"
             weight={500}
             color="low"
