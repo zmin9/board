@@ -55,11 +55,12 @@ const BasicButton = styled.button<ButtonProps>`
   ${({ size }) => buttonSize[size]}
 `;
 
-const Button = ({ loading = false, ...props }: ButtonProps) => {
+const Button = ({ loading = false, fullWidth = false, ...props }: ButtonProps) => {
   return (
     <BasicButton
       type="button"
       disabled={loading}
+      fullWidth={fullWidth}
       {...props}
     >
       {loading ? <Spinner /> : props.text}
