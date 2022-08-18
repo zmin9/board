@@ -8,6 +8,7 @@ import MoreMenu from '../components/post/MoreMenu';
 import mediaQuery from '../styles/mediaQuery';
 import { PostTypeWithId } from '../types/post';
 import Loading from '../components/loading/Loading';
+import Auth from '../firebase/authuser';
 import ContentBox from './pageLayout/ContentBox';
 
 const PageHeader = styled.div`
@@ -36,6 +37,12 @@ const PostPage = () => {
   const [post, setPost] = useState<PostTypeWithId>();
   const { postId } = useParams();
   const nav = useNavigate();
+
+  const isMyPost = () => {
+    const info = Auth.getCurrentUserInfo();
+    if (info && post) return info.email === post.email;
+    return false;
+  };
 
   useEffect(() => {
     DB.getPost(String(postId)).then(res => setPost(res));
@@ -76,12 +83,14 @@ const PostPage = () => {
                 designType="secondary"
               />
             </Link>
-            <IconButton
-              icon="more"
-              size="sm"
-              designType="secondary"
-              onClick={open}
-            />
+            {isMyPost() &&
+              <IconButton
+                icon="more"
+                size="sm"
+                designType="secondary"
+                onClick={open}
+              />
+            }
           </PageHeader>
           {more &&
             <WrappingMenuModal>
