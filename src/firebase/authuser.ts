@@ -1,4 +1,5 @@
 import { createUserWithEmailAndPassword, getAuth, signInWithEmailAndPassword } from 'firebase/auth';
+import { User } from '../types/user';
 import FirebaseApp from './init';
 
 const auth = getAuth(FirebaseApp);
@@ -32,8 +33,12 @@ const createAccount = async ({ email, password }: AuthInfo) => {
   }
 };
 
-const getCurrentUserInfo = () => {
-  return auth.currentUser;
+const getCurrentUserInfo = (): User | null => {
+  if (!auth.currentUser) return null;
+  return {
+    displayName: auth.currentUser.displayName,
+    email: auth.currentUser.email,
+  };
 };
 
 const Auth = {
