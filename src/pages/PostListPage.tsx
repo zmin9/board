@@ -20,7 +20,7 @@ type PostsContextType = {
   isEmpty: boolean
 };
 
-export const Posts = createContext<PostsContextType>({
+export const PostsContext = createContext<PostsContextType>({
   posts: [],
   isLoading: true,
   isEmpty: false,
@@ -38,13 +38,13 @@ function PostListPage() {
 
   return (
     <ContentBox>
-      <Posts.Provider value={{
+      <PostsContext.Provider value={{
         posts: posts,
         isLoading: isLoading,
         isEmpty: posts.length === 0,
       }}>
         <PostList/>
-      </Posts.Provider>
+      </PostsContext.Provider>
       {Auth.getCurrentUserInfo() &&
         <WrapButtonRightAlign>
           <Link to="/write">
