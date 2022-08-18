@@ -7,8 +7,7 @@ import mediaQuery from '../../styles/mediaQuery';
 import TextInputElementType from '../../types/textInput';
 import Auth from '../../firebase/authuser';
 import Toast from '../../components/toast/Toast';
-import ToastMessages from '../../script/toastMessages';
-import { ToastMessageContents } from '../../types/toastMessage';
+import ToastMessages, { ToastMessageContents } from '../../lib/toastMessages';
 
 const WrappingInputs = styled.div`
   margin-top: 12px;

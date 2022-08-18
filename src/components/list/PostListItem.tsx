@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import Text from '../common/Text';
-import { getLocalDate } from '../../script/utils';
+import { getLocalDate } from '../../lib/utils';
 
 type ListItemProps = {
   title: string,

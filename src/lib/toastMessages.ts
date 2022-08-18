@@ -1,4 +1,11 @@
-import { ToastMessage, ToastMessageContents } from '../types/toastMessage';
+type ToastMessage = 'auth-invalid-input' | 'server-error' | 'signup-already-email' | 'signup-weak-password';
+
+export type ToastMessageType = 'success' | 'error';
+
+export type ToastMessageContents = {
+  type: ToastMessageType,
+  text: string,
+};
 
 const ToastMessages: Record<ToastMessage, ToastMessageContents> = {
   'auth-invalid-input': {

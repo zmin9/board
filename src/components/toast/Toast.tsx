@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { useEffect } from 'react';
 import mediaQuery from '../../styles/mediaQuery';
-import { ToastMessageContents } from '../../types/toastMessage';
+import { ToastMessageContents } from '../../lib/toastMessages';
 import Text from '../common/Text';
 
 type ToastProps = {

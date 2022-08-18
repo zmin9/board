@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom';
 import styled from 'styled-components';
 import DB from '../../firebase/database';
 import Text from '../common/Text';
-import { getLocalDate, getLocalTime } from '../../script/utils';
+import { getLocalDate, getLocalTime } from '../../lib/utils';
 import { PostTypeWithId } from '../../types/post';
 
 const PostContainer = styled.div`

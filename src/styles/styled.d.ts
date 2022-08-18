@@ -1,5 +1,5 @@
 import 'styled-components';
-import { ToastMessageType } from '../script/toastMessages';
+import { ToastMessageType } from '../lib/toastMessages';
 
 declare module 'styled-components' {
   export interface DefaultTheme {
