@@ -14,10 +14,12 @@ import SignIn from './pages/Auth/SignIn';
 import SignUp from './pages/Auth/SignUp';
 import ProfilePage from './pages/ProfilePage';
 
-const isDarkThemeFromLocalStorage = Boolean(localStorage.getItem('isDark'));
+const isDarkThemeFromLocalStorage = localStorage.getItem('isDark');
 
 const App = () => {
-  const [isDarkTheme, setIsDarkTheme] = useState(isDarkThemeFromLocalStorage);
+  const [isDarkTheme, setIsDarkTheme] = useState(
+    !!isDarkThemeFromLocalStorage && JSON.parse(isDarkThemeFromLocalStorage),
+  );
 
   const toggleTheme = () => {
     localStorage.setItem('isDark', String(!isDarkTheme));
