@@ -3,7 +3,6 @@ import mediaQuery from './mediaQuery';
 
 const GlobalStyle = createGlobalStyle`
   * {
-    font-size: 15px;
     box-sizing: border-box;
     margin: 0;
   }
@@ -17,8 +16,13 @@ const GlobalStyle = createGlobalStyle`
     margin: 0;
     padding: 0;
     border: 0;
-    font-size: 100%;
+    font-size: 20px;
+    color: ${({ theme }) => theme.text.high};
     vertical-align: baseline;
+  }
+
+  span, p, pre, li {
+    color: ${({ theme }) => theme.text.medium};
   }
 
   button {

@@ -1,4 +1,6 @@
 import styled from 'styled-components';
+import ReactMarkdown from 'react-markdown';
+import remarkGfm from 'remark-gfm';
 import Text from '../common/Text';
 import { getLocalDate, getLocalTime } from '../../lib/utils';
 import { PostType } from '../../types/post';
@@ -9,6 +11,10 @@ const PostContainer = styled.div`
 
 const PostHeader = styled.div`
   margin: 0 0 16px;
+`;
+
+const MarkDownContainer = styled.div`
+  font-size: 15px;
 `;
 
 const Post = ({ title, time, content }: PostType) => {
@@ -32,12 +38,13 @@ const Post = ({ title, time, content }: PostType) => {
           />
         }
       </PostHeader>
-      <Text
-        text={content}
-        size="15px"
-        weight={400}
-        color="medium"
-      />
+      <MarkDownContainer>
+        <ReactMarkdown
+          remarkPlugins={[remarkGfm]}
+        >
+          {content}
+        </ReactMarkdown>
+      </MarkDownContainer>
     </PostContainer>
   );
 };
