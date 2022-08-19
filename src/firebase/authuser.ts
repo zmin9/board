@@ -5,12 +5,16 @@ import FirebaseApp from './init';
 
 const auth = getAuth(FirebaseApp);
 
-type AuthInfo = {
+interface LoginProps {
   email: string,
   password: string,
-};
+}
 
-const login = async ({ email, password }: AuthInfo) => {
+interface SignUpProps extends LoginProps {
+  name: string;
+}
+
+const login = async ({ email, password }: LoginProps) => {
   try {
     const res = await signInWithEmailAndPassword(auth, email, password);
     Store('user', {
@@ -30,27 +34,28 @@ const logout = async () => {
   return auth.signOut();
 };
 
-const createAccount = async ({ email, password }: AuthInfo) => {
-  try {
-    const res = await createUserWithEmailAndPassword(auth, email, password);
-    Store('user', {
-      displayName: res.user.displayName,
-      email: res.user.email,
-      uid: res.user.uid,
-    });
-    return res.user;
-  } catch (e) {
-    console.log('로그인 실패', e);
-    return Promise.reject(e);
-  }
-};
-
 const updateNickName = async (name: string) => {
   try {
     if (!auth.currentUser) return await Promise.reject();
     return await updateProfile(auth.currentUser, { displayName: name });
   } catch (e) {
     console.log('이름 변경 실패', e);
+    return Promise.reject(e);
+  }
+};
+
+const createAccount = async ({ email, password, name }: SignUpProps) => {
+  try {
+    const res = await createUserWithEmailAndPassword(auth, email, password);
+    await updateNickName(name);
+    Store('user', {
+      displayName: name,
+      email: res.user.email,
+      uid: res.user.uid,
+    });
+    return res.user;
+  } catch (e) {
+    console.log('로그인 실패', e);
     return Promise.reject(e);
   }
 };

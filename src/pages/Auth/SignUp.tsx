@@ -50,19 +50,19 @@ const SignUp = () => {
 
   const signUpOnClickHandler = () => {
     if (refs.current[1].value !== refs.current[2].value) {
-      console.log('입력된 비밀번호가 다름');
+      setToast(authErrorToastMsg('signup-fail-check-password'));
       return;
     }
 
     setLoading(true);
-    Auth.createAccount({ email: refs.current[0].value, password: refs.current[1].value })
-      .then(() => {
-        Auth.updateNickName(refs.current[3].value)
-          .then(() => {
-            userCtx.updateUser();
-            nav('/');
-          });
-      })
+    Auth.createAccount({
+      email: refs.current[0].value,
+      password: refs.current[1].value,
+      name: refs.current[3].value,
+    }).then(() => {
+      userCtx.updateUser();
+      nav('/');
+    })
       .catch(e => {
         setToast(authErrorToastMsg(e.code));
       })

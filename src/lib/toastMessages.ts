@@ -1,4 +1,9 @@
-type ToastMessage = 'auth-invalid-input' | 'server-error' | 'signup-already-email' | 'signup-weak-password';
+type ToastMessage =
+  'auth-invalid-input'
+  | 'server-error'
+  | 'signup-already-email'
+  | 'signup-weak-password'
+  | 'signup-fail-check-password';
 
 export type ToastMessageType = 'success' | 'error';
 
@@ -24,6 +29,10 @@ const ToastMessages: Record<ToastMessage, ToastMessageContents> = {
     type: 'error',
     text: '비밀번호를 6자리 이상으로 입력해주세요',
   },
+  'signup-fail-check-password': {
+    type: 'error',
+    text: '입력된 비밀번호가 다릅니다',
+  },
 };
 
 export function authErrorToastMsg(errorCode: string): ToastMessageContents {
@@ -36,6 +45,8 @@ export function authErrorToastMsg(errorCode: string): ToastMessageContents {
       return ToastMessages['signup-already-email'];
     case 'auth/weak-password':
       return ToastMessages['signup-weak-password'];
+    case 'signup-fail-check-password':
+      return ToastMessages['signup-fail-check-password'];
     default:
       return ToastMessages['server-error'];
   }
