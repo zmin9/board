@@ -9,7 +9,7 @@ import Text from '../components/common/Text';
 import Button from '../components/common/Button';
 import mediaQuery from '../styles/mediaQuery';
 import IconButton from '../components/common/IconButton';
-import Auth from '../firebase/authuser';
+import { useCtx } from '../components/UserContext';
 import ContentBox from './pageLayout/ContentBox';
 
 const WrappingSection = styled.div`
@@ -36,7 +36,13 @@ const WrappingFooter = styled.div`
 const WritePage = () => {
   const nav = useNavigate();
   const refs = useRef<TextInputElementType[]>([]);
+  const userCtx = useCtx();
   const [postLoading, setPostLoading] = useState(false);
+
+  if (!userCtx.user) {
+    nav('/auth/signin');
+    return <></>;
+  }
 
   const postOnClickHandler = async () => {
     for (let i = 0; i < 2; i++) {
@@ -46,11 +52,16 @@ const WritePage = () => {
       }
     }
 
+    if (!userCtx.user) {
+      nav('/auth/signin');
+      return <></>;
+    }
+
     const data: PostType = {
       time: Date.now(),
       title: refs.current[0].value,
       content: refs.current[1].value,
-      email: String(Auth.getCurrentUserInfo()?.email),
+      email: String(userCtx.user.email),
     };
     setPostLoading(true);
     const id = await DB.addPost(data);

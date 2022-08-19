@@ -8,6 +8,7 @@ import TextInputElementType from '../../types/textInput';
 import Auth from '../../firebase/authuser';
 import Toast from '../../components/toast/Toast';
 import { authErrorToastMsg, ToastMessageContents } from '../../lib/toastMessages';
+import { useCtx } from '../../components/UserContext';
 
 const WrappingInputs = styled.div`
   margin-top: 12px;
@@ -36,6 +37,7 @@ const WrappingButton = styled.div`
 const SignIn = () => {
   const refs = useRef<TextInputElementType[]>([]);
   const nav = useNavigate();
+  const userCtx = useCtx();
   const [loading, setLoading] = useState(false);
   const [toast, setToast] = useState<ToastMessageContents | null>(null);
 
@@ -47,7 +49,8 @@ const SignIn = () => {
     setLoading(true);
     Auth.login({ email: refs.current[0].value, password: refs.current[1].value })
       .then((res) => {
-        console.log('hi', res.email, res);
+        console.log('hi', res.email);
+        userCtx.updateUser();
         nav('/');
       })
       .catch(e => {

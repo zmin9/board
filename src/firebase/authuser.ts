@@ -1,5 +1,6 @@
 import { createUserWithEmailAndPassword, getAuth, signInWithEmailAndPassword, updateProfile } from 'firebase/auth';
 import { User } from '../types/user';
+import { Clear, Store } from '../lib/session';
 import FirebaseApp from './init';
 
 const auth = getAuth(FirebaseApp);
@@ -12,6 +13,11 @@ type AuthInfo = {
 const login = async ({ email, password }: AuthInfo) => {
   try {
     const res = await signInWithEmailAndPassword(auth, email, password);
+    Store('user', {
+      displayName: res.user.displayName,
+      email: res.user.email,
+      uid: res.user.uid,
+    });
     return res.user;
   } catch (e) {
     console.log('로그인 실패', e);
@@ -20,12 +26,18 @@ const login = async ({ email, password }: AuthInfo) => {
 };
 
 const logout = async () => {
+  Clear();
   return auth.signOut();
 };
 
 const createAccount = async ({ email, password }: AuthInfo) => {
   try {
     const res = await createUserWithEmailAndPassword(auth, email, password);
+    Store('user', {
+      displayName: res.user.displayName,
+      email: res.user.email,
+      uid: res.user.uid,
+    });
     return res.user;
   } catch (e) {
     console.log('로그인 실패', e);
@@ -48,6 +60,7 @@ const getCurrentUserInfo = (): User | null => {
   return {
     displayName: auth.currentUser.displayName,
     email: auth.currentUser.email,
+    uid: auth.currentUser.uid,
   };
 };
 

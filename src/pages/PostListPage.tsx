@@ -5,7 +5,7 @@ import DB from '../firebase/database';
 import Button from '../components/common/Button';
 import PostList from '../components/list/PostList';
 import { PostTypeWithId } from '../types/post';
-import Auth from '../firebase/authuser';
+import { useCtx } from '../components/UserContext';
 import ContentBox from './pageLayout/ContentBox';
 
 const WrapButtonRightAlign = styled.div`
@@ -29,6 +29,7 @@ export const PostsContext = createContext<PostsContextType>({
 function PostListPage() {
   const [posts, setPosts] = useState<PostTypeWithId[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(true);
+  const userCtx = useCtx();
   useEffect(() => {
     DB.getAllPosts().then(res => {
       setPosts(res);
@@ -45,7 +46,7 @@ function PostListPage() {
       }}>
         <PostList/>
       </PostsContext.Provider>
-      {Auth.getCurrentUserInfo() &&
+      {!!userCtx.user &&
         <WrapButtonRightAlign>
           <Link to="/write">
             <Button

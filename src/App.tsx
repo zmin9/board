@@ -13,6 +13,7 @@ import AuthPage from './pages/Auth/AuthPage';
 import SignIn from './pages/Auth/SignIn';
 import SignUp from './pages/Auth/SignUp';
 import ProfilePage from './pages/ProfilePage';
+import UserContextHOC from './components/UserContext';
 
 const isDarkThemeFromLocalStorage = localStorage.getItem('isDark');
 
@@ -28,26 +29,28 @@ const App = () => {
 
   return (
     <ThemeProvider theme={isDarkTheme ? darkTheme : lightTheme}>
-      <GlobalStyle/>
-      <div id="modal-background"/>
-      <BrowserRouter>
-        <PageDefault isDarkTheme={isDarkTheme} themeController={toggleTheme}>
-          <Routes>
-            <Route path="/" element={<PostListPage/>}/>
-            <Route path="/post/:postId" element={<PostPage/>}/>
-            <Route path="/write" element={<WritePage/>}/>
-            <Route path="/auth" element={<AuthPage/>}>
-              <Route index element={<Navigate replace to="/no-content"/>}/>
-              <Route path="signin" element={<SignIn/>}/>
-              <Route path="signup" element={<SignUp/>}/>
-            </Route>
-            <Route path="/profile" element={<ProfilePage/>}/>
-            <Route path="*" element={<Navigate replace to="/no-content"/>}/>
-            <Route path="/no-content" element={<div>페이지 없음</div>}/>
-          </Routes>
-        </PageDefault>
-      </BrowserRouter>
-      <div id="toast"/>
+      <UserContextHOC>
+        <GlobalStyle/>
+        <div id="modal-background"/>
+        <BrowserRouter>
+          <PageDefault isDarkTheme={isDarkTheme} themeController={toggleTheme}>
+            <Routes>
+              <Route path="/" element={<PostListPage/>}/>
+              <Route path="/post/:postId" element={<PostPage/>}/>
+              <Route path="/write" element={<WritePage/>}/>
+              <Route path="/auth" element={<AuthPage/>}>
+                <Route index element={<Navigate replace to="/no-content"/>}/>
+                <Route path="signin" element={<SignIn/>}/>
+                <Route path="signup" element={<SignUp/>}/>
+              </Route>
+              <Route path="/profile" element={<ProfilePage/>}/>
+              <Route path="*" element={<Navigate replace to="/no-content"/>}/>
+              <Route path="/no-content" element={<div>페이지 없음</div>}/>
+            </Routes>
+          </PageDefault>
+        </BrowserRouter>
+        <div id="toast"/>
+      </UserContextHOC>
     </ThemeProvider>
   );
 };
