@@ -1,4 +1,4 @@
-import { createUserWithEmailAndPassword, getAuth, signInWithEmailAndPassword } from 'firebase/auth';
+import { createUserWithEmailAndPassword, getAuth, signInWithEmailAndPassword, updateProfile } from 'firebase/auth';
 import { User } from '../types/user';
 import FirebaseApp from './init';
 
@@ -33,6 +33,16 @@ const createAccount = async ({ email, password }: AuthInfo) => {
   }
 };
 
+const updateNickName = async (name: string) => {
+  try {
+    if (!auth.currentUser) return await Promise.reject();
+    return await updateProfile(auth.currentUser, { displayName: name });
+  } catch (e) {
+    console.log('이름 변경 실패', e);
+    return Promise.reject(e);
+  }
+};
+
 const getCurrentUserInfo = (): User | null => {
   if (!auth.currentUser) return null;
   return {
@@ -46,6 +56,7 @@ const Auth = {
   logout,
   createAccount,
   getCurrentUserInfo,
+  updateNickName,
 };
 
 export default Auth;

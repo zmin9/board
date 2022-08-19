@@ -7,10 +7,13 @@ import mediaQuery from '../../styles/mediaQuery';
 import TextInputElementType from '../../types/textInput';
 import Auth from '../../firebase/authuser';
 import Toast from '../../components/toast/Toast';
-import { ToastMessageContents, authErrorToastMsg } from '../../lib/toastMessages';
+import { authErrorToastMsg, ToastMessageContents } from '../../lib/toastMessages';
+
+const SectionTitle = styled.div`
+  margin: 12px 0;
+`;
 
 const WrappingInputs = styled.div`
-  margin-top: 12px;
   width: 270px;
 
   & > input + input {
@@ -43,19 +46,19 @@ const SignUp = () => {
     setToast(null);
   };
 
-  const checkPasswordSame = (pw: string, checkingPw: string) => pw === checkingPw;
-
   const signUpOnClickHandler = () => {
-    if (!checkPasswordSame(refs.current[1].value, refs.current[2].value)) {
+    if (refs.current[1].value !== refs.current[2].value) {
       console.log('입력된 비밀번호가 다름');
       return;
     }
 
     setLoading(true);
     Auth.createAccount({ email: refs.current[0].value, password: refs.current[1].value })
-      .then((res) => {
-        console.log('hi', res.email, res);
-        nav('/');
+      .then(() => {
+        Auth.updateNickName(refs.current[3].value)
+          .then(() => {
+            nav('/');
+          });
       })
       .catch(e => {
         setToast(authErrorToastMsg(e.code));
@@ -66,6 +69,14 @@ const SignUp = () => {
   return (
     <>
       {/* TODO 페이지 타이틀 추가: 회원가입 */}
+      <SectionTitle>
+        <Text
+          text="계정 정보"
+          size="16px"
+          weight={600}
+          color="high"
+        />
+      </SectionTitle>
       <WrappingInputs>
         <input
           ref={el => refs.current[0] = el as TextInputElementType}
@@ -81,6 +92,21 @@ const SignUp = () => {
           ref={el => refs.current[2] = el as TextInputElementType}
           placeholder="비밀번호 확인"
           type="password"
+        />
+      </WrappingInputs>
+      <SectionTitle>
+        <Text
+          text="사용자 정보"
+          size="16px"
+          weight={600}
+          color="high"
+        />
+      </SectionTitle>
+      <WrappingInputs>
+        <input
+          ref={el => refs.current[3] = el as TextInputElementType}
+          placeholder="닉네임"
+          type="text"
         />
       </WrappingInputs>
       <WrappingButton>

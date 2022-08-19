@@ -58,7 +58,7 @@ const SignIn = () => {
 
   return (
     <>
-      {/* TODO 페이지 타이틀 추가: 회원가입 */}
+      {/* TODO 페이지 타이틀 추가: 로그인 */}
       <WrappingInputs>
         <input
           ref={el => refs.current[0] = el as TextInputElementType}
