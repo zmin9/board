@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-max-props-per-line */
 export type IconType = keyof typeof icon;
 type IconProp = {
   type: IconType
