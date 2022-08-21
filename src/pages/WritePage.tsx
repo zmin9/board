@@ -1,5 +1,5 @@
 import React, { useRef, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Navigate, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import DB from '../firebase/database';
 import { PostType } from '../types/post';
@@ -11,6 +11,7 @@ import mediaQuery from '../styles/mediaQuery';
 import IconButton from '../components/common/IconButton';
 import { useCtx } from '../components/UserContext';
 import ContentBox from './pageLayout/ContentBox';
+
 
 const WrappingSection = styled.div`
   margin: 24px 0;
@@ -40,8 +41,10 @@ const WritePage = () => {
   const [postLoading, setPostLoading] = useState(false);
 
   if (!userCtx.user) {
-    nav('/auth/signin');
-    return <></>;
+    return <Navigate
+      replace
+      to='/auth/signin'
+    />;
   }
 
   const postOnClickHandler = async () => {
@@ -53,8 +56,10 @@ const WritePage = () => {
     }
 
     if (!userCtx.user) {
-      nav('/auth/signin');
-      return <></>;
+      return <Navigate
+        replace
+        to='/auth/signin'
+      />;
     }
 
     const data: PostType = {

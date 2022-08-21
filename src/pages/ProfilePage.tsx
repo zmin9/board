@@ -1,4 +1,4 @@
-import { useNavigate } from 'react-router-dom';
+import { Navigate, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import Button from '../components/common/Button';
 import Auth from '../firebase/authuser';
@@ -20,8 +20,10 @@ const ProfilePage = () => {
   const nav = useNavigate();
   const userCtx = useCtx();
   if (!userCtx.user) {
-    nav('/auth/signin');
-    return <></>;
+    return <Navigate
+      replace
+      to='/auth/signin'
+    />;
   }
 
   const logoutOnClickHandler = () => {
