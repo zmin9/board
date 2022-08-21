@@ -39,14 +39,15 @@ const PostPage = () => {
   const nav = useNavigate();
   const userCtx = useCtx();
 
+  useEffect(() => {
+    DB.getPost(String(postId))
+      .then(res => setPost(res));
+  }, []);
+
   const isMyPost = () => {
     if (userCtx.user && post) return userCtx.user.email === post.email;
     return false;
   };
-
-  useEffect(() => {
-    DB.getPost(String(postId)).then(res => setPost(res));
-  }, []);
 
   const close = () => {
     setMore(false);
