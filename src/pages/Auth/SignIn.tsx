@@ -1,4 +1,4 @@
-import React, { useCallback, useRef, useState } from 'react';
+import React, { useRef, useState } from 'react';
 import styled from 'styled-components';
 import { Link, useNavigate } from 'react-router-dom';
 import Button from '../../components/common/Button';
@@ -41,11 +41,9 @@ const SignIn = () => {
   const [loading, setLoading] = useState(false);
   const [toast, setToast] = useState<ToastMessageContents | null>(null);
 
-  const close = () => {
-    setToast(null);
-  };
+  const close = () => setToast(null);
 
-  const loginOnClickHandler = useCallback(function () {
+  const loginOnClickHandler = () => {
     setLoading(true);
     Auth.login({ email: refs.current[0].value, password: refs.current[1].value })
       .then((res) => {
@@ -57,7 +55,7 @@ const SignIn = () => {
         setToast(authErrorToastMsg(e.code));
       })
       .finally(() => setLoading(false));
-  }, []);
+  };
 
   return (
     <>
