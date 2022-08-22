@@ -1,9 +1,10 @@
 import styled from 'styled-components';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
-import Text from '../common/Text';
+import { memo } from 'react';
 import { getLocalDate, getLocalTime } from '../../lib/utils';
 import { PostType } from '../../types/post';
+import Text from '../common/Text';
 
 const PostContainer = styled.div`
   padding: 12px;
@@ -17,7 +18,7 @@ const MarkDownContainer = styled.div`
   font-size: 15px;
 `;
 
-const Post = ({ title, time, content }: PostType) => {
+const Post = memo(({ title, time, content }: PostType) => {
   return (
     <PostContainer>
       <PostHeader>
@@ -47,6 +48,6 @@ const Post = ({ title, time, content }: PostType) => {
       </MarkDownContainer>
     </PostContainer>
   );
-};
+});
 
 export default Post;
